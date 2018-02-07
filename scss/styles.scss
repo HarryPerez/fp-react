@@ -77,3 +77,24 @@
   font-size: $font-small;
   text-align: center;
 }
+
+.nav-bar {
+  box-shadow: 0px 20px 15px -15px $colors-grey;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 90px;
+  justify-content: space-between;
+}
+
+.nav-title {
+  align-self: center;
+  font-size: $vars-font-big;
+  margin-right: 25px;
+}
+
+.nav-logo {
+  align-self: center;
+  margin-left: 25px;
+  width: 200px;
+}
