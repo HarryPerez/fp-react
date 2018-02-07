@@ -1,3 +1,4 @@
+@import url("https://fonts.google.com/specimen/Roboto?selection.family=Roboto");
 * {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -83,5 +84,80 @@ li {
 ::placeholder {
   color: #999;
   opacity: 1; }
+
+* {
+  font-family: Roboto; }
+
+.front-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px; }
+
+.back-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px; }
+
+.main-title {
+  font-size: 24px;
+  position: relative;
+  margin: 100px 10px 100px 100px; }
+
+.main-title:before {
+  background-repeat: no-repeat;
+  background-image: url("resources/triangle.svg");
+  content: '';
+  height: 100px;
+  left: -55px;
+  position: absolute;
+  top: -50px;
+  width: 100px;
+  z-index: -1; }
+
+.tech-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 80px; }
+
+.tech {
+  align-items: center;
+  background-color: #BED23C;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 150px;
+  margin: 10px 10px 10px 50px;
+  position: relative; }
+
+.tech:before {
+  bottom: 10px;
+  border: 1px solid #BED23C;
+  border-radius: 5px;
+  content: '';
+  left: -10px;
+  right: 10px;
+  position: absolute;
+  top: -10px;
+  z-index: -1; }
+
+.tech-logo {
+  height: 100px;
+  margin: 5px;
+  width: 100px; }
+
+.tech-name {
+  font-size: 16px; }
+
+.tech-release {
+  font-weight: bold;
+  font-size: 12px;
+  margin: 5px; }
+
+.tech-description {
+  font-size: 12px;
+  text-align: center;
+  margin: 5px; }
 
 /*# sourceMappingURL=application.css.map */

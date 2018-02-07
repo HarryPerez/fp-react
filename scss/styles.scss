@@ -1,0 +1,95 @@
+$vars-nav-height: 90px;
+$vars-footer-height: 30vh;
+$vars-triangle-heigth: 90px;
+$vars-triangle-width: 100px;
+$vars-tech-logo-size: 100px;
+$vars-font-big: 24px;
+$vars-font-medium: 16px;
+$vars-font-small: 12px;
+
+* {
+  font-family: Roboto;
+}
+
+.front-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.back-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.main-title {
+  font-size: $vars-font-big;
+  position: relative;
+  margin: 100px 10px 100px 100px;
+}
+
+.main-title:before {
+  background-repeat: no-repeat;
+  background-image: url('resources/triangle.svg');
+  content: '';
+  height: 100px;
+  left: -55px;
+  position: absolute;
+  top: -50px;
+  width: 100px;
+  z-index: -1;
+}
+
+.tech-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 80px;
+}
+
+.tech {
+  align-items: center;
+  background-color: $colors-green;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 150px;
+  margin: 10px 10px 10px 50px;
+  position: relative;
+}
+
+.tech:before {
+  bottom: 10px;
+  border: 1px solid $colors-green;
+  border-radius: 5px;
+  content: '';
+  left: -10px;
+  right: 10px;
+  position: absolute;
+  top: -10px;
+  z-index: -1;
+}
+
+.tech-logo {
+   height: 100px;
+   margin: 5px;
+   width: 100px;
+}
+
+.tech-name {
+  font-size: $vars-font-medium;
+}
+
+.tech-release {
+  font-weight: bold;
+  font-size: $vars-font-small;
+  margin: 5px;
+}
+
+.tech-description {
+  font-size: $vars-font-small;
+  text-align: center;
+  margin: 5px;
+}
