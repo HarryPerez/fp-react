@@ -2,21 +2,23 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.body-container {
+  padding: 100px;
+}
+
 .main-title {
   font-size: $font-big;
   position: relative;
   margin-bottom: 100px;
-  padding-left: 100px;
-  padding-top: 100px;
 
   &::before {
     background-repeat: no-repeat;
     background-image: url('resources/triangle.svg');
     content: '';
     height: 100px;
-    left: 45px;
+    left: -55px;
     position: absolute;
-    top: 50px;
+    top: -50px;
     width: 100px;
     z-index: -1;
   }
@@ -27,7 +29,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: 120px;
+  padding: 0 120px;
 }
 
 .tech {
@@ -56,9 +58,8 @@
 
 .tech-logo {
    height: 100px;
-   margin: 5px;
-   width: 100px;
    margin-bottom: 5px;
+   width: 100px;
 }
 
 .tech-name {
