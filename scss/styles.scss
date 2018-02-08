@@ -102,3 +102,42 @@
   align-self: center;
   width: 200px;
 }
+
+.footer {
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+}
+
+.footer-title {
+  color: $white;
+  font-size: $font-big;
+  margin-bottom: 25px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+}
+
+.footer-input {
+  border-radius: 5px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.footer-submit {
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid $white;
+  border-radius: 5px;
+  color: $white;
+  font-size: $font-medium;
+  padding: 10px;
+  text-transform: uppercase;
+}
