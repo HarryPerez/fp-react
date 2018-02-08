@@ -86,6 +86,8 @@
   height: 90px;
   justify-content: space-between;
   left: 0;
+  padding-left: 25px;
+  padding-right: 25px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -95,11 +97,9 @@
 .nav-title {
   align-self: center;
   font-size: $font-big;
-  padding-right: 25px;
 }
 
 .nav-logo {
   align-self: center;
-  padding-left: 25px;
   width: 200px;
 }
