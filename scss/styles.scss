@@ -5,16 +5,18 @@
 .main-title {
   font-size: $font-big;
   position: relative;
-  margin: 100px 10px 100px 100px;
+  margin-bottom: 100px;
+  padding-left: 100px;
+  padding-top: 100px;
 
   &::before {
     background-repeat: no-repeat;
     background-image: url('resources/triangle.svg');
     content: '';
     height: 100px;
-    left: -55px;
+    left: 45px;
     position: absolute;
-    top: -50px;
+    top: 50px;
     width: 100px;
     z-index: -1;
   }
@@ -25,7 +27,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: 80px;
+  padding-left: 120px;
 }
 
 .tech {
@@ -35,7 +37,8 @@
   display: flex;
   flex-direction: column;
   flex-basis: 150px;
-  margin: 10px 10px 10px 50px;
+  margin-bottom: 50px;
+  margin-right: 30px;
   position: relative;
 
   &::before {
@@ -55,20 +58,21 @@
    height: 100px;
    margin: 5px;
    width: 100px;
+   margin-bottom: 5px;
 }
 
 .tech-name {
   font-size: $font-medium;
+  margin-bottom: 5px;
 }
 
 .tech-release {
   font-weight: bold;
   font-size: $font-small;
-  margin: 5px;
+  margin-bottom: 5px;
 }
 
 .tech-description {
   font-size: $font-small;
   text-align: center;
-  margin: 5px;
 }
