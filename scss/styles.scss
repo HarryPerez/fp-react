@@ -104,6 +104,7 @@
 }
 
 .footer {
+  align-items: center;
   background-color: $blue;
   display: flex;
   flex-direction: column;
@@ -116,14 +117,12 @@
 }
 
 .footer-title {
-  align-self: center;
   color: $white;
   font-size: $font-big;
   margin-bottom: 25px;
 }
 
 .footer-container {
-  align-self: center;
   display: flex;
   flex-direction: column;
   width: 50%;
