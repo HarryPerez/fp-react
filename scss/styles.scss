@@ -3,7 +3,7 @@
 }
 
 .body-container {
-  padding: 100px;
+  padding: 200px 150px;
 }
 
 .main-title {
@@ -76,4 +76,29 @@
 .tech-description {
   font-size: $font-small;
   text-align: center;
+}
+
+.nav-bar {
+  background-color: $white;
+  box-shadow: 0px 20px 15px -15px $grey;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 90px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 25px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav-title {
+  align-self: center;
+  font-size: $font-big;
+}
+
+.nav-logo {
+  align-self: center;
+  width: 200px;
 }
