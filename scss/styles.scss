@@ -3,7 +3,7 @@
 }
 
 .body-container {
-  padding: 100px;
+  padding: 200px 150px;
 }
 
 .main-title {
@@ -79,16 +79,22 @@
 }
 
 .nav-bar {
-  box-shadow: 0px 20px 15px -15px $colors-grey;
+  background-color: $white;
+  box-shadow: 0px 20px 15px -15px $grey;
   display: flex;
   flex-wrap: nowrap;
   height: 90px;
   justify-content: space-between;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .nav-title {
   align-self: center;
-  font-size: $vars-font-big;
+  font-size: $font-big;
   padding-right: 25px;
 }
 
