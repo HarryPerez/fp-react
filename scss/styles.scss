@@ -24,17 +24,8 @@
   }
 }
 
-.tech-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding: 0 120px;
-}
-
 .tech {
   align-items: center;
-  background-color: $green;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -42,18 +33,7 @@
   margin-bottom: 50px;
   margin-right: 30px;
   position: relative;
-
-  &::before {
-    bottom: 10px;
-    border: 1px solid $green;
-    border-radius: 5px;
-    content: '';
-    left: -10px;
-    right: 10px;
-    position: absolute;
-    top: -10px;
-    z-index: -1;
-  }
+  width: 135px;
 }
 
 .tech-logo {
@@ -140,4 +120,69 @@
   font-size: $font-medium;
   padding: 10px;
   text-transform: uppercase;
+}
+
+.tech-container {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+}
+
+.front-grid {
+  grid-template-areas:
+    'react angular vue'
+    'react elm polymer'
+}
+
+.react  {
+  border-right: 1px solid $green;
+  box-sizing: content-box;
+  grid-area: react;
+  justify-content: center;
+  padding-right: 30px;
+}
+
+.angular  {
+  grid-area: angular;
+}
+
+.vue  {
+  grid-area: vue;
+}
+
+.elm  {
+  grid-area: elm;
+}
+
+.polymer  {
+  grid-area: polymer;
+}
+
+.polymer  {
+  grid-area: polymer;
+}
+
+.back-grid {
+  grid-template-areas:
+    'ruby node asp'
+    'ruby django footer'
+}
+
+.ruby  {
+  border-right: 1px solid $green;
+  box-sizing: content-box;
+  grid-area: ruby;
+  justify-content: center;
+  padding-right: 30px;
+}
+
+.asp {
+  grid-area: asp;
+}
+
+.node  {
+  grid-area: node;
+}
+
+.django  {
+  grid-area: django;
 }
