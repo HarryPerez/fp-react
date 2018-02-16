@@ -18,13 +18,9 @@ class Home extends Component {
   }
 
   filterBooks = books => {
-    console.log("entre");
     var filteredBooks;
     var filter = this.state.filter.toLowerCase();
     var filterParam = this.state.filterParam;
-
-    console.log(filter);
-    console.log(filterParam);
 
     const bookTitle = books.title.toLowerCase();
     const bookAuthor = books.author.toLowerCase();
