@@ -1,0 +1,17 @@
+.filter-container {
+  display: flex;
+  padding-bottom: 65px;
+  padding-left: 358px;
+  padding-top: 143px;
+}
+
+.filter-item {
+  margin-right: 28px;
+}
+
+.books-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 358px;
+}
