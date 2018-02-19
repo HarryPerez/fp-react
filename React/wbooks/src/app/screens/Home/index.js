@@ -7,14 +7,16 @@ import 'react-widgets/dist/css/react-widgets.css'
 import './styles.css';
 
 class Home extends Component {
-  state = {filter: '', filterParam: ''};
+  state = {filter: '', filterParam: '', books: bookJson};
 
   handleFilter = filter => {
     this.setState({filter: filter});
+    this.handleFilterBooks();
   }
 
   handleFilterParam = filterParam => {
     this.setState({filterParam: filterParam});
+    this.handleFilterBooks();
   }
 
   filterBooks = books => {
@@ -33,9 +35,13 @@ class Home extends Component {
         return bookAuthor.toLowerCase().includes(filter);
       }
     }else {
-      return true;
+      return bookJson;
     }
     return filteredBooks;
+  }
+
+  handleFilterBooks = () => {
+    this.setState({books: bookJson.filter(this.filterBooks)});
   }
 
   render() {
@@ -50,9 +56,7 @@ class Home extends Component {
           </div>
         </div>
         <div className='books-container'>
-            {
-              bookJson.filter(this.filterBooks).map(function(book) { return <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>})
-            }
+            {this.state.books.map(function(book) { return <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>})}
         </div>
       </div>
     );
