@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css'
 
@@ -20,5 +21,9 @@ class Combobox extends Component {
     );
   }
 }
+
+Combobox.propTypes = {
+  onSelection: PropTypes.func.isRequired
+};
 
 export default Combobox;

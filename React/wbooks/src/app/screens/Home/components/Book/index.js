@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import reactSvg from '../../assets/default_book.svg'
 
@@ -15,5 +16,9 @@ const Book = (book) => (
     </div>
   </div>
 );
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired
+};
 
 export default Book;

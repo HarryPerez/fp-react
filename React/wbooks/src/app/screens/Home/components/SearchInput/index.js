@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import searchSvg from '../../assets/search.svg';
 
@@ -32,5 +33,9 @@ class SearchInput extends Component {
     );
   }
 }
+
+SearchInput.propTypes = {
+  onInputChange: PropTypes.func.isRequired
+};
 
 export default SearchInput;
