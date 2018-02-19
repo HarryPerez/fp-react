@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import SearchSVG from '../../assets/search.svg';
+
+import searchSvg from '../../assets/search.svg';
+
 import './styles.css';
 
 const defaultValue = 'Buscar...';
@@ -25,7 +27,7 @@ class SearchInput extends Component {
       <div className='search-container'>
         <input className='search-input input-text' value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={defaultValue}></input>
         <div className='icon-container'>
-          <img src={SearchSVG} className='search-icon' onClick={this.handleClick} alt='svg' />
+          <img src={searchSvg} className='search-icon' onClick={this.handleClick} alt='svg' />
         </div>
       </div>
     );

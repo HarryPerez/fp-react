@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import 'react-widgets/dist/css/react-widgets.css'
+
+import bookJson from '../../../constants/data.js'
+
 import Combobox from './components/Combobox/index.js'
 import Book from './components/Book/index.js'
 import SearchInput from './components/SearchInput/index.js'
-import bookJson from '../../../constants/data.js'
-import 'react-widgets/dist/css/react-widgets.css'
 import './styles.css';
 
 class Home extends Component {
