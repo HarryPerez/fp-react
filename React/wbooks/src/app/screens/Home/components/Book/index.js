@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import reactSvg from '../../assets/default_book.svg'
 

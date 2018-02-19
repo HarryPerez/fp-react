@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Home from './screens/Home/index.js';
 import './index.css';
