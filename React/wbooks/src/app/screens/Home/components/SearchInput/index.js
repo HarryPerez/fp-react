@@ -9,7 +9,7 @@ class SearchInput extends Component {
 
   handleChange = event => {
     this.setState({ value: event.target.value });
-    this.props.callback(event.target.value);
+    this.props.onInputChange(event.target.value);
   }
 
   handleFocus = () => {
@@ -17,7 +17,7 @@ class SearchInput extends Component {
   }
 
   handleClick = () => {
-    this.props.callback(this.state.value);
+    this.props.onInputChange(this.state.value);
   }
 
   render() {

@@ -50,14 +50,14 @@ class Home extends Component {
         <div className='dashboard-container'>
           <div className='filter-container'>
             <div className='filter-item'>
-              <Combobox callback={this.handleFilterParam}/>
+              <Combobox onSelection={this.handleFilterParam}/>
             </div>
             <div className='filter-item'>
-              <SearchInput callback={this.handleFilter}/>
+              <SearchInput onInputChange={this.handleFilter}/>
             </div>
           </div>
           <div className='books-container'>
-              {this.state.books.map(function(book) { return <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>})}
+              { this.state.books.map(book => <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>) }
           </div>
         </div>
       </div>

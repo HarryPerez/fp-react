@@ -5,7 +5,7 @@ import './styles.css'
 class Combobox extends Component {
 
   handleSelection = event => {
-    this.props.callback(event.target.value);
+    this.props.onSelection(event.target.value);
   }
 
   render() {
