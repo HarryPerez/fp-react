@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Home from './screens/Home/index.js';
-import './index.css';
+import './styles.css';
 
 const App = () => (
   <Home/>
