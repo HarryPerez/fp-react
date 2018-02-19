@@ -4,25 +4,24 @@ import searchSvg from '../../assets/search.svg';
 
 import './styles.css';
 
-const defaultValue = 'Buscar...';
-
 class SearchInput extends Component {
   state = {value: ''};
 
   handleChange = event => {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
     this.props.callback(event.target.value);
   }
 
-  handleFocus = event => {
-    this.setState({value: ''});
+  handleFocus = () => {
+    this.setState({ value: '' });
   }
 
-  handleClick = event => {
+  handleClick = () => {
     this.props.callback(this.state.value);
   }
 
   render() {
+    const defaultValue = 'Buscar...';
     return (
       <div className='search-container'>
         <input className='search-input input-text' value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={defaultValue}></input>

@@ -9,41 +9,39 @@ import SearchInput from './components/SearchInput/index.js'
 import './styles.css';
 
 class Home extends Component {
-  state = {filter: '', filterParam: '', books: bookJson};
+  state = { filter: '', filterParam: '', books: bookJson  };
 
   handleFilter = filter => {
-    this.setState({filter: filter});
-    this.handleFilterBooks();
+    this.setState({ filter: filter });
+    this.filterBooks();
   }
 
   handleFilterParam = filterParam => {
-    this.setState({filterParam: filterParam});
-    this.handleFilterBooks();
+    this.setState({ filterParam: filterParam });
+    this.filterBooks();
   }
 
-  filterBooks = books => {
-    var filteredBooks;
-    var filter = this.state.filter.toLowerCase();
-    var filterParam = this.state.filterParam;
+  filterBooks = () => {
+      var filteredBooks;
+      var filter = this.state.filter.toLowerCase();
+      var filterParam = this.state.filterParam;
 
-    const bookTitle = books.title.toLowerCase();
-    const bookAuthor = books.author.toLowerCase();
-    if(filter !== ''){
-      if(filterParam === ''){
-        return bookTitle.includes(filter) || bookAuthor.toLowerCase().includes(filter);
-      }else if(filterParam === 'Nombre'){
-        return bookTitle.toLowerCase().includes(filter);
-      }else if(filterParam === 'Autor'){
-        return bookAuthor.toLowerCase().includes(filter);
-      }
-    }else {
-      return bookJson;
-    }
-    return filteredBooks;
-  }
-
-  handleFilterBooks = () => {
-    this.setState({books: bookJson.filter(this.filterBooks)});
+      filteredBooks = bookJson.filter(function(book) {
+        const bookTitle = book.title.toLowerCase();
+        const bookAuthor = book.author.toLowerCase();
+        if(filter !== ''){
+          if(filterParam === ''){
+            return bookTitle.includes(filter) || bookAuthor.toLowerCase().includes(filter);
+          }else if(filterParam === 'Nombre'){
+            return bookTitle.toLowerCase().includes(filter);
+          }else if(filterParam === 'Autor'){
+            return bookAuthor.toLowerCase().includes(filter);
+          }
+        }else {
+          return book;
+        }
+      });
+      this.setState({ books: filteredBooks });
   }
 
   render() {
