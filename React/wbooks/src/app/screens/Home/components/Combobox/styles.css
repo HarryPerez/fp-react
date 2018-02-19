@@ -23,7 +23,12 @@
   appearance: none;
   background: transparent;
   border: 1px solid #f4f4f4;
+  color:#9b9b9b;
+  font-size:14px;
+  font-style: italic;
   height: 38px;
+  letter-spacing:0px;
+  line-height:19px;
   padding-left: 10px;
   width: 238px;
   outline: none;
