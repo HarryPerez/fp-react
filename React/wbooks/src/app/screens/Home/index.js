@@ -47,16 +47,18 @@ class Home extends Component {
   render() {
     return (
       <div className='home-container'>
-        <div className='filter-container'>
-          <div className='filter-item'>
-            <Combobox callback={this.handleFilterParam}/>
+        <div className='dashboard-container'>
+          <div className='filter-container'>
+            <div className='filter-item'>
+              <Combobox callback={this.handleFilterParam}/>
+            </div>
+            <div className='filter-item'>
+              <SearchInput callback={this.handleFilter}/>
+            </div>
           </div>
-          <div className='filter-item'>
-            <SearchInput callback={this.handleFilter}/>
+          <div className='books-container'>
+              {this.state.books.map(function(book) { return <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>})}
           </div>
-        </div>
-        <div className='books-container'>
-            {this.state.books.map(function(book) { return <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>})}
         </div>
       </div>
     );
