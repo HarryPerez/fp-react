@@ -1,0 +1,52 @@
+.book-detail {
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0px 50px;
+}
+
+.detail-container {
+  display: flex;
+  border-bottom: 1px solid #00adee;
+  flex-direction: row;
+  padding-top: 181px;
+  padding-bottom: 36px;
+}
+
+.detail-image {
+  background: #d8d8d8;
+  margin-right: 21px;
+  width: 191px;
+}
+
+.detail-svg {
+  height: 105px;
+  padding: 82px 39px 79px 41px;
+  width: 105px;
+}
+
+.detail-rent {
+  background: #00adee;
+  height: 38px;
+  margin-top: 27px;
+  width: 192px;
+}
+
+.rent-title {
+  color: #ffffff;
+  font-weight: Bold;
+  font-size: 20px;
+  height: 24px;
+  padding: 7px 58px 7px 64px;
+  width: 70px;
+}
+
+.comments-title {
+  color: #a5cd39;
+  margin-top: 31px;
+  font-weight: Bold;
+  font-size: 20px;
+  line-height: 19px;
+  margin-bottom: 16px;
+}

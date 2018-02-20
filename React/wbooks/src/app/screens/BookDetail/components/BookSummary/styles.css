@@ -1,0 +1,46 @@
+.summary-container {
+  margin-bottom: 44px;
+}
+
+.summary-title {
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0px;
+  line-height: 19px;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+.summary-author {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  margin-bottom: 22px;
+}
+
+.summary-edition {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  margin-bottom: 8px;
+}
+
+.summary-genre {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  margin-bottom: 13px;
+}
+
+.summary-description {
+  color: #999999;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 19px;
+  margin-bottom: 0px;
+  width: 563px;
+}

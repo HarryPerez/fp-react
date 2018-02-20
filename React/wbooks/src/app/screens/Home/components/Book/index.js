@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import reactSvg from '../../assets/default_book.svg'
+import reactSvg from '../../../../assets/default_book.svg';
 
 import './styles.css'
 

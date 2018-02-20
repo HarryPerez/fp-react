@@ -1,0 +1,34 @@
+.suggestion-container {
+  border-bottom: 1px solid #00adee;
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-title {
+  color: #a5cd39;
+  margin-top: 31px;
+  font-weight: Bold;
+  font-size: 20px;
+  line-height: 19px;
+  margin-bottom: 16px;
+}
+
+.suggestion-image {
+  background: #d8d8d8;
+  height: 124px;
+  margin-right: 54px;
+  width: 87px;
+}
+
+.suggestion-refs {
+  display: flex;
+  flex-direction: row;
+  padding-left: 39px;
+  padding-bottom: 31px;
+}
+
+.suggestion-svg {
+  height: 51px;
+  padding: 40px 20px 40px 18px;
+  width: 51px;
+}
