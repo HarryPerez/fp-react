@@ -34,8 +34,10 @@ class BookDetail extends Component {
       );
     };
     var imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
+    var backTitle = '<Volver';
     return (
       <div className='book-detail'>
+        <h1 className='back-button'><a className='back-link' href="/dashboard">{backTitle}</a></h1>
         <div className='detail-container'>
           <div className='detail-image'>
             <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? 'detail-image' : 'detail-svg'} alt="svg" />
