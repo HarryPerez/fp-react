@@ -11,11 +11,11 @@ import Comment from './components/Comment/index.js';
 import './styles.css';
 
 class BookDetail extends Component {
-  state = { book: '', error: ''};
+  state = { book: '', error: '' };
 
   componentWillMount() {
     const book = booksJson.filter(book => { return book.id == this.props.match.params.bookId; });
-    if(book.length == 1){
+    if(book.length === 1){
       this.setState({ book: book[0] });
     }else if(book.length > 1){
       this.setState({ error: 'Sorry, it was found more than one book with the given id.' });
