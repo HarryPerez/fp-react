@@ -1,3 +1,21 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  align-items: center;
+  margin: 100px;
+}
+
+.error-image {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-weight: bold;
+}
+
 .book-detail {
   align-items: center;
   justify-content: center;
@@ -17,6 +35,7 @@
 .detail-image {
   background: #d8d8d8;
   margin-right: 21px;
+  height: 282px;
   width: 191px;
 }
 
