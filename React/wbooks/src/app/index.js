@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Home from './screens/Home/index.js';
 import BookDetail from './screens/BookDetail';
-import './styles.css';
+import './styles.scss';
 
 const App = () => (
   <BrowserRouter>

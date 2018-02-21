@@ -1,17 +1,19 @@
-.search-container {
+@import '../../../../../constants/colors.scss';
+
+.searchContainer {
   display: flex;
   height: 38px;
   width: 238px;
 }
 
-.search-input {
-  background: #f4f4f4;
-  border:1px solid #f4f4f4;
+.searchInput {
+  background: $light-grey;
+  border:1px solid $light-grey;
   width: 238px;
 }
 
-.input-text {
-  color: #9b9b9b;
+.inputText {
+  color: $hard-grey;
   font-style: italic;
   font-size: 14px;
   letter-spacing: 0px;
@@ -19,13 +21,13 @@
   padding: 9px 10px 10px 12px;
 }
 
-.icon-container {
-  background: #a5cd39;
+.iconContainer {
+  background: $special-green;
   height: 38px;
   width: 38px;
 }
 
-.search-icon {
+.searchIcon {
   height: 24px;
   padding: 8px 6px 6px 8px;
   width: 24px;
