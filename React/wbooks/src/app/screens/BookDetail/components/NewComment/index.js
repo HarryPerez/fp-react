@@ -10,14 +10,10 @@ const NewComment = () => (
         <img src={profilePicture} className='profile-picture' alt="svg" />
       </div>
       <div className='addcomment-container'>
-        <h1 className='addcomment-title'>
-          Agregar comentario
-        </h1>
+        <h1 className='addcomment-title'>Agregar comentario</h1>
         <textarea className='addcomment-area'/>
         <div className='sendcomment-button'>
-          <h1 className='sendcomment-title'>
-            Enviar
-          </h1>
+          <h1 className='sendcomment-title'>Enviar</h1>
         </div>
       </div>
   </div>

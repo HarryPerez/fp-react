@@ -22,19 +22,18 @@ class Home extends Component {
   }
 
   filterBooks = () => {
-      var filteredBooks;
-      var filter = this.state.filter.toLowerCase();
-      var filterParam = this.state.filterParam;
+      let filteredBooks;
+      const filter = this.state.filter.toLowerCase();
 
-      filteredBooks = bookJson.filter(function(book) {
+      filteredBooks = bookJson.filter((book) => {
         const bookTitle = book.title.toLowerCase();
         const bookAuthor = book.author.toLowerCase();
         if(filter !== ''){
-          if(filterParam === ''){
+          if(this.state.filterParam === ''){
             return bookTitle.includes(filter) || bookAuthor.toLowerCase().includes(filter);
-          }else if(filterParam === 'Nombre'){
+          }else if(this.state.filterParam === 'Nombre'){
             return bookTitle.toLowerCase().includes(filter);
-          }else if(filterParam === 'Autor'){
+          }else if(this.state.filterParam === 'Autor'){
             return bookAuthor.toLowerCase().includes(filter);
           }
         }else {

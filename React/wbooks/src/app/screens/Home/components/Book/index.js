@@ -5,21 +5,22 @@ import reactSvg from '../../../../assets/default_book.svg';
 
 import './styles.css'
 
-const Book = (book) => (
+const Book = props => (
   <div className='book-container'>
     <div className='book-image'>
-      <img src={book.imageUrl ? book.imageUrl : reactSvg} className={book.imageUrl ? 'book-svg' : 'default-svg'} alt="svg" />
+      <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? 'book-svg' : 'default-svg'} alt="svg" />
     </div>
     <div className='book-info'>
-      <h1 className='book-title'>{book.title}</h1>
-      <h2 className='book-author'>{book.author}</h2>
+      <h1 className='book-title'>{props.title}</h1>
+      <h2 className='book-author'>{props.author}</h2>
     </div>
   </div>
 );
 
 Book.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string
 };
 
 export default Book;
