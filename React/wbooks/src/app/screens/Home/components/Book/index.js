@@ -8,7 +8,9 @@ import './styles.css'
 const Book = props => (
   <div className='book-container'>
     <div className='book-image'>
-      <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? 'book-svg' : 'default-svg'} alt="svg" />
+      <a href={'/books/' + props.id}>
+        <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? 'book-svg' : 'default-svg'} alt="svg" />
+      </a>
     </div>
     <div className='book-info'>
       <h1 className='book-title'>{props.title}</h1>
@@ -20,7 +22,8 @@ const Book = props => (
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string
+  imageUrl: PropTypes.string,
+  id: PropTypes.number.isRequired
 };
 
 export default Book;

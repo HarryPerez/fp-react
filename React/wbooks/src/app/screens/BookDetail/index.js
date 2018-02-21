@@ -12,6 +12,7 @@ import './styles.css';
 
 class BookDetail extends Component {
   state = { book: '', error: '' };
+  backTitle = '<Volver';
 
   componentWillMount() {
     const book = booksJson.filter(book => { return book.id == this.props.match.params.bookId; });
@@ -33,11 +34,10 @@ class BookDetail extends Component {
         </div>
       );
     };
-    var imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
-    var backTitle = '<Volver';
+    let imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
     return (
       <div className='book-detail'>
-        <h1 className='back-button'><a className='back-link' href="/dashboard">{backTitle}</a></h1>
+        <h1 className='back-button'><a className='back-link' href="/dashboard">{this.backTitle}</a></h1>
         <div className='detail-container'>
           <div className='detail-image'>
             <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? 'detail-image' : 'detail-svg'} alt="svg" />
@@ -45,16 +45,12 @@ class BookDetail extends Component {
           <div className='detail-summary'>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
             <div className='detail-rent'>
-              <h1 className='rent-title'>
-                Alquilar
-              </h1>
+              <h1 className='rent-title'>Alquilar</h1>
             </div>
           </div>
         </div>
         <Suggestion/>
-        <h1 className='comments-title'>
-          Comentarios
-        </h1>
+        <h1 className='comments-title'>Comentarios</h1>
         <NewComment/>
         <Comment/>
         <Comment/>
