@@ -7,6 +7,7 @@ import './styles.css';
 
 class SearchInput extends Component {
   state = {value: ''};
+  defaultValue = 'Buscar...';
 
   handleChange = event => {
     this.setState({ value: event.target.value });
@@ -22,10 +23,9 @@ class SearchInput extends Component {
   }
 
   render() {
-    const defaultValue = 'Buscar...';
     return (
       <div className='search-container'>
-        <input className='search-input input-text' value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={defaultValue}></input>
+        <input className='search-input input-text' value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
         <div className='icon-container'>
           <img src={searchSvg} className='search-icon' onClick={this.handleClick} alt='svg' />
         </div>
