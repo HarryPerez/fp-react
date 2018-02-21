@@ -8,7 +8,9 @@ import styles from './styles.scss'
 const Book = props => (
   <div className={styles.bookContainer}>
     <div className={styles.bookImage}>
-      <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
+      <a href={'/books/' + props.id}>
+        <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
+      </a>
     </div>
     <div className={styles.bookInfo}>
       <h1 className={styles.bookTitle}>{props.title}</h1>
@@ -20,7 +22,8 @@ const Book = props => (
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string
+  imageUrl: PropTypes.string,
+  id: PropTypes.number.isRequired
 };
 
 export default Book;

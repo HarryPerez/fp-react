@@ -1,4 +1,6 @@
-.error-container {
+@import '../../../constants/colors.scss';
+
+.errorContainer {
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -6,17 +8,17 @@
   margin: 100px;
 }
 
-.error-image {
+.errorImage {
   height: 100px;
   width: 100px;
   margin-bottom: 10px;
 }
 
-.error-message {
+.errorMessage {
   font-weight: bold;
 }
 
-.book-detail {
+.bookDetail {
   align-items: center;
   justify-content: center;
   max-width: 800px;
@@ -24,8 +26,8 @@
   padding: 0px 50px;
 }
 
-.back-button {
-  color:#4a4a4a;
+.backButton {
+  color: $dark-grey;
   font-weight: normal;
   font-size:12px;
   letter-spacing:0px;
@@ -35,41 +37,41 @@
   top: 114px;
 }
 
-.back-link {
-  color:#4a4a4a;
+.backLink {
+  color: $dark-grey;
   text-decoration: none;
 }
 
-.detail-container {
+.detailContainer {
   display: flex;
-  border-bottom: 1px solid #00adee;
+  border-bottom: 1px solid $light-blue;
   flex-direction: row;
   padding-top: 181px;
   padding-bottom: 36px;
 }
 
-.detail-image {
-  background: #d8d8d8;
+.detailImage {
+  background: $grey;
   margin-right: 21px;
   height: 282px;
   width: 191px;
 }
 
-.detail-svg {
+.detailSvg {
   height: 105px;
   padding: 82px 39px 79px 41px;
   width: 105px;
 }
 
-.detail-rent {
-  background: #00adee;
+.detailRent {
+  background: $light-blue;
   height: 38px;
   margin-top: 27px;
   width: 192px;
 }
 
-.rent-title {
-  color: #ffffff;
+.rentTitle {
+  color: $white;
   font-weight: Bold;
   font-size: 20px;
   height: 24px;
@@ -77,8 +79,8 @@
   width: 70px;
 }
 
-.comments-title {
-  color: #a5cd39;
+.commentsTitle {
+  color: $special-green;
   margin-top: 31px;
   font-weight: Bold;
   font-size: 20px;

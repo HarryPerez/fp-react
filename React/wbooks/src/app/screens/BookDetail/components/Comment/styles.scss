@@ -1,11 +1,13 @@
-.comment-container {
+@import '../../../../../constants/colors.scss';
+
+.commentContainer {
   display: flex;
   flex-direction: row;
   margin-bottom: 19px;
 }
 
-.comment-title {
-  color: #000000;
+.commentTitle {
+  color: $black;
   font-weight: Bold;
   font-size: 14px;
   letter-spacing: 0px;
@@ -14,8 +16,8 @@
   margin-bottom: 0px;
 }
 
-.comment-date {
-  color: #4a4a4a;
+.commentDate {
+  color: $dark-grey;
   font-size: 12px;
   font-weight: normal;
   letter-spacing: 0px;
@@ -24,11 +26,20 @@
   margin-bottom: 10px;
 }
 
-.comment-description {
-  color: #999999;
+.commentDescription {
+  color: $superhard-grey;
   font-weight: normal;
   font-size: 14px;
   height: 57px;
   line-height: 19px;
   width: 679px;
+}
+
+.pictureContainer{
+  margin-right: 16px;
+}
+
+.profilePicture {
+  height: 40px;
+  width: 40px;
 }

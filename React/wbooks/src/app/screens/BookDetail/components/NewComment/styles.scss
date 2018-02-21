@@ -1,20 +1,22 @@
-.newcomment-container {
+@import '../../../../../constants/colors.scss';
+
+.newcommentContainer {
   display: flex;
   flex-direction: row;
   padding-bottom: 25px;
 }
 
-.picture-container{
+.pictureContainer{
   margin-right: 16px;
 }
 
-.profile-picture {
+.profilePicture {
   height: 40px;
   width: 40px;
 }
 
-.addcomment-title {
-  color: #000000;
+.addcommentTitle {
+  color: $black;
   font-weight: Bold;
   font-size: 14px;
   letter-spacing: 0px;
@@ -23,22 +25,22 @@
   margin-bottom: 14px;
 }
 
-.addcomment-area {
-  border: 1px solid #979797;
+.addcommentArea {
+  border: 1px solid $superhard-grey;
   height: 74px;
   margin-bottom: 16px;
   resize: none;
   width: 667px;
 }
 
-.sendcomment-button {
-  background: #a5cd39;
+.sendcommentButton {
+  background: $special-green;
   height: 38px;
   width: 192px;
 }
 
-.sendcomment-title {
-  color: #ffffff;
+.sendcommentTitle {
+  color: $white;
   font-size: 16px;
   font-weight: bold;
   margin-top: 0px;

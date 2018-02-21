@@ -8,7 +8,7 @@ import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';
 import NewComment from './components/NewComment/index.js';
 import Comment from './components/Comment/index.js';
-import './styles.css';
+import styles from './styles.scss';
 
 class BookDetail extends Component {
   state = { book: '', error: '' };
@@ -28,29 +28,29 @@ class BookDetail extends Component {
   render() {
     if(this.state.error){
       return (
-        <div className='error-container'>
-          <img src={ErrorIcon} className='error-image' alt="error" />
-          <div className='error-message'>{this.state.error}</div>
+        <div className={styles.errorContainer}>
+          <img src={ErrorIcon} className={styles.errorImage} alt="error" />
+          <div className={styles.errorMessage}>{this.state.error}</div>
         </div>
       );
     };
     let imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
     return (
-      <div className='book-detail'>
-        <h1 className='back-button'><a className='back-link' href="/dashboard">{this.backTitle}</a></h1>
-        <div className='detail-container'>
-          <div className='detail-image'>
-            <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? 'detail-image' : 'detail-svg'} alt="svg" />
+      <div className={styles.bookDetail}>
+        <h1 className={styles.backButton}><a className={styles.backLink} href="/dashboard">{this.backTitle}</a></h1>
+        <div className={styles.detailContainer}>
+          <div className={styles.detailImage}>
+            <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
           </div>
-          <div className='detail-summary'>
+          <div className={styles.detailSummary}>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
-            <div className='detail-rent'>
-              <h1 className='rent-title'>Alquilar</h1>
+            <div className={styles.detailRent}>
+              <h1 className={styles.rentTitle}>Alquilar</h1>
             </div>
           </div>
         </div>
         <Suggestion/>
-        <h1 className='comments-title'>Comentarios</h1>
+        <h1 className={styles.commentsTitle}>Comentarios</h1>
         <NewComment/>
         <Comment/>
         <Comment/>

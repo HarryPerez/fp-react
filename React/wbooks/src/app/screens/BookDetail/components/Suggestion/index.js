@@ -2,23 +2,23 @@ import React from 'react';
 
 import reactSvg from '../../../../assets/default_book.svg';
 
-import './styles.css'
+import styles from './styles.scss';
 
 const Suggestion = () => (
-  <div className='suggestion-container'>
-    <h1 className='suggestion-title'>Sugerencias</h1>
-    <div className='suggestion-refs'>
-      <div className='suggestion-image'>
-        <img src={reactSvg} className='suggestion-svg' alt="svg" />
+  <div className={styles.suggestionContainer}>
+    <h1 className={styles.suggestionTitle}>Sugerencias</h1>
+    <div className={styles.suggestionRefs}>
+      <div className={styles.suggestionImage}>
+        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
       </div>
-      <div className='suggestion-image'>
-        <img src={reactSvg} className='suggestion-svg' alt="svg" />
+      <div className={styles.suggestionImage}>
+        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
       </div>
-      <div className='suggestion-image'>
-        <img src={reactSvg} className='suggestion-svg' alt="svg" />
+      <div className={styles.suggestionImage}>
+        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
       </div>
-      <div className='suggestion-image'>
-        <img src={reactSvg} className='suggestion-svg' alt="svg" />
+      <div className={styles.suggestionImage}>
+        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
       </div>
     </div>
   </div>
