@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import reactSvg from '../../assets/default_book.svg'
 
-import './styles.css'
+import styles from './styles.scss'
 
 const Book = props => (
-  <div className='book-container'>
-    <div className='book-image'>
-      <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? 'book-svg' : 'default-svg'} alt="svg" />
+  <div className={styles.bookContainer}>
+    <div className={styles.bookImage}>
+      <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
     </div>
-    <div className='book-info'>
-      <h1 className='book-title'>{props.title}</h1>
-      <h2 className='book-author'>{props.author}</h2>
+    <div className={styles.bookInfo}>
+      <h1 className={styles.bookTitle}>{props.title}</h1>
+      <h2 className={styles.bookAuthor}>{props.author}</h2>
     </div>
   </div>
 );

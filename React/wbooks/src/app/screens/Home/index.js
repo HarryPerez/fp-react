@@ -6,7 +6,7 @@ import bookJson from '../../../constants/data.js'
 import Combobox from './components/Combobox/index.js'
 import Book from './components/Book/index.js'
 import SearchInput from './components/SearchInput/index.js'
-import './styles.css';
+import styles from './styles.scss';
 
 class Home extends Component {
   state = { filter: '', filterParam: '', books: bookJson  };
@@ -45,17 +45,17 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='home-container'>
-        <div className='dashboard-container'>
-          <div className='filter-container'>
-            <div className='filter-item'>
+      <div className={styles.homeContainer}>
+        <div className={styles.dashboardContainer}>
+          <div className={styles.filterContainer}>
+            <div className={styles.filterItem}>
               <Combobox onSelection={this.handleFilterParam}/>
             </div>
-            <div className='filter-item'>
+            <div className={styles.filterItem}>
               <SearchInput onInputChange={this.handleFilter}/>
             </div>
           </div>
-          <div className='books-container'>
+          <div className={styles.booksContainer}>
               { this.state.books.map(book => <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>) }
           </div>
         </div>
