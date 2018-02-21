@@ -1,21 +1,21 @@
-.filter-container {
+.filterContainer {
   display: flex;
   padding-bottom: 65px;
   padding-top: 143px;
 }
 
-.filter-item {
+.filterItem {
   margin-right: 28px;
 }
 
-.books-container {
+.booksContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.home-container {
+.homeContainer {
   align-items: center;
   justify-content: center;
   max-width: 1024px;
@@ -23,7 +23,7 @@
   padding: 0 50px;
 }
 
-.dashboard-container {
+.dashboardContainer {
   align-items: center;
   display: flex;
   flex-direction: column;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import searchSvg from '../../assets/search.svg';
 
-import './styles.css';
+import styles from './styles.scss';
 
 class SearchInput extends Component {
   state = {value: ''};
@@ -24,10 +24,10 @@ class SearchInput extends Component {
 
   render() {
     return (
-      <div className='search-container'>
-        <input className='search-input input-text' value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
-        <div className='icon-container'>
-          <img src={searchSvg} className='search-icon' onClick={this.handleClick} alt='svg' />
+      <div className={styles.searchContainer}>
+        <input className={`${styles.searchInput} ${styles.inputText}`} value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
+        <div className={styles.iconContainer}>
+          <img src={searchSvg} className={styles.searchIcon} onClick={this.handleClick} alt='svg' />
         </div>
       </div>
     );
