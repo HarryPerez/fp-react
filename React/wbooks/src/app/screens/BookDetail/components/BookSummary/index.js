@@ -18,7 +18,7 @@ const BookSummary = props => (
 BookSummary.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  year: PropTypes.any.isRequired,
+  year: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired
 };
 
