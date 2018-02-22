@@ -1,6 +1,6 @@
 import React from 'react';
 
-import reactSvg from '../../../../assets/default_book.svg';
+import defaultBook from '../../../../assets/default_book.svg';
 
 import styles from './styles.scss';
 
@@ -9,16 +9,16 @@ const Suggestion = () => (
     <h1 className={styles.suggestionTitle}>Sugerencias</h1>
     <div className={styles.suggestionRefs}>
       <div className={styles.suggestionImage}>
-        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={reactSvg} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
       </div>
     </div>
   </div>

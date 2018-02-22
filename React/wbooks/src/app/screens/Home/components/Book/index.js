@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import reactSvg from '../../../../assets/default_book.svg';
+import defaultBook from '../../../../assets/default_book.svg';
 
 import styles from './styles.scss'
 
@@ -9,7 +9,7 @@ const Book = props => (
   <div className={styles.bookContainer}>
     <div className={styles.bookImage}>
       <a href={'/books/' + props.id}>
-        <img src={props.imageUrl ? props.imageUrl : reactSvg} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
+        <img src={props.imageUrl ? props.imageUrl : defaultBook} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
       </a>
     </div>
     <div className={styles.bookInfo}>

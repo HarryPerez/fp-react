@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import booksJson from '../../../constants/data';
-import reactSvg from '../../assets/default_book.svg';
+import defaultBook from '../../assets/default_book.svg';
 import ErrorIcon from '../../assets/sad_icon.png';
 
 import BookSummary from './components/BookSummary/index.js';
@@ -40,7 +40,7 @@ class BookDetail extends Component {
         <h1 className={styles.backButton}><a className={styles.backLink} href="/dashboard">{this.backTitle}</a></h1>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
-            <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
+            <img src={imageUrl ? imageUrl : defaultBook} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
           </div>
           <div className={styles.detailSummary}>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
