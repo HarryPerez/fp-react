@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 import booksJson from '../../../constants/data';
-import defaultBook from '../../assets/default_book.svg';
+import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
 
 import BookSummary from './components/BookSummary/index.js';
@@ -41,7 +41,7 @@ class BookDetail extends Component {
         <h1 className={styles.backButton}><Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link></h1>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
-            <img src={imageUrl ? imageUrl : defaultBook} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
+            <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
           </div>
           <div className={styles.detailSummary}>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
