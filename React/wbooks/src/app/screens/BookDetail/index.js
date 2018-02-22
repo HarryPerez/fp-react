@@ -30,7 +30,7 @@ class BookDetail extends Component {
     if(this.state.error){
       return (
         <div className={styles.errorContainer}>
-          <img src={errorIcon} className={styles.errorImage} alt="error" />
+          <img src={errorIcon} className={styles.errorImage} alt='errorIcon' />
           <div className={styles.errorMessage}>{this.state.error}</div>
         </div>
       );
@@ -41,7 +41,7 @@ class BookDetail extends Component {
         <h1 className={styles.backButton}><Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link></h1>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
-            <img src={imageUrl ? imageUrl : defaultBook} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
+            <img src={imageUrl ? imageUrl : defaultBook} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
           </div>
           <div className={styles.detailSummary}>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>

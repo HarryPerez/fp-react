@@ -27,7 +27,7 @@ class SearchInput extends Component {
       <div className={styles.searchContainer}>
         <input className={`${styles.searchInput} ${styles.inputText}`} value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
         <div className={styles.iconContainer}>
-          <img src={searchSvg} className={styles.searchIcon} onClick={this.handleClick} alt='svg' />
+          <img src={searchSvg} className={styles.searchIcon} onClick={this.handleClick} alt='searchIcon' />
         </div>
       </div>
     );

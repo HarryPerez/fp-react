@@ -9,16 +9,16 @@ const Suggestion = () => (
     <h1 className={styles.suggestionTitle}>Sugerencias</h1>
     <div className={styles.suggestionRefs}>
       <div className={styles.suggestionImage}>
-        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt='suggestionImage' />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt='suggestionImage' />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt='suggestionImage' />
       </div>
       <div className={styles.suggestionImage}>
-        <img src={defaultBook} className={styles.suggestionSvg} alt="svg" />
+        <img src={defaultBook} className={styles.suggestionSvg} alt='suggestionImage' />
       </div>
     </div>
   </div>

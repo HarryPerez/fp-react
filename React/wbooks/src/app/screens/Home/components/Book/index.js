@@ -10,7 +10,7 @@ const Book = props => (
   <div className={styles.bookContainer}>
     <div className={styles.bookImage}>
       <Link to={'/books/' + props.id}>
-        <img src={props.imageUrl ? props.imageUrl : defaultBook} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
+        <img src={props.imageUrl ? props.imageUrl : defaultBook} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt='bookImage' />
       </Link>
     </div>
     <div className={styles.bookInfo}>

@@ -7,7 +7,7 @@ import styles from './styles.scss'
 const NewComment = () => (
   <div className={styles.newcommentContainer}>
       <div className={styles.pictureContainer}>
-        <img src={profilePicture} className={styles.profilePicture} alt="svg" />
+        <img src={profilePicture} className={styles.profilePicture} alt='profilePicture' />
       </div>
       <div className={styles.addcommentContainer}>
         <h1 className={styles.addcommentTitle}>Agregar comentario</h1>
