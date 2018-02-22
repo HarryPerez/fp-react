@@ -15,7 +15,7 @@ class BookDetail extends Component {
   backTitle = '<Volver';
 
   componentWillMount() {
-    const book = booksJson.filter(book => { return book.id == this.props.match.params.bookId; });
+    const book = booksJson.filter(book => book.id == this.props.match.params.bookId );
     if(book.length === 1){
       this.setState({ book: book[0] });
     }else if(book.length > 1){
@@ -34,7 +34,7 @@ class BookDetail extends Component {
         </div>
       );
     };
-    let imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
+    const imageUrl = this.state.book && this.state.book.image_url;
     return (
       <div className={styles.bookDetail}>
         <h1 className={styles.backButton}><a className={styles.backLink} href="/dashboard">{this.backTitle}</a></h1>
