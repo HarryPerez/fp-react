@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
 import defaultBook from '../../../../assets/default_book.svg';
 
@@ -8,9 +9,9 @@ import styles from './styles.scss'
 const Book = props => (
   <div className={styles.bookContainer}>
     <div className={styles.bookImage}>
-      <a href={'/books/' + props.id}>
+      <Link to={'/books/' + props.id}>
         <img src={props.imageUrl ? props.imageUrl : defaultBook} className={props.imageUrl ? styles.bookSvg : styles.defaultSvg} alt="svg" />
-      </a>
+      </Link>
     </div>
     <div className={styles.bookInfo}>
       <h1 className={styles.bookTitle}>{props.title}</h1>

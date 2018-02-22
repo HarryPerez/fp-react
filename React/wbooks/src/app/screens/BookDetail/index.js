@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 import booksJson from '../../../constants/data';
 import defaultBook from '../../assets/default_book.svg';
@@ -37,7 +38,7 @@ class BookDetail extends Component {
     const imageUrl = this.state.book && this.state.book.image_url;
     return (
       <div className={styles.bookDetail}>
-        <h1 className={styles.backButton}><a className={styles.backLink} href="/dashboard">{this.backTitle}</a></h1>
+        <h1 className={styles.backButton}><Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link></h1>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
             <img src={imageUrl ? imageUrl : defaultBook} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
