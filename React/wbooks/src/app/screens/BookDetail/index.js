@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import booksJson from '../../../constants/data';
 import defaultBook from '../../assets/default_book.svg';
-import ErrorIcon from '../../assets/sad_icon.png';
+import errorIcon from '../../assets/sad_icon.png';
 
 import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';
@@ -29,7 +29,7 @@ class BookDetail extends Component {
     if(this.state.error){
       return (
         <div className={styles.errorContainer}>
-          <img src={ErrorIcon} className={styles.errorImage} alt="error" />
+          <img src={errorIcon} className={styles.errorImage} alt="error" />
           <div className={styles.errorMessage}>{this.state.error}</div>
         </div>
       );
