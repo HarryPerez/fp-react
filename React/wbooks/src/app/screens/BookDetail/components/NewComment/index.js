@@ -1,6 +1,6 @@
 import React from 'react';
 
-import profilePicture from '../../../../assets/franco.png';
+import profilePicture from '../../../../assets/profile_picture.png';
 
 import styles from './styles.scss'
 
