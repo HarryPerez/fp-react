@@ -10,7 +10,7 @@ class LoginError extends Component {
       <div className={styles.errorContainer}>
         <img src={errorIcon} className={styles.errorIcon} alt='errorIcon' />
         <div className={styles.messageContainer}>
-          <h1 className={styles.errorText}>{this.props.errors}</h1>
+          <p className={styles.errorText}>{this.props.errors}</p>
         </div>
       </div>
     );
