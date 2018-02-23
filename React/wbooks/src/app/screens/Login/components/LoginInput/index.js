@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 import ErrorContainer from '../../../../components/ErrorContainer/index.js';
@@ -61,6 +62,11 @@ class LoginInput extends Component {
         </div>
         <div className={styles.loginButton} onClick={this.handleSubmit}>
           <h1 className={styles.loginText}>Login</h1>
+        </div>
+        <div className={styles.signupContainer}>
+          <Link className={styles.signupText} to='/signup'>
+            not a member?
+          </Link>
         </div>
         {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
         {sessionStorage.getItem('isUserLogged') && <Redirect push to="/dashboard" />}

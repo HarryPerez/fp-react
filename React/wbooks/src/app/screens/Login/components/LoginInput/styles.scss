@@ -63,3 +63,18 @@
   text-align: center;
   width: 100px;
 }
+
+.signupContainer {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  width: 100%;
+}
+
+.signupText {
+  color: $light-blue;
+  font-weight: normal;
+  font-size: 14px;
+  text-decoration: none;
+  width: 100px;
+}

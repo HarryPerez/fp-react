@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from '../../screens/Home/index.js';
 import BookDetail from '../../screens/BookDetail/index.js';
 import Login from '../../screens/Login/index.js';
-import Signup from '../../screens/Signup';
+import Signup from '../../screens/Signup/index.js';
 
 class SessionValidator extends React.Component {
   render() {
@@ -22,8 +22,9 @@ class SessionValidator extends React.Component {
         <Switch>
           <Route path='/dashboard' component={Login}/>
           <Route path='/books/:bookId' component={Login}/>
-          <Route path='/' component={Signup}/>
-          <Route path='' component={Signup}/>
+          <Route path='/signup' component={Signup}/>
+          <Route path='/' component={Login}/>
+          <Route path='' component={Login}/>
         </Switch>
       );
     }
