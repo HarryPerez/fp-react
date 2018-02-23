@@ -10,10 +10,10 @@ class SessionValidator extends React.Component {
     if(sessionStorage.getItem('isUserLogged')) {
       return (
         <Switch>
-            <Route path='/dashboard' component={Home}/>
-            <Route path='/books/:bookId' component={BookDetail}/>
-            <Route path='/' component={Home}/>
-            <Route path='' component={Home}/>
+          <Route path='/dashboard' component={Home}/>
+          <Route path='/books/:bookId' component={BookDetail}/>
+          <Route path='/' component={Home}/>
+          <Route path='' component={Home}/>
         </Switch>
       );
     }else {

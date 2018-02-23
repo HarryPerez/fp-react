@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import axios from 'axios';
 
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
 
-import LoginError from './LoginError/index.js';
+import LoginError from './components/LoginError/index.js';
 import styles from './styles.scss';
 
 class LoginInput extends Component {
@@ -20,6 +21,21 @@ class LoginInput extends Component {
     this.setState({ password : event.target.value });
   }
 
+  validateUser = () =>{
+    const me = this;
+    axios.post('https://wbooks-api-stage.herokuapp.com/api/v1/users/sessions', {
+      email: this.state.name,
+      password: this.state.password
+    })
+    .then(function (response) {
+      sessionStorage.setItem('isUserLogged', true);
+      this.setState({ hasErrors : '' });
+    })
+    .catch(function (error) {
+      me.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' });
+    });
+  }
+
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
       this.setState({ hasErrors : 'Ambos campos son requeridos' });
@@ -28,8 +44,7 @@ class LoginInput extends Component {
     }else if(!this.passwordRegex.test(this.state.password)){
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
     }else {
-      this.setState({ hasErrors : '' });
-      sessionStorage.setItem('isUserLogged', true);
+      this.validateUser();
     }
   }
 

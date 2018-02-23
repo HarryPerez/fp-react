@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import errorIcon from '../../../../../assets/error.png';
+import errorIcon from '../../../../../../assets/error.png';
 
 import styles from './styles.scss';
 
