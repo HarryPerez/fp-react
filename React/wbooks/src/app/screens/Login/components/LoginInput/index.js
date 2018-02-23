@@ -19,10 +19,6 @@ class LoginInput extends Component {
     this.setState({ password : event.target.value });
   }
 
-  validatePassword = () => {
-
-  }
-
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
       this.setState({ hasErrors : 'Ambos campos son requeridos' });
