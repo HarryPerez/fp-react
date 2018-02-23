@@ -7,7 +7,7 @@ import Login from '../../screens/Login/index.js';
 
 class SessionValidator extends React.Component {
   render() {
-    if(sessionStorage.getItem('isUserLogged')) {
+    if(sessionStorage.getItem('user')) {
       return (
         <Switch>
           <Route path='/dashboard' component={Home}/>
