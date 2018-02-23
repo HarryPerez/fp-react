@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import booksJson from '../../../constants/data';
 import defaultBookIcon from '../../assets/default_book.svg';

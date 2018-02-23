@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
@@ -28,6 +29,7 @@ class LoginInput extends Component {
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
     }else {
       this.setState({ hasErrors : '' });
+      sessionStorage.setItem('isUserLogged', true);
     }
   }
 
@@ -45,7 +47,8 @@ class LoginInput extends Component {
         <div className={styles.loginButton} onClick={this.handleSubmit}>
           <h1 className={styles.loginText}>Login</h1>
         </div>
-        {this.state.hasErrors ? <LoginError errors={this.state.hasErrors} /> : null}
+        {this.state.hasErrors && <LoginError errors={this.state.hasErrors}/>}
+        {sessionStorage.getItem('isUserLogged') && <Redirect push to="/dashboard" />}
       </div>
     );
   }
