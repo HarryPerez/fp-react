@@ -4,14 +4,13 @@ import axios from 'axios';
 
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
+import { emailRegex, passwordRegex } from '../../../../../utils/regexs';
 
 import LoginError from './components/LoginError/index.js';
 import styles from './styles.scss';
 
 class LoginInput extends Component {
   state = { name: '', password: '' , hasErrors: '' };
-  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,52}$/;
 
   handleNameInput = event => {
     this.setState({ name : event.target.value });
@@ -39,9 +38,9 @@ class LoginInput extends Component {
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
       this.setState({ hasErrors : 'Ambos campos son requeridos' });
-    }else if(!this.emailRegex.test(this.state.name)){
+    }else if(!emailRegex.test(this.state.name)){
       this.setState({ hasErrors : 'El email ingresado no es correcto' });
-    }else if(!this.passwordRegex.test(this.state.password)){
+    }else if(!passwordRegex.test(this.state.password)){
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
     }else {
       this.validateUser();
