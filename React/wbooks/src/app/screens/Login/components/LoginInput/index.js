@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
+import ErrorContainer from '../../../../components/ErrorContainer/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
 
-import LoginError from './components/LoginError/index.js';
 import styles from './styles.scss';
 
 class LoginInput extends Component {
@@ -62,7 +62,7 @@ class LoginInput extends Component {
         <div className={styles.loginButton} onClick={this.handleSubmit}>
           <h1 className={styles.loginText}>Login</h1>
         </div>
-        {this.state.hasErrors && <LoginError errors={this.state.hasErrors}/>}
+        {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
         {sessionStorage.getItem('isUserLogged') && <Redirect push to="/dashboard" />}
       </div>
     );

@@ -1,0 +1,29 @@
+@import '../../../constants/colors.scss';
+
+.signupContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.signup {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+}
+
+.pictureContainer {
+  align-self: center;
+  margin-bottom: 20px;
+  width: 350px;
+}
+
+.signupPicture {
+  height: 80px;
+  width: 100%;
+}
