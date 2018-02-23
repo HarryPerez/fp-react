@@ -38,7 +38,7 @@ class BookDetail extends Component {
     const imageUrl = this.state.book && this.state.book.image_url;
     return (
       <div className={styles.bookDetail}>
-        <h1 className={styles.backButton}><Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link></h1>
+        <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
             <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
