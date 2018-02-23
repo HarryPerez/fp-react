@@ -1,0 +1,45 @@
+@import '../../../../../constants/colors.scss';
+
+.commentContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 19px;
+}
+
+.commentTitle {
+  color: $black;
+  font-weight: Bold;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 19px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.commentDate {
+  color: $dark-grey;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  line-height: 19px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.commentDescription {
+  color: $superhard-grey;
+  font-weight: normal;
+  font-size: 14px;
+  height: 57px;
+  line-height: 19px;
+  width: 679px;
+}
+
+.pictureContainer{
+  margin-right: 16px;
+}
+
+.profilePicture {
+  height: 40px;
+  width: 40px;
+}

@@ -56,7 +56,7 @@ class Home extends Component {
             </div>
           </div>
           <div className={styles.booksContainer}>
-              { this.state.books.map(book => <Book key={book.id} title={book.title} author={book.author} imageUrl={book.image_url}/>) }
+              { this.state.books.map(book => <Book key={book.id} book={book}/>) }
           </div>
         </div>
       </div>

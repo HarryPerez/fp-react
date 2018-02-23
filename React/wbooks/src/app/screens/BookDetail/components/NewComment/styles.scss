@@ -1,0 +1,48 @@
+@import '../../../../../constants/colors.scss';
+
+.newcommentContainer {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 25px;
+}
+
+.pictureContainer{
+  margin-right: 16px;
+}
+
+.profilePicture {
+  height: 40px;
+  width: 40px;
+}
+
+.addcommentTitle {
+  color: $black;
+  font-weight: Bold;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 19px;
+  margin-top: 0px;
+  margin-bottom: 14px;
+}
+
+.addcommentArea {
+  border: 1px solid $superhard-grey;
+  height: 74px;
+  margin-bottom: 16px;
+  resize: none;
+  width: 667px;
+}
+
+.sendcommentButton {
+  background: $special-green;
+  height: 38px;
+  width: 192px;
+}
+
+.sendcommentTitle {
+  color: $white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0px;
+  padding: 11px 70px 7px 74px;
+}
