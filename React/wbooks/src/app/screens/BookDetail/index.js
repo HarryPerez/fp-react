@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 import booksJson from '../../../constants/data';
-import reactSvg from '../../assets/default_book.svg';
-import ErrorIcon from '../../assets/sad_icon.png';
+import defaultBookIcon from '../../assets/default_book.svg';
+import errorIcon from '../../assets/sad_icon.png';
 
 import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';
@@ -15,7 +16,7 @@ class BookDetail extends Component {
   backTitle = '<Volver';
 
   componentWillMount() {
-    const book = booksJson.filter(book => { return book.id == this.props.match.params.bookId; });
+    const book = booksJson.filter(book => book.id == this.props.match.params.bookId );
     if(book.length === 1){
       this.setState({ book: book[0] });
     }else if(book.length > 1){
@@ -29,18 +30,18 @@ class BookDetail extends Component {
     if(this.state.error){
       return (
         <div className={styles.errorContainer}>
-          <img src={ErrorIcon} className={styles.errorImage} alt="error" />
+          <img src={errorIcon} className={styles.errorImage} alt='errorIcon' />
           <div className={styles.errorMessage}>{this.state.error}</div>
         </div>
       );
     };
-    let imageUrl = this.state.book && this.state.book.image_url ? this.state.book.image_url : null;
+    const imageUrl = this.state.book && this.state.book.image_url;
     return (
       <div className={styles.bookDetail}>
-        <h1 className={styles.backButton}><a className={styles.backLink} href="/dashboard">{this.backTitle}</a></h1>
+        <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>
-            <img src={imageUrl ? imageUrl : reactSvg} className={imageUrl ? styles.detailImage : styles.detailSvg} alt="svg" />
+            <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
           </div>
           <div className={styles.detailSummary}>
             <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>

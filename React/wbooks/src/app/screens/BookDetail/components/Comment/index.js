@@ -1,13 +1,13 @@
 import React from 'react';
 
-import profilePicture from '../../../../assets/franco.png';
+import profilePicture from '../../../../assets/profile_picture.png';
 
 import styles from './styles.scss';
 
 const Comment = () => (
   <div className={styles.commentContainer}>
       <div className={styles.pictureContainer}>
-        <img src={profilePicture} className={styles.profilePicture} alt="svg" />
+        <img src={profilePicture} className={styles.profilePicture} alt='profilePicture' />
       </div>
       <div className={styles.commentDetail}>
         <h1 className={styles.commentTitle}>Perez Franco</h1>
