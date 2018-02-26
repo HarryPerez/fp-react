@@ -10,7 +10,7 @@ import LoginError from './components/LoginError/index.js';
 import styles from './styles.scss';
 
 class LoginForm extends Component {
-  state = { name: '', password: '' , hasErrors: '' };
+  state = { name: '', password: '' , hasErrors: ''};
 
   handleNameInput = event => {
     this.setState({ name : event.target.value });
@@ -20,12 +20,9 @@ class LoginForm extends Component {
     this.setState({ password : event.target.value });
   }
 
-  validateUser = async () =>{
-    if(await retrieveUserData(this.state.name, this.state.password)){
-      this.setState({ hasErrors : '' });
-    }else {
-      this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' });
-    }
+  validateUser = async () => {
+    await retrieveUserData(this.state.name, this.state.password).then(() => {window.location.reload()})
+    .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
   handleSubmit = event => {
@@ -55,7 +52,6 @@ class LoginForm extends Component {
           <h1 className={styles.loginText}>Login</h1>
         </div>
         {this.state.hasErrors && <LoginError errors={this.state.hasErrors}/>}
-        {sessionStorage.getItem('user') && <Redirect push to="/dashboard" />}
       </div>
     );
   }
