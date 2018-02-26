@@ -2,4 +2,8 @@ const saveUserAuthentication = props => {
   sessionStorage.setItem('user', props.data.access_token);
 }
 
-export default saveUserAuthentication;
+const retrieveUserFromLocalStorage = () => {
+  return sessionStorage.getItem('user');
+}
+
+export default {saveUserAuthentication, retrieveUserFromLocalStorage};
