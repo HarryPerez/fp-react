@@ -4,15 +4,14 @@ import saveInLocalStorage from './localstorageService.js';
 
 
 const retrieveUserData = async (name, password) => {
-  try {
-    const success =   await api.post('/users/sessions', {
-        email: name,
-        password: password
-    });
-    saveInLocalStorage(success);
-  }catch(error) {
+  await api.post('/users/sessions', {
+      email: name,
+      password: password
+  }).then(response => {
+    saveInLocalStorage(response);
+  }).catch(error => {
     return false;
-  }
+  });
 }
 
 export default retrieveUserData;
