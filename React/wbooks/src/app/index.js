@@ -13,7 +13,6 @@ const App = () => (
     <Switch>
       <RouteHandler path='/dashboard' component={Home}/>
       <RouteHandler path='/books/:bookId' component={BookDetail}/>
-      <RouteHandler path='' component={Login}/>
       <RouteHandler path='/' component={Login}/>
     </Switch>
   </BrowserRouter>
