@@ -4,12 +4,12 @@ import { Redirect } from 'react-router';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
 import { emailRegex, passwordRegex } from '../../../../../utils/regexs';
-import retrieveUserData from '../../../../../services/aosService.js';
+import retrieveUserData from '../../../../../services/authService.js';
 
 import LoginError from './components/LoginError/index.js';
 import styles from './styles.scss';
 
-class LoginInput extends Component {
+class LoginForm extends Component {
   state = { name: '', password: '' , hasErrors: '' };
 
   handleNameInput = event => {
@@ -61,4 +61,4 @@ class LoginInput extends Component {
   }
 }
 
-export default LoginInput;
+export default LoginForm;

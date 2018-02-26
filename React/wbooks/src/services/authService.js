@@ -1,11 +1,11 @@
-import axios from 'axios';
+import api from '../app/config/api';
 
 import saveInLocalStorage from './localstorageService.js';
 
+
 const retrieveUserData = async (name, password) => {
-  console.log(name + password);
   try {
-    const success =   await axios.post('https://wbooks-api-stage.herokuapp.com/api/v1/users/sessions', {
+    const success =   await api.post('/users/sessions', {
         email: name,
         password: password
     });
