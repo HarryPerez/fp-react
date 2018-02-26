@@ -1,0 +1,29 @@
+@import '../../../../../../../constants/colors.scss';
+
+.errorContainer {
+  border: 2px solid $red;
+  border-radius: 5px;
+  display: flex;
+  height: 50px;
+  width: 100%;
+}
+
+.errorIcon {
+  margin: auto 5px;
+  height: 30px;
+  width: 30px;
+}
+
+.messageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.errorText {
+  color: $red;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+}
