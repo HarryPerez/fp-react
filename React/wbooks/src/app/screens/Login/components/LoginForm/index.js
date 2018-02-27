@@ -8,7 +8,6 @@ import passwordIcon from '../../../../assets/password.png';
 import { isValidEmail, isValidPassword } from '../../../../../utils/regexs';
 
 import { retrieveUserData } from '../../../../../services/authService';
-
 import styles from './styles.scss';
 
 class LoginForm extends Component {
