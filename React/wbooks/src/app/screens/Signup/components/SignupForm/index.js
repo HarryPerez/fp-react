@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
-import ErrorContainer from '../../../../components/ErrorContainer';
+import AccessError from '../../../../components/AccessError';
 import regexs from '../../../../../utils/regexs';
-import authService from '../../../../../services/authService';
+import {registerUser} from '../../../../../services/authService';
 
 import styles from './styles.scss';
 
@@ -31,7 +31,7 @@ class SignupForm extends Component {
   }
 
   registerUser = async () => {
-    await authService.registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
+    await registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
@@ -75,7 +75,7 @@ class SignupForm extends Component {
           <div className={styles.signupButton} onClick={this.handleSubmit}>
             <h1 className={styles.signupText}>Registrar</h1>
           </div>
-          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
         </div>
       );
     }

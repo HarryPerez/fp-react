@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import ErrorContainer from '../../../../components/ErrorContainer/index.js';
+import AccessError from '../../../../components/AccessError/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
 import regexs from '../../../../../utils/regexs';
-import authService from '../../../../../services/authService';
+
+import {retrieveUserData} from '../../../../../services/authService';
 
 import styles from './styles.scss';
 
@@ -22,7 +23,7 @@ class LoginForm extends Component {
   }
 
   validateUser = async () => {
-    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+    await retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
@@ -57,10 +58,10 @@ class LoginForm extends Component {
           </div>
           <div className={styles.signupContainer}>
             <Link className={styles.signupText} to='/signup'>
-              not a member?
+              Not a member?
             </Link>
           </div>
-          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
         </div>
       );
     }
