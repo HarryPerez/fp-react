@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import ErrorContainer from '../../../../components/ErrorContainer/index.js';
 import userIcon from '../../../../assets/user_icon.png';
@@ -59,7 +60,7 @@ class LoginForm extends Component {
               not a member?
             </Link>
           </div>
-          {this.state.hasErrors && <LoginError errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
         </div>
       );
     }

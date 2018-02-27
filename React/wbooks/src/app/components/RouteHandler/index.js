@@ -10,7 +10,7 @@ class RouteHandler extends Component {
   };
 
   isPublicRequest = props => {
-    return props.location.pathname === '' || props.location.pathname === '/';
+    return props.location.pathname === '' || props.location.pathname === '/' || props.location.pathname === '/signup';
   };
 
   render(){
