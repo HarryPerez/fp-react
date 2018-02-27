@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
-import localStorageService from '../../../services/localstorageService';
+import { retrieveUserFromLocalStorage } from '../../../services/localstorageService';
 
 class RouteHandler extends Component {
   validateAuth = props => {
-    return localStorageService.retrieveUserFromLocalStorage();
+    return retrieveUserFromLocalStorage();
   };
 
   isPublicRequest = props => {
-    return props.location.pathname === '' || props.location.pathname === '/' || props.location.pathname === '/signup';
+    return props.location.pathname === '/' || props.location.pathname === '/signup';
   };
 
   render(){

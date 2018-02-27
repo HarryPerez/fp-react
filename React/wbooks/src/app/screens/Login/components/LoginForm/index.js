@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import ErrorContainer from '../../../../components/ErrorContainer/index.js';
+import AccessError from '../../../../components/AccessError/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
-import regexs from '../../../../../utils/regexs';
-import authService from '../../../../../services/authService';
+import { isValidEmail, isValidPassword } from '../../../../../utils/regexs';
+
+import { retrieveUserData } from '../../../../../services/authService';
 
 import styles from './styles.scss';
 
@@ -22,16 +23,16 @@ class LoginForm extends Component {
   }
 
   validateUser = async () => {
-    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+    await retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
       this.setState({ hasErrors : 'Ambos campos son requeridos' });
-    }else if(!regexs.isValidEmail(this.state.name)){
+    }else if(!isValidEmail(this.state.name)){
       this.setState({ hasErrors : 'El email ingresado no es correcto' });
-    }else if(!regexs.isValidPassword(this.state.password)){
+    }else if(!isValidPassword(this.state.password)){
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
     }else {
       this.validateUser();
@@ -57,10 +58,10 @@ class LoginForm extends Component {
           </div>
           <div className={styles.signupContainer}>
             <Link className={styles.signupText} to='/signup'>
-              not a member?
+              Not a member?
             </Link>
           </div>
-          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
         </div>
       );
     }
