@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import loginPicture from '../../assets/wbooks_logo.svg';
 
-import LoginInput from './components/LoginInput';
+import LoginForm from './components/LoginForm/index.js';
 import styles from './styles.scss';
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
           <div className={styles.pictureContainer}>
             <img src={loginPicture} className={styles.loginPicture} alt='loginPicture'/>
           </div>
-          <LoginInput/>
+          <LoginForm/>
         </div>
       </div>
     );

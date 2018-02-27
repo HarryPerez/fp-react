@@ -4,7 +4,7 @@ import errorIcon from '../../assets/error.png';
 
 import styles from './styles.scss';
 
-class LoginError extends Component {
+class ErrorContainer extends Component {
   render() {
     return (
       <div className={styles.errorContainer}>
@@ -17,4 +17,4 @@ class LoginError extends Component {
   }
 }
 
-export default LoginError;
+export default ErrorContainer;
