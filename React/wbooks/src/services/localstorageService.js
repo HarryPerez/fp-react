@@ -1,8 +1,8 @@
-const saveUserAuthentication = props => {
+export const saveUserAuthentication = props => {
   localStorage.setItem('user', props.data.access_token);
 }
 
-const retrieveUserFromLocalStorage = () => {
+export const retrieveUserFromLocalStorage = () => {
   return localStorage.getItem('user');
 }
 

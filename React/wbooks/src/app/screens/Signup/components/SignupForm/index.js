@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
-import ErrorContainer from '../../../../components/ErrorContainer';
-import regexs from '../../../../../utils/regexs';
-import authService from '../../../../../services/authService';
+import AccessError from '../../../../components/AccessError';
+import { isValidEmail, isValidPassword, isString } from '../../../../../utils/regexs';
+import { registerUser } from '../../../../../services/authService';
 
 import styles from './styles.scss';
 
@@ -31,20 +31,20 @@ class SignupForm extends Component {
   }
 
   registerUser = async () => {
-    await authService.registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
+    await registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
   handleSubmit = () => {
     if(this.state.name === '' || this.state.password === '' || this.state.confirmPassword === '' || this.state.firstName === '' || this.state.lastName === ''){
       this.setState({ hasErrors : 'Todos los campos son requeridos' });
-    }else if(!regexs.isValidEmail(this.state.name)){
+    }else if(!isValidEmail(this.state.name)){
       this.setState({ hasErrors : 'El email ingresado no es correcto' });
-    }else if(!regexs.isValidPassword(this.state.password)){
+    }else if(!isValidPassword(this.state.password)){
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero' });
     }else if(this.state.password !== this.state.confirmPassword){
       this.setState({ hasErrors : 'La contraseña ingresada debe coincidir con la confirmacion de la contraseña' });
-    }else if(!regexs.isString(this.state.firstName) || !regexs.isString(this.state.lastName)){
+    }else if(!isString(this.state.firstName) || !isString(this.state.lastName)){
       this.setState({ hasErrors : 'Los campos primer y segundo nombre deben contener solo letras' });
     }else {
       this.registerUser();
@@ -75,7 +75,7 @@ class SignupForm extends Component {
           <div className={styles.signupButton} onClick={this.handleSubmit}>
             <h1 className={styles.signupText}>Registrar</h1>
           </div>
-          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
         </div>
       );
     }
