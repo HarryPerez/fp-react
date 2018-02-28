@@ -22,12 +22,6 @@
   padding: 9px 10px 10px 12px;
 }
 
-.icon {
-  margin: auto;
-  height: 20px;
-  width: 20px;
-}
-
 .dataContainer {
   background: $light-grey;
   border-radius: 5px;
@@ -40,7 +34,7 @@
   width: 400px;
 }
 
-.loginButton {
+.signupButton {
   background: $light-blue;
   border-radius: 5px;
   display: flex;
@@ -55,26 +49,11 @@
   }
 }
 
-.loginText {
+.signupText {
   color: $white;
   font-weight: normal;
   font-size: 14px;
   margin: 5px;
   text-align: center;
-  width: 100px;
-}
-
-.signupContainer {
-  display: flex;
-  justify-content: flex-end;
-  height: 30px;
-  width: 100%;
-}
-
-.signupText {
-  color: $light-blue;
-  font-weight: normal;
-  font-size: 14px;
-  text-decoration: none;
   width: 100px;
 }
