@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import notificationIcon from '../../../../assets/notifications.svg';
 import defaultBookIcon from '../../../../assets/default_book.svg';
 import Dropdown from '../Dropdown/index.js';
 
-import Notification from '../Notification/index.js'
+import Notification from '../Notification/index.js';
+import NotificationIcon from '../NotificationIcon/index.js';
 import styles from './styles.scss';
 
 class NotificationDropdown extends Component {
@@ -17,32 +17,21 @@ class NotificationDropdown extends Component {
   render() {
     if(!this.state.isActive){
       return (
-        <Dropdown>
-          <div className={styles.iconContainer}>
-            <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
-            <div className={styles.notifContainer}>
-              <p className={styles.notifText}>1</p>
-            </div>
-          </div>
-        </Dropdown>
+        <div className={styles.dropdownContainer}>
+          <NotificationIcon onClick={this.handlePictureClick}/>
+        </div>
       );
     }else{
       return (
-        <Dropdown>
-          <div className={styles.iconContainer}>
-            <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
-            <div className={styles.notifContainer}>
-              <p className={styles.notifText}>1</p>
-            </div>
+        <div className={styles.dropdownContainer}>
+          <NotificationIcon onClick={this.handlePictureClick}/>
+          <div className={styles.notificationDropdown}>
+            <Dropdown>
+              <Notification notificiationTitle='Se encuentra disponible el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor'/>
+              <Notification notificiationTitle='Te quedan X días para devolver el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor' bookWarning='Fecha de devolución: xx/xx/xx'/>
+            </Dropdown>
           </div>
-          <div className={styles.buttonsContainer}>
-            <div className={styles.arrowContainer}>
-              <div className={styles.dropdownArrow}/>
-            </div>
-            <Notification notificiationTitle='Se encuentra disponible el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor'/>
-            <Notification notificiationTitle='Te quedan X días para devolver el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor' bookWarning='Fecha de devolución: xx/xx/xx'/>
-          </div>
-        </Dropdown>
+        </div>
       );
     }
   }

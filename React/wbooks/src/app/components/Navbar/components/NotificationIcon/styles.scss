@@ -1,0 +1,39 @@
+@import '../../../../../constants/colors.scss';
+
+.iconContainer {
+  display: flex;
+  z-index: 1;
+}
+
+.notificationIcon {
+  height: 30px;
+  margin-left: 30px;
+  margin-bottom: 4px;
+  width: 30px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.notifContainer {
+  align-items: center;
+  background: $red;
+  border-radius: 50%;
+  display: flex;
+  height: 11px;
+  justify-content: center;
+  position: absolute;
+  right: 172px;
+  top: 26px;
+  width: 11px;
+  margin-top: 5px;
+  margin-left: 9px;
+}
+
+.notifText {
+  color: $white;
+  font-size: 8px;
+  font-weight: Bold;
+  letter-spacing: 0px;
+  margin: 0;
+}

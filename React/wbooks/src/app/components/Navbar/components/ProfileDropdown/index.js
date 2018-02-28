@@ -21,26 +21,25 @@ class ProfileDropdown extends Component {
   render() {
     if(!this.state.isActive){
       return (
-        <Dropdown>
+        <div className={styles.dropdownContainer}>
           <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-        </Dropdown>
+        </div>
       );
     }else {
       return (
-        <Dropdown>
+        <div className={styles.dropdownContainer}>
           <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-          <div className={styles.buttonsContainer}>
-            <div className={styles.arrowContainer}>
-              <div className={styles.dropdownArrow}/>
-            </div>
-            <div className={styles.profileButton}>
-              <p className={styles.buttonText}>Perfil</p>
-            </div>
-            <Link to='/' className={`${styles.profileButton} ${styles.profileLink}`} onClick={this.handleSessionClick}>
-              <p className={styles.buttonText}>Cerrar sesión</p>
-            </Link>
+          <div className={styles.profileDropdown}>
+            <Dropdown>
+              <div className={styles.profileButton}>
+                <p className={styles.buttonText}>Perfil</p>
+              </div>
+              <Link to='/' className={`${styles.profileButton} ${styles.profileLink}`} onClick={this.handleSessionClick}>
+                <p className={styles.buttonText}>Cerrar sesión</p>
+              </Link>
+            </Dropdown>
           </div>
-        </Dropdown>
+        </div>
       );
     }
   }
