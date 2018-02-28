@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import AccessError from '../../../../components/AccessError/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
-import { isValidEmail, isValidPassword } from '../../../../../utils/regexs';
+import * as regexs from '../../../../../utils/regexs';
+import * as authService from '../../../../../services/authService';
 
-import { retrieveUserData } from '../../../../../services/authService';
 import styles from './styles.scss';
 
 class LoginForm extends Component {
@@ -22,16 +22,16 @@ class LoginForm extends Component {
   }
 
   validateUser = async () => {
-    await retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
       this.setState({ hasErrors : 'Ambos campos son requeridos' });
-    }else if(!isValidEmail(this.state.name)){
+    }else if(!regexs.isValidEmail(this.state.name)){
       this.setState({ hasErrors : 'El email ingresado no es correcto' });
-    }else if(!isValidPassword(this.state.password)){
+    }else if(!regexs.isValidPassword(this.state.password)){
       this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
     }else {
       this.validateUser();

@@ -1,13 +1,13 @@
 import api from '../app/config/api';
 
-import { retrieveUserFromLocalStorage, saveUserAuthentication } from './localstorageService.js';
+import * as localstorageService from './localstorageService.js';
 
 export const retrieveUserData = async (name, password) => {
   await api.post('/users/sessions', {
       email: name,
       password: password
   }).then(response => {
-    saveUserAuthentication(response);
+    localstorageService.saveUserAuthentication(response);
     return true;
   }).catch(error => {
     throw error;
@@ -15,7 +15,7 @@ export const retrieveUserData = async (name, password) => {
 }
 
 export const retrieveUserFromSession = () => {
-  return retrieveUserFromLocalStorage();
+  return localstorageService.retrieveUserFromLocalStorage();
 }
 
 export const registerUser = async(name, password, confirmPassword, firstName, lastName) => {

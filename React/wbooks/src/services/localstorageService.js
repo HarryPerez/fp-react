@@ -6,8 +6,6 @@ export const retrieveUserFromLocalStorage = () => {
   return localStorage.getItem('user');
 }
 
-const removeUserAuthentication = () => {
+export const removeUserAuthentication = () => {
   return localStorage.removeItem('user');
 }
-
-export default {saveUserAuthentication, retrieveUserFromLocalStorage, removeUserAuthentication};

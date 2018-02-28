@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
 import profilePicture from '../../../../assets/profile_picture.png';
-import localStorageService from '../../../../../services/localstorageService';
+import * as localStorageService from '../../../../../services/localstorageService';
 
 import styles from './styles.scss';
 
