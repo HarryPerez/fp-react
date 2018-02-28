@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import booksJson from '../../../constants/data';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
-import Navbar from '../../components/Navbar';
 
 import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';
@@ -39,7 +38,6 @@ class BookDetail extends Component {
     const imageUrl = this.state.book && this.state.book.image_url;
     return (
       <div className={styles.bookDetail}>
-        <Navbar/>
         <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
         <div className={styles.detailContainer}>
           <div className={styles.detailImage}>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'react-widgets/dist/css/react-widgets.css'
 
 import bookJson from '../../../constants/data.js'
-import Navbar from '../../components/Navbar';
 
 import Combobox from './components/Combobox/index.js'
 import Book from './components/Book/index.js'
@@ -47,7 +46,6 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeContainer}>
-        <Navbar/>
         <div className={styles.dashboardContainer}>
           <div className={styles.filterContainer}>
             <div className={styles.filterItem}>
