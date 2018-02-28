@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import notificationIcon from '../../../../assets/notifications.svg';
 import defaultBookIcon from '../../../../assets/default_book.svg';
+import Dropdown from '../Dropdown/index.js';
 
 import Notification from '../Notification/index.js'
 import styles from './styles.scss';
@@ -16,18 +17,18 @@ class NotificationDropdown extends Component {
   render() {
     if(!this.state.isActive){
       return (
-        <div className={styles.dropdownContainer}>
+        <Dropdown>
           <div className={styles.iconContainer}>
             <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
             <div className={styles.notifContainer}>
               <p className={styles.notifText}>1</p>
             </div>
           </div>
-        </div>
+        </Dropdown>
       );
     }else{
       return (
-        <div className={styles.dropdownContainer}>
+        <Dropdown>
           <div className={styles.iconContainer}>
             <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
             <div className={styles.notifContainer}>
@@ -41,7 +42,7 @@ class NotificationDropdown extends Component {
             <Notification notificiationTitle='Se encuentra disponible el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor'/>
             <Notification notificiationTitle='Te quedan X días para devolver el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor' bookWarning='Fecha de devolución: xx/xx/xx'/>
           </div>
-        </div>
+        </Dropdown>
       );
     }
   }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import profilePicture from '../../../../assets/profile_picture.png';
 import * as localStorageService from '../../../../../services/localstorageService';
+import Dropdown from '../Dropdown/index.js';
 
 import styles from './styles.scss';
 
@@ -20,13 +21,13 @@ class ProfileDropdown extends Component {
   render() {
     if(!this.state.isActive){
       return (
-        <div className={styles.dropdownContainer}>
+        <Dropdown>
           <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-        </div>
+        </Dropdown>
       );
     }else {
       return (
-        <div className={styles.dropdownContainer} >
+        <Dropdown>
           <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
           <div className={styles.buttonsContainer}>
             <div className={styles.arrowContainer}>
@@ -39,7 +40,7 @@ class ProfileDropdown extends Component {
               <p className={styles.buttonText}>Cerrar sesión</p>
             </Link>
           </div>
-        </div>
+        </Dropdown>
       );
     }
   }
