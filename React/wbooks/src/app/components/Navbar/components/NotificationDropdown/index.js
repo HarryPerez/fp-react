@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import notificationIcon from '../../../../assets/notifications.svg';
 import defaultBookIcon from '../../../../assets/default_book.svg';
 
+import Notification from '../Notification/index.js'
 import styles from './styles.scss';
 
 class NotificationDropdown extends Component {
@@ -33,27 +34,8 @@ class NotificationDropdown extends Component {
             <div className={styles.arrowContainer}>
               <div className={styles.dropdownArrow}/>
             </div>
-            <div className={styles.notificationButton}>
-              <div className={styles.bookImage}>
-                <img src={defaultBookIcon} className={styles.defaultSvg} alt='bookImage' />
-              </div>
-              <div className={styles.bookDescription}>
-                <h1 className={styles.descriptionTitle}>Se encuentra disponible el libro:</h1>
-                <h1 className={styles.bookTitle}>Título</h1>
-                <h1 className={styles.bookAuthor}>Autor</h1>
-              </div>
-            </div>
-            <div className={styles.notificationButton}>
-              <div className={styles.bookImage}>
-                <img src={defaultBookIcon} className={styles.defaultSvg} alt='bookImage' />
-              </div>
-              <div className={styles.bookDescription}>
-                <h1 className={styles.descriptionTitle}>Te quedan X días para devolver el libro:</h1>
-                <h1 className={styles.bookTitle}>Título</h1>
-                <h1 className={styles.bookAuthor}>Autor</h1>
-                <h1 className={styles.bookWarning}>Fecha de devolución: xx/xx/xx</h1>
-              </div>
-            </div>
+            <Notification notificiationTitle='Se encuentra disponible el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor'/>
+            <Notification notificiationTitle='Te quedan X días para devolver el libro:' bookImage={defaultBookIcon} bookTitle='Título' bookAuthor='Autor' bookWarning='Fecha de devolución: xx/xx/xx'/>
           </div>
         </div>
       );
