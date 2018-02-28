@@ -10,9 +10,9 @@ const Notification = props => (
     </div>
     <div className={styles.bookDescription}>
       <h1 className={styles.notificationTitle}>{props.notificiationTitle}</h1>
-      <h1 className={styles.bookTitle}>{props.bookTitle}</h1>
-      <h1 className={styles.bookAuthor}>{props.bookAuthor}</h1>
-      {props.bookWarning && <h1 className={styles.bookWarning}>{props.bookWarning}</h1>}
+      <h2 className={styles.bookTitle}>{props.bookTitle}</h2>
+      <p className={styles.bookAuthor}>{props.bookAuthor}</p>
+      {props.bookWarning && <p className={styles.bookWarning}>{props.bookWarning}</p>}
     </div>
   </div>
 );

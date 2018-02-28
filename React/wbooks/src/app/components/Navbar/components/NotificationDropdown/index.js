@@ -19,7 +19,9 @@ class NotificationDropdown extends Component {
         <div className={styles.dropdownContainer}>
           <div className={styles.iconContainer}>
             <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
-            <div className={styles.notifContainer}><h1 className={styles.notifText}>1</h1></div>
+            <div className={styles.notifContainer}>
+              <p className={styles.notifText}>1</p>
+            </div>
           </div>
         </div>
       );
@@ -28,7 +30,9 @@ class NotificationDropdown extends Component {
         <div className={styles.dropdownContainer}>
           <div className={styles.iconContainer}>
             <img src={notificationIcon} className={styles.notificationIcon} alt='notificationIcon' onClick={this.handlePictureClick}/>
-            <div className={styles.notifContainer}><h1 className={styles.notifText}>1</h1></div>
+            <div className={styles.notifContainer}>
+              <p className={styles.notifText}>1</p>
+            </div>
           </div>
           <div className={styles.buttonsContainer}>
             <div className={styles.arrowContainer}>
