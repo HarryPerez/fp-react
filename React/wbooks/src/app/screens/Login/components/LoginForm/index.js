@@ -21,8 +21,8 @@ class LoginForm extends Component {
     this.setState({ password : event.target.value });
   }
 
-  validateUser = async () => {
-    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+  validateUser = () => {
+    authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
@@ -40,30 +40,29 @@ class LoginForm extends Component {
 
   render() {
     if(this.state.isLogged){
-      return <Redirect to='/'/>;
-    }else{
-      return (
-        <div className={styles.inputContainer}>
-          <div className={styles.dataContainer}>
-            <img src={userIcon} className={styles.icon} alt='userIcon' />
-            <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.handleNameInput}/>
-          </div>
-          <div className={styles.dataContainer}>
-            <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
-            <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.handlePasswordInput}/>
-          </div>
-          <div className={styles.loginButton} onClick={this.handleSubmit}>
-            <h1 className={styles.loginText}>Login</h1>
-          </div>
-          <div className={styles.signupContainer}>
-            <Link className={styles.signupText} to='/signup'>
-              Not a member?
-            </Link>
-          </div>
-          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
-        </div>
-      );
+      return <Redirect to='/dashboard'/>
     }
+    return (
+      <div className={styles.inputContainer}>
+        <div className={styles.dataContainer}>
+          <img src={userIcon} className={styles.icon} alt='userIcon' />
+          <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.handleNameInput}/>
+        </div>
+        <div className={styles.dataContainer}>
+          <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
+          <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.handlePasswordInput}/>
+        </div>
+        <div className={styles.loginButton} onClick={this.handleSubmit}>
+          <h1 className={styles.loginText}>Login</h1>
+        </div>
+        <div className={styles.signupContainer}>
+          <Link className={styles.signupText} to='/signup'>
+            Not a member?
+          </Link>
+        </div>
+        {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
+      </div>
+    );
   }
 }
 

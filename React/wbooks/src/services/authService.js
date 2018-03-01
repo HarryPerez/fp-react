@@ -3,23 +3,24 @@ import api from '../app/config/api';
 import * as localstorageService from './localstorageService.js';
 
 export const retrieveUserData = async (name, password) => {
-  await api.post('/users/sessions', {
+  const response = await api.post('/users/sessions', {
       email: name,
       password: password
-  }).then(response => {
-    localstorageService.saveUserAuthentication(response);
+  })
+  if(response){
+    await localstorageService.saveUserTokenAuthentication(response);
     return true;
-  }).catch(error => {
-    throw error;
-  });
+  }else{
+    return false;
+  }
 }
 
 export const retrieveUserFromSession = () => {
-  return localstorageService.retrieveUserFromLocalStorage();
+  return localstorageService.retrieveUserTokenFromLocalStorage();
 }
 
-export const registerUser = async(name, password, confirmPassword, firstName, lastName) => {
-  await api.post('/users', {
+export const registerUser = (name, password, confirmPassword, firstName, lastName) => {
+  return api.post('/users', {
     user: {
       email: name,
       password: password,
@@ -28,9 +29,5 @@ export const registerUser = async(name, password, confirmPassword, firstName, la
       last_name: lastName,
       locale: 'en'
     }
-  }).then(response => {
-    return true;
-  }).catch(error => {
-    throw error;
   });
 }
