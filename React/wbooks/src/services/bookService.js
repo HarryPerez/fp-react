@@ -7,21 +7,9 @@ export const retrieveUserFromSession = () => {
 }
 
 export const getAllBooks = async () => {
-  return await api.get('/books', {
-      'headers': { 'Authorization': retrieveUserFromSession() }
-  }).then(response => {
-    return response;
-  }).catch(error => {
-    throw error;
-  });
+  return await api.get('/books');
 }
 
 export const getBookDetail = async (bookId) => {
-  return await api.get('/books/'+bookId, {
-      'headers': { 'Authorization': retrieveUserFromSession() }
-  }).then(response => {
-    return response;
-  }).catch(error => {
-    throw error;
-  });
+  return await api.get('/books/'+bookId);
 }
