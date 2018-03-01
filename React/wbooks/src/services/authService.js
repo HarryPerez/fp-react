@@ -8,7 +8,7 @@ export const retrieveUserData = async (name, password) => {
       password: password
   })
   if(response){
-    localstorageService.saveUserAuthentication(response);
+    await localstorageService.saveUserTokenAuthentication(response);
     return true;
   }else{
     return false;
@@ -16,7 +16,7 @@ export const retrieveUserData = async (name, password) => {
 }
 
 export const retrieveUserFromSession = () => {
-  return localstorageService.retrieveUserFromLocalStorage();
+  return localstorageService.retrieveUserTokenFromLocalStorage();
 }
 
 export const registerUser = (name, password, confirmPassword, firstName, lastName) => {

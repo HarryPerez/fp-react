@@ -3,7 +3,7 @@ import api from '../app/config/api';
 import * as localStorage from './localstorageService.js';
 
 export const retrieveUserFromSession = () => {
-  return localStorage.retrieveUserFromLocalStorage();
+  return localStorage.retrieveUserTokenFromLocalStorage();
 }
 
 export const getAllBooks = () => {

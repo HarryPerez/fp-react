@@ -7,7 +7,7 @@ import * as localstorageService from '../../../services/localstorageService';
 
 class RouteHandler extends Component {
   validateAuth = props => {
-    return localstorageService.retrieveUserFromLocalStorage();
+    return localstorageService.retrieveUserTokenFromLocalStorage();
   };
 
   isPublicRequest = props => {

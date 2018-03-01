@@ -15,7 +15,7 @@ class ProfileDropdown extends Component {
   }
 
   handleSessionClick = event => {
-    localStorageService.removeUserAuthentication();
+    localStorageService.removeUserTokenAuthentication();
   }
 
   render() {
