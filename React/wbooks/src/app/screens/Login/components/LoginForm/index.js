@@ -11,7 +11,7 @@ import * as authService from '../../../../../services/authService';
 import styles from './styles.scss';
 
 class LoginForm extends Component {
-  state = { name: '', password: '' , hasErrors: '', isLogged: false };
+  state = { name: '', password: '' , hasErrors: '' };
 
   handleNameInput = event => {
     this.setState({ name : event.target.value });
@@ -22,7 +22,7 @@ class LoginForm extends Component {
   }
 
   validateUser = async () => {
-    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ hasErrors : '' })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
@@ -39,31 +39,27 @@ class LoginForm extends Component {
   }
 
   render() {
-    if(this.state.isLogged){
-      return <Redirect to='/'/>;
-    }else{
-      return (
-        <div className={styles.inputContainer}>
-          <div className={styles.dataContainer}>
-            <img src={userIcon} className={styles.icon} alt='userIcon' />
-            <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.handleNameInput}/>
-          </div>
-          <div className={styles.dataContainer}>
-            <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
-            <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.handlePasswordInput}/>
-          </div>
-          <div className={styles.loginButton} onClick={this.handleSubmit}>
-            <h1 className={styles.loginText}>Login</h1>
-          </div>
-          <div className={styles.signupContainer}>
-            <Link className={styles.signupText} to='/signup'>
-              Not a member?
-            </Link>
-          </div>
-          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
+    return (
+      <div className={styles.inputContainer}>
+        <div className={styles.dataContainer}>
+          <img src={userIcon} className={styles.icon} alt='userIcon' />
+          <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.handleNameInput}/>
         </div>
-      );
-    }
+        <div className={styles.dataContainer}>
+          <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
+          <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.handlePasswordInput}/>
+        </div>
+        <div className={styles.loginButton} onClick={this.handleSubmit}>
+          <h1 className={styles.loginText}>Login</h1>
+        </div>
+        <div className={styles.signupContainer}>
+          <Link className={styles.signupText} to='/signup'>
+            Not a member?
+          </Link>
+        </div>
+        {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
+      </div>
+    );
   }
 }
 
