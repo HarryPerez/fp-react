@@ -90,9 +90,3 @@ export default function reduce(state = initialState, action = {}) {
       return state;
   }
 }
-
-// selectors
-
-export function getBooks(state) {
-  return state.books.books;
-}

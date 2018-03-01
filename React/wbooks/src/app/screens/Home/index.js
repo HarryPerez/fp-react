@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as booksSelectors from '../../../store/books/reducer';
-
 import Home from './layout.js';
 
 class HomeContainer extends Component {
@@ -13,10 +11,8 @@ class HomeContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    books: booksSelectors.getBooks(state)
-  };
-}
+const mapStateToProps = state => ({
+    books: state.books.books
+});
 
 export default connect(mapStateToProps)(HomeContainer);
