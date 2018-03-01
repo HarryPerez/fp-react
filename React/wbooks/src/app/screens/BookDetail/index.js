@@ -30,36 +30,28 @@ class BookDetail extends Component {
         </div>
       );
     };
-    if(this.state.book === ''){
-      return (
-        <div className={styles.bookDetail}>
-          <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
-        </div>
-      );
-    }else {
-      const imageUrl = this.state.book && this.state.book.image_url;
-      return (
-        <div className={styles.bookDetail}>
-          <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
-          <div className={styles.detailContainer}>
-            <div className={styles.detailImage}>
-              <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
-            </div>
-            <div className={styles.detailSummary}>
-              <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
-              <div className={styles.detailRent}>
-                <h1 className={styles.rentTitle}>Alquilar</h1>
-              </div>
+    const imageUrl = this.state.book && this.state.book.image_url;
+    return (
+      <div className={styles.bookDetail}>
+        <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
+        <div className={styles.detailContainer}>
+          <div className={styles.detailImage}>
+            <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
+          </div>
+          <div className={styles.detailSummary}>
+            <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
+            <div className={styles.detailRent}>
+              <h1 className={styles.rentTitle}>Alquilar</h1>
             </div>
           </div>
-          <Suggestion/>
-          <h1 className={styles.commentsTitle}>Comentarios</h1>
-          <NewComment/>
-          <Comment/>
-          <Comment/>
         </div>
-      );
-    }
+        <Suggestion/>
+        <h1 className={styles.commentsTitle}>Comentarios</h1>
+        <NewComment/>
+        <Comment/>
+        <Comment/>
+      </div>
+    );
   }
 }
 
