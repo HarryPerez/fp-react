@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
+import * as bookService from '../../../services/bookService';
 
 import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';

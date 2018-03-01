@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'react-widgets/dist/css/react-widgets.css'
 
-import bookService from '../../../services/bookService';
+import * as bookService from '../../../services/bookService';
 
 import Combobox from './components/Combobox/index.js'
 import Book from './components/Book/index.js'

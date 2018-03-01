@@ -1,12 +1,12 @@
 import api from '../app/config/api';
 
-import localStorage from './localstorageService.js';
+import * as localStorage from './localstorageService.js';
 
-const retrieveUserFromSession = () => {
+export const retrieveUserFromSession = () => {
   return localStorage.retrieveUserFromLocalStorage();
 }
 
-const getAllBooks = async () => {
+export const getAllBooks = async () => {
   return await api.get('/books', {
       'headers': { 'Authorization': retrieveUserFromSession() }
   }).then(response => {
@@ -16,7 +16,7 @@ const getAllBooks = async () => {
   });
 }
 
-const getBookDetail = async (bookId) => {
+export const getBookDetail = async (bookId) => {
   return await api.get('/books/'+bookId, {
       'headers': { 'Authorization': retrieveUserFromSession() }
   }).then(response => {
@@ -25,5 +25,3 @@ const getBookDetail = async (bookId) => {
     throw error;
   });
 }
-
-export default {getAllBooks, getBookDetail};
