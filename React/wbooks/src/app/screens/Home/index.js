@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'react-widgets/dist/css/react-widgets.css'
 
-import Navbar from '../../components/Navbar';
 import bookService from '../../../services/bookService';
 
 import Combobox from './components/Combobox/index.js'
@@ -51,7 +50,6 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeContainer}>
-        <Navbar/>
         <div className={styles.dashboardContainer}>
           <div className={styles.filterContainer}>
             <div className={styles.filterItem}>

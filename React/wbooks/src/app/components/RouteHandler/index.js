@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
-import localStorageService from '../../../services/localstorageService';
+import Navbar from '../Navbar/index.js'
+import * as localstorageService from '../../../services/localstorageService';
 
 class RouteHandler extends Component {
   validateAuth = props => {
-    return localStorageService.retrieveUserFromLocalStorage();
+    return localstorageService.retrieveUserFromLocalStorage();
   };
 
   isPublicRequest = props => {
-    return props.location.pathname === '' || props.location.pathname === '/' || props.location.pathname === '/signup';
+    return props.location.pathname === '/' || props.location.pathname === '/signup';
   };
 
   render(){
@@ -20,7 +21,7 @@ class RouteHandler extends Component {
         {...rest}
         render={ props =>
           this.validateAuth(props) ? (
-            this.isPublicRequest(props) ? <Redirect to='/dashboard'/> : <Component {...props}/>
+            this.isPublicRequest(props) ? <Redirect to='/dashboard'/> : <div><Navbar/><Component {...props}/></div>
           ) : (
             !this.isPublicRequest(props) ? <Redirect to='/'/> : <Component {...props}/>
           )

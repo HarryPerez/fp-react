@@ -1,13 +1,11 @@
-const saveUserAuthentication = props => {
+export const saveUserAuthentication = props => {
   localStorage.setItem('user', props.data.access_token);
 }
 
-const retrieveUserFromLocalStorage = () => {
+export const retrieveUserFromLocalStorage = () => {
   return localStorage.getItem('user');
 }
 
-const removeUserAuthentication = () => {
+export const removeUserAuthentication = () => {
   return localStorage.removeItem('user');
 }
-
-export default {saveUserAuthentication, retrieveUserFromLocalStorage, removeUserAuthentication};

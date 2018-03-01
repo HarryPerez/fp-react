@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
-import ErrorContainer from '../../../../components/ErrorContainer';
-import regexs from '../../../../../utils/regexs';
-import authService from '../../../../../services/authService';
+import AccessError from '../../../../components/AccessError';
+import * as regexs from '../../../../../utils/regexs';
+import * as authService from '../../../../../services/authService';
 
 import styles from './styles.scss';
 
@@ -75,7 +75,7 @@ class SignupForm extends Component {
           <div className={styles.signupButton} onClick={this.handleSubmit}>
             <h1 className={styles.signupText}>Registrar</h1>
           </div>
-          {this.state.hasErrors && <ErrorContainer errors={this.state.hasErrors}/>}
+          {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
         </div>
       );
     }
