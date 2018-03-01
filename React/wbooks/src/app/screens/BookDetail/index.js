@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import booksJson from '../../../constants/data';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
+import * as bookService from '../../../services/bookService';
 
 import BookSummary from './components/BookSummary/index.js';
 import Suggestion from './components/Suggestion/index.js';
@@ -15,15 +15,10 @@ class BookDetail extends Component {
   state = { book: '', error: '' };
   backTitle = '<Volver';
 
-  componentWillMount() {
-    const book = booksJson.filter(book => book.id == this.props.match.params.bookId );
-    if(book.length === 1){
-      this.setState({ book: book[0] });
-    }else if(book.length > 1){
-      this.setState({ error: 'Sorry, it was found more than one book with the given id.' });
-    }else {
-      this.setState({ error: 'Sorry, the book was not found.' });
-    }
+  componentWillMount = () => {
+    bookService.getBookDetail(this.props.match.params.bookId)
+    .then((response) => {this.setState({ book: response.data })})
+    .catch((error) => {this.setState({ error: 'Sorry, the book was not found.' })});
   }
 
   render() {
