@@ -14,13 +14,9 @@ class SearchInput extends Component {
     this.props.onInputChange(event.target.value);
   }
 
-  handleFocus = () => {
-    this.setState({ value: '' });
-  }
+  handleFocus = () => this.setState({ value: '' });
 
-  handleClick = () => {
-    this.props.onInputChange(this.state.value);
-  }
+  handleClick = () => this.props.onInputChange(this.state.value);
 
   render() {
     return (

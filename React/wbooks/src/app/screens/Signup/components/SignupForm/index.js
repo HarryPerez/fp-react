@@ -10,30 +10,18 @@ import styles from './styles.scss';
 class SignupForm extends Component {
   state = { name: '', password: '', confirmPassword: '', firstName: '', lastName: '', hasErrors: '', registeredSuccesfully: '' };
 
-  handleNameInput = event => {
-    this.setState({ name : event.target.value });
-  }
+  handleNameInput = event => this.setState({ name : event.target.value });
 
-  handlePasswordInput = event => {
-    this.setState({ password : event.target.value });
-  }
+  handlePasswordInput = event => this.setState({ password : event.target.value });
 
-  handleConfirmPasswordInput = event => {
-    this.setState({ confirmPassword : event.target.value });
-  }
+  handleConfirmPasswordInput = event => this.setState({ confirmPassword : event.target.value });
 
-  handleFirstName = event => {
-    this.setState({ firstName : event.target.value });
-  }
+  handleFirstName = event => this.setState({ firstName : event.target.value });
 
-  handleLastName = event => {
-    this.setState({ lastName : event.target.value });
-  }
+  handleLastName = event => this.setState({ lastName : event.target.value });
 
-  registerUser = async () => {
-    await authService.registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
+  registerUser = () => authService.registerUser(this.state.name, this.state.password, this.state.confirmPassword, this.state.firstName, this.state.lastName).then(() => {this.setState({ registeredSuccesfully : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
-  }
 
   handleSubmit = () => {
     if(this.state.name === '' || this.state.password === '' || this.state.confirmPassword === '' || this.state.firstName === '' || this.state.lastName === ''){

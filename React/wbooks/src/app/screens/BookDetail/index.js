@@ -15,11 +15,10 @@ class BookDetail extends Component {
   state = { book: '', error: '' };
   backTitle = '<Volver';
 
-  componentWillMount = () => {
+  componentWillMount = () =>
     bookService.getBookDetail(this.props.match.params.bookId)
     .then((response) => {this.setState({ book: response.data })})
     .catch((error) => {this.setState({ error: 'Sorry, the book was not found.' })});
-  }
 
   render() {
     if(this.state.error){

@@ -13,18 +13,12 @@ import styles from './styles.scss';
 class LoginForm extends Component {
   state = { name: '', password: '' , hasErrors: '', isLogged: false };
 
-  handleNameInput = event => {
-    this.setState({ name : event.target.value });
-  }
+  handleNameInput = event => this.setState({ name : event.target.value });
 
-  handlePasswordInput = event => {
-    this.setState({ password : event.target.value });
-  }
+  handlePasswordInput = event => this.setState({ password : event.target.value });
 
-  validateUser = () => {
-    authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
+  validateUser = () => authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
-  }
 
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){

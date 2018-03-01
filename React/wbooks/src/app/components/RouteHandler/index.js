@@ -6,13 +6,9 @@ import Navbar from '../Navbar/index.js'
 import * as localstorageService from '../../../services/localstorageService';
 
 class RouteHandler extends Component {
-  validateAuth = props => {
-    return localstorageService.retrieveUserTokenFromLocalStorage();
-  };
+  validateAuth = props => localstorageService.retrieveUserTokenFromLocalStorage();
 
-  isPublicRequest = props => {
-    return props.location.pathname === '/' || props.location.pathname === '/signup';
-  };
+  isPublicRequest = props => props.location.pathname === '/' || props.location.pathname === '/signup';
 
   render(){
     const  { component: Component, ...rest } = this.props;

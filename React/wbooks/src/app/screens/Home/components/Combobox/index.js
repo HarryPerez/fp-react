@@ -5,9 +5,7 @@ import styles from './styles.scss'
 
 class Combobox extends Component {
 
-  handleSelection = event => {
-    this.props.onSelection(event.target.value);
-  }
+  handleSelection = event => this.props.onSelection(event.target.value);
 
   render() {
     return (

@@ -15,19 +15,16 @@ export const retrieveUserData = async (name, password) => {
   }
 }
 
-export const retrieveUserFromSession = () => {
-  return localstorageService.retrieveUserTokenFromLocalStorage();
-}
+export const retrieveUserFromSession = () => localstorageService.retrieveUserTokenFromLocalStorage();
 
-export const registerUser = (name, password, confirmPassword, firstName, lastName) => {
-  return api.post('/users', {
-    user: {
-      email: name,
-      password: password,
-      confirm_password: confirmPassword,
-      first_name: firstName,
-      last_name: lastName,
-      locale: 'en'
-    }
-  });
-}
+export const registerUser = (name, password, confirmPassword, firstName, lastName) =>
+api.post('/users', {
+  user: {
+    email: name,
+    password: password,
+    confirm_password: confirmPassword,
+    first_name: firstName,
+    last_name: lastName,
+    locale: 'en'
+  }
+});

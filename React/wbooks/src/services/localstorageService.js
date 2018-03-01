@@ -5,10 +5,6 @@ export const saveUserTokenAuthentication = props => {
   api.defaults.headers.common['Authorization'] = props.data.access_token;
 }
 
-export const retrieveUserTokenFromLocalStorage = () => {
-  return localStorage.getItem('userToken');
-}
+export const retrieveUserTokenFromLocalStorage = () => localStorage.getItem('userToken');
 
-export const removeUserTokenAuthentication = () => {
-  return localStorage.removeItem('userToken');
-}
+export const removeUserTokenAuthentication = () => localStorage.removeItem('userToken');

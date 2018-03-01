@@ -2,14 +2,8 @@ import api from '../app/config/api';
 
 import * as localStorage from './localstorageService.js';
 
-export const retrieveUserFromSession = () => {
-  return localStorage.retrieveUserTokenFromLocalStorage();
-}
+export const retrieveUserFromSession = () => localStorage.retrieveUserTokenFromLocalStorage();
 
-export const getAllBooks = () => {
-  return api.get('/books');
-}
+export const getAllBooks = () => api.get('/books');
 
-export const getBookDetail = (bookId) => {
-  return api.get('/books/'+bookId);
-}
+export const getBookDetail = (bookId) => api.get('/books/'+bookId);

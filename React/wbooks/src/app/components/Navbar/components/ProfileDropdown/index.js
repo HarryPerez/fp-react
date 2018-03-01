@@ -10,13 +10,9 @@ import styles from './styles.scss';
 class ProfileDropdown extends Component {
   state = { isActive: false };
 
-  handlePictureClick = event => {
-    this.setState({ isActive: !this.state.isActive });
-  }
+  handlePictureClick = event => this.setState({ isActive: !this.state.isActive });
 
-  handleSessionClick = event => {
-    localStorageService.removeUserTokenAuthentication();
-  }
+  handleSessionClick = event => localStorageService.removeUserTokenAuthentication();
 
   render() {
     if(!this.state.isActive){
