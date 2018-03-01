@@ -43,8 +43,8 @@ class Home extends Component {
       this.setState({ filteredBooks: filteredBooks });
   }
 
-  componentWillMount = async () => {
-    await bookService.getAllBooks().then((response) => {this.setState({ 'books':response.data, 'filteredBooks': response.data })});
+  componentWillMount = () => {
+    bookService.getAllBooks().then((response) => {this.setState({ 'books':response.data, 'filteredBooks': response.data })});
   }
 
   render() {

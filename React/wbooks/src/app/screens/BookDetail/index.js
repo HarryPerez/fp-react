@@ -15,8 +15,8 @@ class BookDetail extends Component {
   state = { book: '', error: '' };
   backTitle = '<Volver';
 
-  componentWillMount = async () => {
-    await bookService.getBookDetail(this.props.match.params.bookId)
+  componentWillMount = () => {
+    bookService.getBookDetail(this.props.match.params.bookId)
     .then((response) => {this.setState({ book: response.data })})
     .catch((error) => {this.setState({ error: 'Sorry, the book was not found.' })});
   }

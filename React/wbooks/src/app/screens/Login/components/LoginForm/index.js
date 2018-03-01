@@ -11,7 +11,7 @@ import * as authService from '../../../../../services/authService';
 import styles from './styles.scss';
 
 class LoginForm extends Component {
-  state = { name: '', password: '' , hasErrors: '' };
+  state = { name: '', password: '' , hasErrors: '', isLogged: false };
 
   handleNameInput = event => {
     this.setState({ name : event.target.value });
@@ -21,8 +21,8 @@ class LoginForm extends Component {
     this.setState({ password : event.target.value });
   }
 
-  validateUser = async () => {
-    await authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ hasErrors : '' })})
+  validateUser = () => {
+    authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
     .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
   }
 
@@ -39,6 +39,9 @@ class LoginForm extends Component {
   }
 
   render() {
+    if(this.state.isLogged){
+      return <Redirect to='/dashboard'/>
+    }
     return (
       <div className={styles.inputContainer}>
         <div className={styles.dataContainer}>
