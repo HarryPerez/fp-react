@@ -1,0 +1,12 @@
+@import '../../../../../constants/colors.scss';
+
+.dropdownContainer {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.notificationDropdown {
+  position: absolute;
+  right: 121px;
+}

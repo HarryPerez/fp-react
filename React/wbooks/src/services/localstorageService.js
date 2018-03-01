@@ -5,3 +5,7 @@ export const saveUserAuthentication = props => {
 export const retrieveUserFromLocalStorage = () => {
   return localStorage.getItem('user');
 }
+
+export const removeUserAuthentication = () => {
+  return localStorage.removeItem('user');
+}

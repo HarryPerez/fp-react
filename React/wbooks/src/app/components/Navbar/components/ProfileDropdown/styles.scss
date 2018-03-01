@@ -1,0 +1,45 @@
+@import '../../../../../constants/colors.scss';
+
+.dropdownContainer {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileDropdown {
+  position: absolute;
+  right: 0;
+}
+
+.profileIcon {
+  height: 30px;
+  margin-left: 30px;
+  margin-bottom: 4px;
+  width: 30px;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.profileButton {
+  height: 31px;
+  width:160px;
+
+  &:hover {
+    background: $superlight-blue;
+  }
+}
+
+.profileLink {
+  text-decoration: none;
+}
+
+.buttonText {
+  color: $black;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 19px;
+  margin-left: 12px;
+}
