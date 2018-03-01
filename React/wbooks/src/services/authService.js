@@ -19,8 +19,8 @@ export const retrieveUserFromSession = () => {
   return localstorageService.retrieveUserFromLocalStorage();
 }
 
-export const registerUser = async(name, password, confirmPassword, firstName, lastName) => {
-  return await api.post('/users', {
+export const registerUser = (name, password, confirmPassword, firstName, lastName) => {
+  return api.post('/users', {
     user: {
       email: name,
       password: password,

@@ -6,10 +6,10 @@ export const retrieveUserFromSession = () => {
   return localStorage.retrieveUserFromLocalStorage();
 }
 
-export const getAllBooks = async () => {
-  return await api.get('/books');
+export const getAllBooks = () => {
+  return api.get('/books');
 }
 
-export const getBookDetail = async (bookId) => {
-  return await api.get('/books/'+bookId);
+export const getBookDetail = (bookId) => {
+  return api.get('/books/'+bookId);
 }
