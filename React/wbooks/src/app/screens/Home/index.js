@@ -27,7 +27,6 @@ const getFilteredBooks = createSelector(
   (filter, filterParam, books) => {
     if(!books) return books;
     filter = filter.toLowerCase();
-    filterParam = filterParam.toLowerCase();
     return books.filter((book) => {
       const bookTitle = book.title.toLowerCase();
       const bookAuthor = book.author.toLowerCase();
@@ -46,7 +45,7 @@ const getFilteredBooks = createSelector(
   })
 
 const mapStateToProps = state => (
-  { books: getFilteredBooks(state), isLoading: state.books.isLoading, filter: state.books.filter, filterParam: state.books.filterParam }
+  { books: getFilteredBooks(state), isLoading: state.books.isLoading }
 );
 
 export default connect(mapStateToProps)(HomeContainer);
