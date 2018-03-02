@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AccessError from '../../../../components/AccessError/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
 import * as regexs from '../../../../../utils/regexs';
-import * as authService from '../../../../../services/authService';
+import * as sessionActions from '../../../../../redux/session/actions';
 
 import styles from './styles.scss';
 
 class LoginForm extends Component {
-  state = { name: '', password: '' , hasErrors: '', isLogged: false };
+  state = { name: '', password: '' , hasErrors: '' };
 
   handleNameInput = event => this.setState({ name : event.target.value });
 
   handlePasswordInput = event => this.setState({ password : event.target.value });
 
-  validateUser = () => authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
-    .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
+  validateUser = () => this.props.dispatch(sessionActions.saveSession(this.state.name, this.state.password));
 
   handleSubmit = event => {
     if(this.state.name === '' || this.state.password === ''){
@@ -33,8 +33,8 @@ class LoginForm extends Component {
   }
 
   render() {
-    if(this.state.isLogged){
-      return <Redirect to='/dashboard'/>
+    if(this.props.isLogged !== ''){
+      return <Redirect to='/'/>
     }
     return (
       <div className={styles.inputContainer}>
@@ -60,4 +60,8 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => (
+  { isLogged: state.session.user }
+);
+
+export default connect(mapStateToProps)(LoginForm);

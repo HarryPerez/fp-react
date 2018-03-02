@@ -8,8 +8,7 @@ export const retrieveUserData = async (name, password) => {
       password: password
   })
   if(response){
-    await localstorageService.saveUserTokenAuthentication(response);
-    return true;
+    return response.data;
   }else{
     return false;
   }
