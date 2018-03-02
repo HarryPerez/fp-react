@@ -18,7 +18,7 @@ class Home extends Component {
               <Combobox onSelection={this.props.handleFilterParam}/>
             </div>
             <div className={styles.filterItem}>
-              <SearchInput onInputChange={this.props.handleFilter}/>
+              <SearchInput onInputChange={this.props.handleFilter} filter={this.props.filter}/>
             </div>
           </div>
           <div className={styles.booksContainer}>
