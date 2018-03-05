@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import AccessError from '../../../../components/AccessError/index.js';
@@ -8,30 +8,26 @@ import SessionLoader from '../../../../components/SessionLoader/index.js';
 
 import styles from './styles.scss';
 
-class LoginForm extends Component {
-  render() {
-    return (
-      <div className={styles.inputContainer}>
-        <div className={styles.dataContainer}>
-          <img src={userIcon} className={styles.icon} alt='userIcon' />
-          <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.props.handleUserNameInput}/>
-        </div>
-        <div className={styles.dataContainer}>
-          <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
-          <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.props.handlePasswordInput}/>
-        </div>
-        <div className={styles.loginButton} onClick={this.props.handleSubmit}>
-          <h1 className={styles.loginText}>Login</h1>
-        </div>
-        <div className={styles.signupContainer}>
-          <Link className={styles.signupText} to='/signup'>
-            Not a member?
-          </Link>
-        </div>
-        {this.props.hasErrors && <AccessError errors={this.props.hasErrors}/>}
-      </div>
-    );
-  }
-}
+const LoginForm = (props) => (
+  <div className={styles.inputContainer}>
+    <div className={styles.dataContainer}>
+      <img src={userIcon} className={styles.icon} alt='userIcon' />
+      <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={props.handleUserNameInput}/>
+    </div>
+    <div className={styles.dataContainer}>
+      <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
+      <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={props.handlePasswordInput}/>
+    </div>
+    <div className={styles.loginButton} onClick={props.handleSubmit}>
+      <h1 className={styles.loginText}>Login</h1>
+    </div>
+    <div className={styles.signupContainer}>
+      <Link className={styles.signupText} to='/signup'>
+        Not a member?
+      </Link>
+    </div>
+    {props.hasErrors && <AccessError errors={props.hasErrors}/>}
+  </div>
+);
 
 export default SessionLoader(LoginForm);
