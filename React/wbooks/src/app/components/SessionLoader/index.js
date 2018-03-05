@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 
-const LoginLoader = (Component) => {
+const SessionLoader = (Component) => {
   return function LoadingComponent({ isLogged, ...props }) {
     if (!isLogged) return (<Component {...props} />);
     return (
-      <Redirect to='/dashboard'/>
+      <Redirect to='/'/>
     );
   }
 }
 
-export default LoginLoader;
+export default SessionLoader;

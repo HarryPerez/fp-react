@@ -1,44 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import profilePicture from '../../../../assets/profile_picture.png';
-import * as localStorageService from '../../../../../services/localstorageService';
-import Dropdown from '../Dropdown/index.js';
+import * as sessionActions from '../../../../../redux/session/actions';
 
-import styles from './styles.scss';
+import ProfileDropdown from './layout.js';
 
-class ProfileDropdown extends Component {
-  state = { isActive: false };
-
-  handlePictureClick = event => this.setState({ isActive: !this.state.isActive });
-
-  handleSessionClick = event => localStorageService.removeUserTokenAuthentication();
+class ProfileDropdownContainer extends Component {
+  handleSessionClick = event => this.props.dispatch(sessionActions.closeSession());
 
   render() {
-    if(!this.state.isActive){
-      return (
-        <div className={styles.dropdownContainer}>
-          <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-        </div>
-      );
-    }else {
-      return (
-        <div className={styles.dropdownContainer}>
-          <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-          <div className={styles.profileDropdown}>
-            <Dropdown>
-              <div className={styles.profileButton}>
-                <p className={styles.buttonText}>Perfil</p>
-              </div>
-              <Link to='/' className={`${styles.profileButton} ${styles.profileLink}`} onClick={this.handleSessionClick}>
-                <p className={styles.buttonText}>Cerrar sesión</p>
-              </Link>
-            </Dropdown>
-          </div>
-        </div>
-      );
-    }
+    return <ProfileDropdown isLogged={this.props.isLogged} onSessionClick={this.handleSessionClick}/>
   }
 }
 
-export default ProfileDropdown;
+const mapStateToProps = state => (
+  { isLogged: state.session.isLogged }
+);
+
+export default connect(mapStateToProps)(ProfileDropdownContainer);

@@ -32,6 +32,14 @@ export default function reduce(state = initialState, action = {}) {
         password: action.password,
         isLogged: ''
       });
+    case types.SESSION_CLOSED:
+      return state.merge({
+        user: '',
+        userName: '',
+        password: '',
+        token: '',
+        isLogged: ''
+      });
     default:
       return state;
   }

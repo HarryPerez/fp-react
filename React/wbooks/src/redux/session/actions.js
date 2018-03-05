@@ -19,3 +19,8 @@ export const saveSession = (name, password) => async (dispatch, getState) => {
 export const saveUserName = (userName) => (dispatch, getState) => dispatch({ type: types.SESSION_USERNAME_CHANGED, userName });
 
 export const savePassword = (password) => (dispatch, getState) => dispatch({ type: types.SESSION_PASSWORD_CHANGED, password });
+
+export const closeSession = () => (dispatch, getState) => {
+  localStorageService.removeUserTokenAuthentication();
+  dispatch({ type: types.SESSION_CLOSED });
+}
