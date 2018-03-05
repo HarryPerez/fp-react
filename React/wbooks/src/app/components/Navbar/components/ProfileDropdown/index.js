@@ -7,7 +7,6 @@ import ProfileDropdown from './layout.js';
 
 class ProfileDropdownContainer extends Component {
   render() {
-    console.log(sessionActions.closeSession());
     return <ProfileDropdown isLogged={this.props.isLogged} onSessionClick={this.props.closeSession}/>
   }
 }
