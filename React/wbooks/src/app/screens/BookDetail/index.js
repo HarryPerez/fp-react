@@ -1,57 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import defaultBookIcon from '../../assets/default_book.svg';
-import errorIcon from '../../assets/sad_icon.png';
-import * as bookService from '../../../services/bookService';
+import * as booksActions from '../../../redux/books/actions';
 
-import BookSummary from './components/BookSummary/index.js';
-import Suggestion from './components/Suggestion/index.js';
-import NewComment from './components/NewComment/index.js';
-import Comment from './components/Comment/index.js';
-import styles from './styles.scss';
+import BookDetail from './layout.js';
 
-class BookDetail extends Component {
-  state = { book: '', error: '' };
-  backTitle = '<Volver';
+class BookDetailContainer extends Component {
+  state = { error: '' };
 
-  componentWillMount = () =>
-    bookService.getBookDetail(this.props.match.params.bookId)
-    .then((response) => {this.setState({ book: response.data })})
-    .catch((error) => {this.setState({ error: 'Sorry, the book was not found.' })});
+  componentWillMount = async () => {
+    if(!this.props.books){
+      await this.props.dispatch(booksActions.fetchBooks());
+    }
+    this.props.dispatch(booksActions.getBookDetail(this.props.match.params.bookId, this.props.books));
+  }
 
   render() {
-    if(this.state.error){
-      return (
-        <div className={styles.errorContainer}>
-          <img src={errorIcon} className={styles.errorImage} alt='errorIcon' />
-          <div className={styles.errorMessage}>{this.state.error}</div>
-        </div>
-      );
-    };
-    const imageUrl = this.state.book && this.state.book.image_url;
-    return (
-      <div className={styles.bookDetail}>
-        <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
-        <div className={styles.detailContainer}>
-          <div className={styles.detailImage}>
-            <img src={imageUrl || defaultBookIcon} className={imageUrl ? styles.detailImage : styles.detailSvg} alt='detailImage' />
-          </div>
-          <div className={styles.detailSummary}>
-            <BookSummary key={this.state.book.id} title={this.state.book.title} author={this.state.book.author} genre={this.state.book.genre} year={this.state.book.year}/>
-            <div className={styles.detailRent}>
-              <h1 className={styles.rentTitle}>Alquilar</h1>
-            </div>
-          </div>
-        </div>
-        <Suggestion/>
-        <h1 className={styles.commentsTitle}>Comentarios</h1>
-        <NewComment/>
-        <Comment/>
-        <Comment/>
-      </div>
-    );
+    return <BookDetail isLoading={this.props.isDetailLoading} book={this.props.detailedBook}/>
   }
 }
 
-export default BookDetail;
+const mapStateToProps = state => (
+  { detailedBook: state.books.detailedBook, isDetailLoading: state.books.isDetailLoading, books: state.books.books }
+);
+
+export default connect(mapStateToProps)(BookDetailContainer);

@@ -6,7 +6,9 @@ const initialState = Immutable({
   books: '',
   isLoading: true,
   filter: '',
-  filterParam: ''
+  filterParam: '',
+  isDetailLoading: true,
+  detailedBook: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -15,6 +17,11 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         books: action.response.data,
         isLoading: false
+      });
+    case types.BOOKS_DETAILED:
+      return state.merge({
+        isDetailLoading: false,
+        detailedBook: action.book
       });
     case types.BOOKS_FILTER_PARAM_CHANGED:
       return state.merge({
