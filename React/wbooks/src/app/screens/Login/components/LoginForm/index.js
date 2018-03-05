@@ -8,18 +8,14 @@ import * as sessionActions from '../../../../../redux/session/actions';
 import LoginForm from './layout.js'
 
 class LoginFormContainer extends Component {
-  handleUserNameInput = event => this.props.dispatch(sessionActions.saveUserName(event.target.value));
-
-  handlePasswordInput = event => this.props.dispatch(sessionActions.savePassword(event.target.value));
-
-  handleSubmit = event => {
+  handleSubmit = () => {
     if(!this.props.hasErrors){
-      this.props.dispatch(sessionActions.saveSession(this.props.userName, this.props.password));
+      this.props.handleSubmit(this.props.userName, this.props.password);
     }
   }
 
   render() {
-    return <LoginForm isLogged={this.props.isLogged} hasErrors={this.props.hasErrors} handleUserNameInput={this.handleUserNameInput} handlePasswordInput={this.handlePasswordInput} handleSubmit={this.handleSubmit}/>
+    return <LoginForm isLogged={this.props.isLogged} hasErrors={this.props.hasErrors} handleUserNameInput={this.props.handleUserNameInput} handlePasswordInput={this.props.handlePasswordInput} handleSubmit={this.handleSubmit}/>
   }
 }
 
@@ -42,7 +38,16 @@ const validateInput = createSelector(
   })
 
 const mapStateToProps = state => (
-  { isLogged: state.session.user, hasErrors: validateInput(state), userName: state.session.userName, password: state.session.password }
+  { isLogged: state.session.user,
+    hasErrors: validateInput(state),
+    userName: state.session.userName,
+    password: state.session.password }
 );
 
-export default connect(mapStateToProps)(LoginFormContainer);
+const mapDispatchToProps = (dispatch) => (
+  { handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
+    handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
+    handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password)) }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);
