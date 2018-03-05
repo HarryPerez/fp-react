@@ -7,12 +7,6 @@ import * as booksActions from '../../../redux/books/actions';
 import Home from './layout.js';
 
 class HomeContainer extends Component {
-  componentWillMount = () => this.props.dispatch(booksActions.fetchBooks());
-
-  handleFilter = filter => this.props.dispatch(booksActions.saveFilter(filter));
-
-  handleFilterParam = filterParam => this.props.dispatch(booksActions.saveFilterParam(filterParam));
-
   render() {
     return (
       <Home isLoading={this.props.isLoading} books={this.props.books} handleFilter={this.handleFilter} filter={this.props.filter} handleFilterParam={this.handleFilterParam}/>
@@ -48,4 +42,10 @@ const mapStateToProps = state => (
   { books: getFilteredBooks(state), isLoading: state.books.isLoading }
 );
 
-export default connect(mapStateToProps)(HomeContainer);
+const mapDispatchToProps = dispatch => (
+  { componentWillMount: dispatch(booksActions.fetchBooks()),
+    handleFilter: filter => booksActions.saveFilter(filter),
+    handleFilterParam: filterParam => booksActions.saveFilterParam(filterParam) }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
