@@ -9,7 +9,7 @@ import Home from './layout.js';
 class HomeContainer extends Component {
   render() {
     return (
-      <Home isLoading={this.props.isLoading} books={this.props.books} handleFilter={this.handleFilter} filter={this.props.filter} handleFilterParam={this.handleFilterParam}/>
+      <Home {...this.props}/>
     );
   }
 }
