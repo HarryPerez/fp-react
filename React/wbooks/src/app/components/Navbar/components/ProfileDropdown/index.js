@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect'
 
 import * as sessionActions from '../../../../../redux/session/actions';
 
 import ProfileDropdown from './layout.js';
 
 class ProfileDropdownContainer extends Component {
-  handleSessionClick = event => this.props.dispatch(sessionActions.closeSession());
-
   render() {
-    return <ProfileDropdown isLogged={this.props.isLogged} onSessionClick={this.handleSessionClick}/>
+    console.log(sessionActions.closeSession());
+    return <ProfileDropdown isLogged={this.props.isLogged} onSessionClick={this.props.closeSession}/>
   }
 }
 
-const getIsLogged = createSelector(
-  [state => state.session.isLogged],
-  (isLogged) => isLogged
-)
-
 const mapStateToProps = state => (
-  { isLogged: getIsLogged(state) }
+  { isLogged: state.session.isLogged }
 );
 
-export default connect(mapStateToProps)(ProfileDropdownContainer);
+const mapDispatchToProps = dispatch => (
+  { closeSession: () => dispatch(sessionActions.closeSession()) }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdownContainer);
