@@ -6,9 +6,16 @@ import * as localStorageService from '../../services/localstorageService';
 export const saveSession = (name, password) => async (dispatch, getState) => {
   try{
     const user = await authService.retrieveUserData(name, password);
-    localStorageService.saveUserTokenAuthentication(user);
-    dispatch({ type: types.USER_LOGGED, user });
+    if(user){
+      localStorageService.saveUserTokenAuthentication(user);
+      dispatch({ type: types.USER_LOGGED, user });
+    }
   }catch(error){
-    throw error;
+    dispatch({ type: types.USER_LOGGED_FAILED });
   }
 }
+
+
+export const saveUserName = (userName) => (dispatch, getState) => dispatch({ type: types.SESSION_USERNAME_CHANGED, userName });
+
+export const savePassword = (password) => (dispatch, getState) => dispatch({ type: types.SESSION_PASSWORD_CHANGED, password });
