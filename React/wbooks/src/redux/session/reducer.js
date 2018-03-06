@@ -14,8 +14,8 @@ export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.USER_LOGGED:
       return state.merge({
-        user: action.user,
-        token: action.user.access_token,
+        user: action.payload,
+        token: action.payload.access_token,
         isLogged: true
       });
     case types.USER_LOGGED_FAILED:
@@ -24,12 +24,12 @@ export default function reduce(state = initialState, action = {}) {
       });
     case types.SESSION_USERNAME_CHANGED:
       return state.merge({
-        userName: action.userName,
+        userName: action.payload,
         isLogged: ''
       });
     case types.SESSION_PASSWORD_CHANGED:
       return state.merge({
-        password: action.password,
+        password: action.payload,
         isLogged: ''
       });
     case types.SESSION_CLOSED:

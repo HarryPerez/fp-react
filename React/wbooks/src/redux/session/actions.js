@@ -8,7 +8,7 @@ export const saveSession = (name, password) => async (dispatch, getState) => {
     const user = await authService.retrieveUserData(name, password);
     if(user){
       localStorageService.saveUserTokenAuthentication(user);
-      dispatch({ type: types.USER_LOGGED, user });
+      dispatch({ type: types.USER_LOGGED, payload: user });
     }
   }catch(error){
     dispatch({ type: types.USER_LOGGED_FAILED });
@@ -16,9 +16,9 @@ export const saveSession = (name, password) => async (dispatch, getState) => {
 }
 
 
-export const saveUserName = (userName) => (dispatch, getState) => dispatch({ type: types.SESSION_USERNAME_CHANGED, userName });
+export const saveUserName = (userName) => (dispatch, getState) => dispatch({ type: types.SESSION_USERNAME_CHANGED, payload: userName });
 
-export const savePassword = (password) => (dispatch, getState) => dispatch({ type: types.SESSION_PASSWORD_CHANGED, password });
+export const savePassword = (password) => (dispatch, getState) => dispatch({ type: types.SESSION_PASSWORD_CHANGED, payload: password });
 
 export const closeSession = () => (dispatch, getState) => {
   localStorageService.removeUserTokenAuthentication();

@@ -12,7 +12,7 @@ class BookDetailContainer extends Component {
     if(!this.props.books){
       await this.props.dispatch(booksActions.fetchBooks());
     }
-    this.props.dispatch(booksActions.getBookDetail(this.props.match.params.bookId, this.props.books));
+    this.props.dispatch(booksActions.saveBookDetailId(this.props.match.params.bookId));
   }
 
   render() {
@@ -20,8 +20,11 @@ class BookDetailContainer extends Component {
   }
 }
 
+const getBookDetail = (state) => state.books.books.find((book) => book.id == state.books.detailedBookId)
+
+
 const mapStateToProps = state => (
-  { detailedBook: state.books.detailedBook, isDetailLoading: state.books.isDetailLoading, books: state.books.books }
+  { detailedBook: getBookDetail(state), isDetailLoading: state.books.isDetailLoading, books: state.books.books }
 );
 
 export default connect(mapStateToProps)(BookDetailContainer);
