@@ -8,7 +8,7 @@ export const saveSession = (name, password) => async (dispatch, getState) => {
     const user = await authService.retrieveUserData(name, password);
     if(user){
       localStorageService.saveUserTokenAuthentication(user);
-      dispatch({ type: types.USER_LOGGED, payload: user });
+      dispatch({ type: types.USER_LOGGED, payload: user.access_token });
     }
   }catch(error){
     dispatch({ type: types.USER_LOGGED_FAILED });

@@ -6,7 +6,6 @@ const initialState = Immutable({
   user: '',
   userName: '',
   password: '',
-  token: '',
   isLogged: false
 });
 
@@ -15,7 +14,6 @@ export default function reduce(state = initialState, action = {}) {
     case types.USER_LOGGED:
       return state.merge({
         user: action.payload,
-        token: action.payload.access_token,
         isLogged: true
       });
     case types.USER_LOGGED_FAILED:
@@ -37,7 +35,6 @@ export default function reduce(state = initialState, action = {}) {
         user: '',
         userName: '',
         password: '',
-        token: '',
         isLogged: false
       });
     default:
