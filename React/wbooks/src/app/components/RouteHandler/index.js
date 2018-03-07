@@ -5,8 +5,17 @@ import { Redirect } from 'react-router';
 
 import Navbar from '../Navbar/index.js'
 import * as localstorageService from '../../../services/localstorageService';
+import * as booksActions from '../../../redux/books/actions';
+import * as sessionActions from '../../../redux/session/actions';
 
 class RouteHandler extends Component {
+  componentWillMount = () => {
+    const user = localstorageService.retrieveUserTokenFromLocalStorage();
+    if(user) {
+      this.props.loadBooks();
+      this.props.loadSession();
+    }
+  }
   isPublicRequest = props => props.location.pathname === '/' || props.location.pathname === '/signup';
 
   render(){
@@ -26,7 +35,12 @@ class RouteHandler extends Component {
 }
 
 const mapStateToProps = state => (
-  { isLogged: state.session.isLogged }
+  { isLogged: state.session.isLogged, books: state.books.books }
 );
 
-export default connect(mapStateToProps)(RouteHandler);
+const mapDispatchToProps = dispatch => (
+  { loadBooks: () => dispatch(booksActions.fetchBooks()),
+    loadSession: () => dispatch(sessionActions.loadSession()) }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RouteHandler);

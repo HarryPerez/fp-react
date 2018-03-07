@@ -24,3 +24,7 @@ export const closeSession = () => (dispatch, getState) => {
   localStorageService.removeUserTokenAuthentication();
   dispatch({ type: types.SESSION_CLOSED });
 }
+
+export const loadSession = (user) => (dispatch, getState) => {
+  dispatch({ type: types.USER_LOGGED, payload: user });
+}
