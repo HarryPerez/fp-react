@@ -5,6 +5,7 @@ import * as localstorageService from './localstorageService.js';
 export const retrieveUserData = async (name, password) => {
   const response = await api.post('/users/sessions', { email: name, password: password });
   if(response){
+    api.defaults.headers.common['Authorization'] = response.data.access_token;
     return response.data;
   }else{
     return false;
