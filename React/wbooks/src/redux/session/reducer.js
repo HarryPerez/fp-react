@@ -38,7 +38,7 @@ export default function reduce(state = initialState, action = {}) {
         userName: '',
         password: '',
         token: '',
-        isLogged: ''
+        isLogged: false
       });
     default:
       return state;
