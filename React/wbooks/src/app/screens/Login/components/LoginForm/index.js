@@ -4,6 +4,7 @@ import { createSelector } from 'reselect'
 
 import * as regexs from '../../../../../utils/regexs';
 import * as sessionActions from '../../../../../redux/session/actions';
+import * as booksActions from '../../../../../redux/books/actions';
 
 import LoginForm from './layout.js'
 
@@ -11,6 +12,7 @@ class LoginFormContainer extends Component {
   handleSubmit = () => {
     if(!this.props.hasErrors){
       this.props.handleSubmit(this.props.userName, this.props.password);
+      this.props.initialLoading();
     }
   }
 
@@ -47,7 +49,8 @@ const mapStateToProps = state => (
 const mapDispatchToProps = (dispatch) => (
   { handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
     handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
-    handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password)) }
+    handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password)),
+    initialLoading: () => dispatch(booksActions.fetchBooks()) }
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);

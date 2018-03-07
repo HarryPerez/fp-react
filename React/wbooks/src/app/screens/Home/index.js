@@ -43,8 +43,7 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => (
-  { componentWillMount: dispatch(booksActions.fetchBooks()),
-    handleFilter: filter => booksActions.saveFilter(filter),
+  { handleFilter: filter => booksActions.saveFilter(filter),
     handleFilterParam: filterParam => booksActions.saveFilterParam(filterParam) }
 );
 
