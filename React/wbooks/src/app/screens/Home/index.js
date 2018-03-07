@@ -43,8 +43,8 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => (
-  { handleFilter: filter => booksActions.saveFilter(filter),
-    handleFilterParam: filterParam => booksActions.saveFilterParam(filterParam) }
+  { handleFilter: filter => dispatch(booksActions.saveFilter(filter)),
+    handleFilterParam: filterParam => dispatch(booksActions.saveFilterParam(filterParam)) }
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
