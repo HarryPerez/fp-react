@@ -7,7 +7,7 @@ const initialState = Immutable({
   userName: '',
   password: '',
   token: '',
-  isLogged: ''
+  isLogged: false
 });
 
 export default function reduce(state = initialState, action = {}) {

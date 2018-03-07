@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AccessError from '../../../../components/AccessError/index.js';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
-import SessionLoader from '../../../../components/SessionLoader/index.js';
 
 import styles from './styles.scss';
 
@@ -30,4 +29,4 @@ const LoginForm = (props) => (
   </div>
 );
 
-export default SessionLoader(LoginForm);
+export default LoginForm;

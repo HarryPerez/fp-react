@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import profilePicture from '../../../../assets/profile_picture.png';
 import Dropdown from '../Dropdown/index.js';
-import SessionLoader from '../../../SessionLoader/index.js'
 
 import styles from './styles.scss';
 
@@ -39,4 +38,4 @@ class ProfileDropdown extends Component {
   }
 }
 
-export default SessionLoader(ProfileDropdown);
+export default ProfileDropdown;
