@@ -10,7 +10,7 @@ import styles from './styles.scss';
 class NotificationDropdown extends Component {
   state = { isActive: false };
 
-  handlePictureClick = () => this.setState({ isActive: !this.state.isActive });
+  handlePictureClick = () => this.setState(prevState => ({ isActive: !prevState.isActive }));
 
   render() {
     if (!this.state.isActive) {

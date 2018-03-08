@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import * as booksActions from '../../../redux/books/actions';
 
@@ -13,7 +14,11 @@ class BookDetailContainer extends Component {
     return <BookDetail isLoading={this.props.isDetailLoading} book={this.props.detailedBook} />;
   }
 }
-const getBook = state => state.books.books.find(book => book.id === Number(state.books.detailedBookId));
+
+const getBook = createSelector(
+  [state => state.books.books, state => state.books.detailedBookId],
+  (books, detailedBookId) => books.find(book => book.id === Number(detailedBookId))
+);
 
 const mapStateToProps = state => ({
   detailedBook: getBook(state),
