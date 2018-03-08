@@ -13,16 +13,25 @@ const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case types.BOOKS_FETCHED:
+    case types.BOOKS_FETCH:
+      return state.merge({
+        isLoading: true
+      });
+    case types.BOOKS_FETCH_SUCCESS:
       return state.merge({
         books: action.payload,
         isLoading: false
       });
-    case types.BOOKS_DETAILING:
+    case types.BOOKS_FETCH_FAILURE:
       return state.merge({
-        detailedBookId: action.payload
+        isLoading: false
       });
-    case types.BOOKS_DETAILED:
+    case types.BOOKS_DETAIL:
+      return state.merge({
+        detailedBookId: action.payload,
+        isDetailLoading: true
+      });
+    case types.BOOKS_DETAIL_SUCCESS:
       return state.merge({
         isDetailLoading: false
       });
@@ -33,6 +42,15 @@ export default function reduce(state = initialState, action = {}) {
     case types.BOOKS_FILTER_CHANGED:
       return state.merge({
         filter: action.payload
+      });
+    case types.BOOKS_CLEANED:
+      return state.merge({
+        books: '',
+        isLoading: true,
+        filter: '',
+        filterParam: '',
+        isDetailLoading: true,
+        detailedBookId: ''
       });
     default:
       return state;

@@ -1,6 +1,6 @@
-export const USER_LOGGED = 'session.USER_LOGGED';
-export const USER_LOGGED_FAILED = 'session.USER_LOGGED_FAILED';
-export const USER_LOGGED_SUCCESFULLY = 'session.USER_LOGGED_SUCCESFULLY';
+export const USER_LOGIN = 'session.USER_LOGIN';
+export const USER_LOGIN_SUCCESS = 'session.USER_LOGIN_SUCCESS';
+export const USER_LOGIN_FAILURE = 'session.USER_LOGIN_FAILURE';
 export const SESSION_USERNAME_CHANGED = 'session.SESSION_USERNAME_CHANGED';
 export const SESSION_PASSWORD_CHANGED = 'session.SESSION_PASSWORD_CHANGED';
 export const SESSION_CLOSED = 'session.SESSION_CLOSED';

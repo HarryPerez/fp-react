@@ -5,17 +5,14 @@ import { createSelector } from 'reselect';
 
 import * as regexs from '../../../../../utils/regexs';
 import * as sessionActions from '../../../../../redux/session/actions';
+import * as booksActions from '../../../../../redux/books/actions';
 
 import LoginForm from './layout';
 
 class LoginFormContainer extends Component {
   handleSubmit = async () => {
-    if (!this.props.hasErrors) {
-      const response = await this.props.handleSubmit(this.props.userName, this.props.password);
-      if (response) {
-        await this.props.login();
-      }
-    }
+    const user = await this.props.handleSubmit(this.props.userName, this.props.password);
+    this.props.loadBooks(user);
   };
 
   render() {
@@ -58,15 +55,15 @@ const mapDispatchToProps = dispatch => ({
   handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
   handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
   handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password)),
-  login: () => dispatch(sessionActions.login())
+  loadBooks: user => dispatch(booksActions.fetchBooks(user))
 });
 
 LoginFormContainer.propTypes = {
   handleUserNameInput: PropTypes.func.isRequired,
   handlePasswordInput: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-  hasErrors: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
+  loadBooks: PropTypes.func.isRequired,
+  hasErrors: PropTypes.string,
   userName: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired
 };

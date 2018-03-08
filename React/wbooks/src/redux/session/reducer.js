@@ -12,16 +12,17 @@ const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case types.USER_LOGGED_SUCCESFULLY:
+    case types.USER_LOGIN_SUCCESS:
       return state.merge({
         user: action.payload,
-        loginFailed: false
-      });
-    case types.USER_LOGGED:
-      return state.merge({
+        loginFailed: false,
         isLogged: true
       });
-    case types.USER_LOGGED_FAILED:
+    case types.USER_LOGIN:
+      return state.merge({
+        isLogged: false
+      });
+    case types.USER_LOGIN_FAILURE:
       return state.merge({
         isLogged: false,
         loginFailed: true

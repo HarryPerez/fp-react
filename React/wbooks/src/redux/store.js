@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import books from './books/reducer';
@@ -9,6 +9,10 @@ const reducers = {
   session
 };
 
-const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+
+const store = createStore(combineReducers(reducers), composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

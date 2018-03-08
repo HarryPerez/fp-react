@@ -3,18 +3,20 @@ import * as bookService from '../../services/bookService';
 import * as types from './actionTypes';
 
 export const fetchBooks = user => async dispatch => {
+  dispatch({ type: types.BOOKS_FETCH });
   bookService.saveUserToken(user);
   const response = await bookService.getAllBooks();
   if (response.statusText === 'OK') {
-    dispatch({ type: types.BOOKS_FETCHED, payload: response.data });
+    dispatch({ type: types.BOOKS_FETCH_SUCCESS, payload: response.data });
     return response;
   }
+  dispatch({ type: types.BOOKS_FETCH_FAILURE });
   return false;
 };
 
 export const saveBookDetailId = bookId => dispatch => {
-  dispatch({ type: types.BOOKS_DETAILING, payload: bookId });
-  dispatch({ type: types.BOOKS_DETAILED });
+  dispatch({ type: types.BOOKS_DETAIL, payload: bookId });
+  dispatch({ type: types.BOOKS_DETAIL_SUCCESS });
 };
 
 export const saveFilter = filter => dispatch =>
@@ -22,3 +24,5 @@ export const saveFilter = filter => dispatch =>
 
 export const saveFilterParam = filterParam => dispatch =>
   dispatch({ type: types.BOOKS_FILTER_PARAM_CHANGED, payload: filterParam });
+
+export const cleanBooks = () => dispatch => dispatch({ type: types.BOOKS_CLEANED });

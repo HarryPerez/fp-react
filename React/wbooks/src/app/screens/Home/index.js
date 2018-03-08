@@ -15,6 +15,7 @@ const HomeContainer = props => (
     handleFilterParam={props.handleFilterParam}
   />
 );
+
 const getFilteredBooks = createSelector(
   [state => state.books.filter, state => state.books.filterParam, state => state.books.books],
   (filter, filterParam, books) => {

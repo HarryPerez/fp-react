@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import * as booksActions from '../../../../../redux/books/actions';
 import * as sessionActions from '../../../../../redux/session/actions';
 
 import ProfileDropdown from './layout';
@@ -12,7 +13,12 @@ const ProfileDropdownContainer = props => (
 
 const mapStateToProps = state => ({ isLogged: state.session.isLogged });
 
-const mapDispatchToProps = dispatch => ({ closeSession: () => dispatch(sessionActions.closeSession()) });
+const mapDispatchToProps = dispatch => ({
+  closeSession: () => {
+    dispatch(booksActions.cleanBooks());
+    dispatch(sessionActions.closeSession());
+  }
+});
 
 ProfileDropdownContainer.propTypes = {
   isLogged: PropTypes.bool.isRequired,
