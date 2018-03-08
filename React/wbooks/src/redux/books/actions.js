@@ -5,7 +5,6 @@ import * as types from './actionTypes';
 export const fetchBooks = user => async dispatch => {
   bookService.saveUserToken(user);
   const response = await bookService.getAllBooks();
-  console.log(response);
   if (response.statusText === 'OK') {
     dispatch({ type: types.BOOKS_FETCHED, payload: response.data });
     return response;
