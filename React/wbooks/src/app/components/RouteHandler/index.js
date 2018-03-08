@@ -1,5 +1,3 @@
-/* eslint no-shadow: "off" */
-/* eslint-env es6 */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -22,7 +20,7 @@ class RouteHandler extends Component {
   isPublicRequest = props => props.location.pathname === '/' || props.location.pathname === '/signup';
 
   render() {
-    const { component: Component, ...rest } = this.props;
+    const { component: Element, ...rest } = this.props;
     return (
       <Route
         {...rest}
@@ -33,13 +31,13 @@ class RouteHandler extends Component {
             ) : (
               <div>
                 <Navbar />
-                <Component {...props} />
+                <Element {...props} />
               </div>
             )
           ) : !this.isPublicRequest(props) ? (
             <Redirect to="/" />
           ) : (
-            <Component {...props} />
+            <Element {...props} />
           )
         }
       />
