@@ -1,7 +1,5 @@
 import api from '../app/config/api';
 
-import * as localstorageService from './localstorageService';
-
 export const retrieveUserData = async (name, password) => {
   const response = await api.post('/users/sessions', { email: name, password });
   if (response) {
@@ -10,8 +8,6 @@ export const retrieveUserData = async (name, password) => {
   }
   return false;
 };
-
-export const retrieveUserFromSession = () => localstorageService.retrieveUserTokenFromLocalStorage();
 
 export const registerUser = (name, password, confirmPassword, firstName, lastName) =>
   api.post('/users', {
