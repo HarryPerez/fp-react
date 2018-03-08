@@ -47,7 +47,10 @@ class RouteHandler extends Component {
   }
 }
 
-const mapStateToProps = state => ({ isLogged: state.session.isLogged, books: state.books.books });
+const mapStateToProps = state => ({
+  isLogged: state.session.isLogged,
+  books: state.books.books
+});
 
 const mapDispatchToProps = dispatch => ({
   loadBooks: user => dispatch(booksActions.fetchBooks(user)),

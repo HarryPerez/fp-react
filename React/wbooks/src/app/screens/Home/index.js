@@ -38,7 +38,10 @@ const getFilteredBooks = createSelector(
   }
 );
 
-const mapStateToProps = state => ({ books: getFilteredBooks(state), isLoading: state.books.isLoading });
+const mapStateToProps = state => ({
+  books: getFilteredBooks(state),
+  isLoading: state.books.isLoading
+});
 
 const mapDispatchToProps = dispatch => ({
   handleFilter: filter => dispatch(booksActions.saveFilter(filter)),
