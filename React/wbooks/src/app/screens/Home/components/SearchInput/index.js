@@ -29,15 +29,9 @@ class SearchInput extends Component {
           placeholder={this.defaultValue}
         />
         <div className={styles.iconContainer}>
-          <div
-            role="button"
-            onClick={this.handleClick}
-            className={styles.searchIcon}
-            onKeyPress={() => {}}
-            tabIndex="0"
-          >
-            <img src={searchIcon} alt="searchIcon" />
-          </div>
+          <button onClick={this.handleClick} className={styles.buttonIcon}>
+            <img src={searchIcon} className={styles.searchIcon} alt="searchIcon" />
+          </button>
         </div>
       </div>
     );
