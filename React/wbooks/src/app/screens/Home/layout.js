@@ -29,7 +29,7 @@ const Home = props => (
 Home.propTypes = {
   handleFilterParam: PropTypes.func,
   handleFilter: PropTypes.func,
-  books: PropTypes.element,
+  books: PropTypes.arrayOf(PropTypes.object),
   filter: PropTypes.string
 };
 

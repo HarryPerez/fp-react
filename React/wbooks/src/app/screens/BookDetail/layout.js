@@ -63,7 +63,14 @@ class BookDetail extends Component {
 }
 
 BookDetail.propTypes = {
-  book: PropTypes.element.isRequired
+  book: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image_url: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired
+  })
 };
 
 export default Loader(BookDetail);

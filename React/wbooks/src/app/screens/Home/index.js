@@ -8,7 +8,12 @@ import * as booksActions from '../../../redux/books/actions';
 import Home from './layout';
 
 const HomeContainer = props => (
-  <Home books={props.books} handleFilter={props.handleFilter} handleFilterParam={props.handleFilterParam} />
+  <Home
+    isLoading={props.isLoading}
+    books={props.books}
+    handleFilter={props.handleFilter}
+    handleFilterParam={props.handleFilterParam}
+  />
 );
 const getFilteredBooks = createSelector(
   [state => state.books.filter, state => state.books.filterParam, state => state.books.books],
@@ -41,9 +46,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 HomeContainer.propTypes = {
-  books: PropTypes.string,
+  books: PropTypes.arrayOf(PropTypes.object),
   handleFilter: PropTypes.func.isRequired,
-  handleFilterParam: PropTypes.func.isRequired
+  handleFilterParam: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

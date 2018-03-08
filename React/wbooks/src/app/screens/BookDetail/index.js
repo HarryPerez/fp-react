@@ -13,8 +13,7 @@ class BookDetailContainer extends Component {
     return <BookDetail isLoading={this.props.isDetailLoading} book={this.props.detailedBook} />;
   }
 }
-/* eslint eqeqeq: "off" */
-const getBook = state => state.books.books.find(book => book.id == state.books.detailedBookId);
+const getBook = state => state.books.books.find(book => book.id === Number(state.books.detailedBookId));
 
 const mapStateToProps = state => ({
   detailedBook: getBook(state),
@@ -29,8 +28,17 @@ const mapDispatchToProps = dispatch => ({
 BookDetailContainer.propTypes = {
   getBookDetail: PropTypes.func.isRequired,
   isDetailLoading: PropTypes.bool.isRequired,
-  match: PropTypes.number.isRequired,
-  detailedBook: PropTypes.element.isRequired
+  detailedBook: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image_url: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetailContainer);
