@@ -5,6 +5,15 @@
   z-index: 1;
 }
 
+.buttonIcon {
+  background: transparent;
+  overflow:auto;
+  border: none;
+  margin-left: 30px;
+  margin-bottom: 4px;
+  z-index: 1;
+}
+
 .notificationIcon {
   height: 30px;
   margin-left: 30px;
@@ -22,9 +31,10 @@
   display: flex;
   height: 11px;
   justify-content: center;
+  margin-left: 83px;
   position: absolute;
   width: 11px;
-  margin-left: 45px
+  z-index: 1;
 }
 
 .notifText {

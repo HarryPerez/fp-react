@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import signupPicture from '../../assets/wbooks_logo.svg';
 
-import SignupForm from './components/SignupForm/index.js';
+import SignupForm from './components/SignupForm';
 import styles from './styles.scss';
 
 class Signup extends Component {
@@ -12,12 +12,14 @@ class Signup extends Component {
   render() {
     return (
       <div className={styles.signupContainer}>
-        <Link className={styles.backLink} to='/dashboard'>{this.backTitle}</Link>
+        <Link className={styles.backLink} to="/dashboard" href="/dashboard">
+          {this.backTitle}
+        </Link>
         <div className={styles.signup}>
           <div className={styles.pictureContainer}>
-            <img src={signupPicture} className={styles.signupPicture} alt='signupPicture'/>
+            <img src={signupPicture} className={styles.signupPicture} alt="signupPicture" />
           </div>
-          <SignupForm/>
+          <SignupForm />
         </div>
       </div>
     );

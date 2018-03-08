@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as sessionActions from '../../../../../redux/session/actions';
 
-import ProfileDropdown from './layout.js';
+import ProfileDropdown from './layout';
 
-class ProfileDropdownContainer extends Component {
-  render() {
-    return <ProfileDropdown isLogged={this.props.isLogged} onSessionClick={this.props.closeSession}/>
-  }
-}
-
-const mapStateToProps = state => (
-  { isLogged: state.session.isLogged }
+const ProfileDropdownContainer = props => (
+  <ProfileDropdown isLogged={props.isLogged} onSessionClick={props.closeSession} />
 );
 
-const mapDispatchToProps = dispatch => (
-  { closeSession: () => dispatch(sessionActions.closeSession()) }
-)
+const mapStateToProps = state => ({ isLogged: state.session.isLogged });
+
+const mapDispatchToProps = dispatch => ({ closeSession: () => dispatch(sessionActions.closeSession()) });
+
+ProfileDropdownContainer.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  closeSession: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdownContainer);

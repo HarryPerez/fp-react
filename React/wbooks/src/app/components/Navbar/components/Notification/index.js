@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.scss'
+import styles from './styles.scss';
 
 const Notification = props => (
   <div className={styles.notificationContainer}>
     <div className={styles.bookImage}>
-      <img src={props.bookImage} className={styles.defaultSvg} alt='bookImage' />
+      <img src={props.bookImage} className={styles.defaultSvg} alt="bookImage" />
     </div>
     <div className={styles.bookDescription}>
       <h1 className={styles.notificationTitle}>{props.notificiationTitle}</h1>

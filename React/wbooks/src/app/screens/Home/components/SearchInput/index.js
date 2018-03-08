@@ -11,19 +11,33 @@ class SearchInput extends Component {
 
   handleFocus = () => this.setState({ value: '' });
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ value: event.target.value });
     this.props.onInputChange(event.target.value);
-  }
+  };
 
   handleClick = () => this.props.onInputChange(this.state.value);
 
   render() {
     return (
       <div className={styles.searchContainer}>
-        <input className={`${styles.searchInput} ${styles.inputText}`} value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
+        <input
+          className={`${styles.searchInput} ${styles.inputText}`}
+          value={this.state.value}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          placeholder={this.defaultValue}
+        />
         <div className={styles.iconContainer}>
-          <img src={searchIcon} className={styles.searchIcon} onClick={this.handleClick} alt='searchIcon' />
+          <div
+            role="button"
+            onClick={this.handleClick}
+            className={styles.searchIcon}
+            onKeyPress={() => {}}
+            tabIndex="0"
+          >
+            <img src={searchIcon} alt="searchIcon" />
+          </div>
         </div>
       </div>
     );
@@ -31,7 +45,7 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
-  onInputChange: PropTypes.func.isRequired
+  onInputChange: PropTypes.func
 };
 
 export default SearchInput;

@@ -1,24 +1,23 @@
 import api from '../app/config/api';
 
-import * as localstorageService from './localstorageService.js';
+import * as localstorageService from './localstorageService';
 
 export const retrieveUserData = async (name, password) => {
-  const response = await api.post('/users/sessions', { email: name, password: password });
-  if(response){
-    api.defaults.headers.common['Authorization'] = response.data.access_token;
+  const response = await api.post('/users/sessions', { email: name, password });
+  if (response) {
+    api.defaults.headers.common.Authorization = response.data.access_token;
     return response.data;
-  }else{
-    return false;
   }
-}
+  return false;
+};
 
 export const retrieveUserFromSession = () => localstorageService.retrieveUserTokenFromLocalStorage();
 
 export const registerUser = (name, password, confirmPassword, firstName, lastName) =>
-api.post('/users', {
+  api.post('/users', {
     user: {
       email: name,
-      password: password,
+      password,
       confirm_password: confirmPassword,
       first_name: firstName,
       last_name: lastName,
