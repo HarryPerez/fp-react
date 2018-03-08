@@ -30,4 +30,7 @@ export const closeSession = () => dispatch => {
   dispatch({ type: types.SESSION_CLOSED });
 };
 
-export const loadSession = user => dispatch => dispatch({ type: types.USER_LOGIN_SUCCESS, payload: user });
+export const loadSession = () => dispatch => {
+  const user = localStorageService.retrieveUserTokenFromLocalStorage();
+  dispatch({ type: types.USER_LOGIN_SUCCESS, payload: user });
+};

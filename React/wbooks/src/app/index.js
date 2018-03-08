@@ -19,8 +19,8 @@ class App extends Component {
   componentWillMount = () => {
     const user = localstorageService.retrieveUserTokenFromLocalStorage();
     if (user) {
-      this.props.loadSession(user);
-      this.props.loadBooks(user);
+      this.props.loadSession();
+      this.props.loadBooks();
     }
   };
 
@@ -44,8 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadBooks: user => dispatch(booksActions.fetchBooks(user)),
-  loadSession: user => dispatch(sessionActions.loadSession(user))
+  loadBooks: () => dispatch(booksActions.fetchBooks()),
+  loadSession: () => dispatch(sessionActions.loadSession())
 });
 
 App.propTypes = {
