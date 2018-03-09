@@ -11,27 +11,23 @@ class RouteHandler extends Component {
 
   render() {
     const { component: Element, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          this.props.isLogged ? (
-            this.isPublicRequest(props) ? (
-              <Redirect to="/dashboard" />
-            ) : (
-              <div>
-                <Navbar />
-                <Element {...props} />
-              </div>
-            )
-          ) : !this.isPublicRequest(props) ? (
-            <Redirect to="/" />
-          ) : (
+    const render = props =>
+      this.props.isLogged ? (
+        this.isPublicRequest(props) ? (
+          <Redirect to="/dashboard" />
+        ) : (
+          <div>
+            <Navbar />
             <Element {...props} />
-          )
-        }
-      />
-    );
+          </div>
+        )
+      ) : !this.isPublicRequest(props) ? (
+        <Redirect to="/" />
+      ) : (
+        <Element {...props} />
+      );
+
+    return <Route {...rest} render={render} />;
   }
 }
 

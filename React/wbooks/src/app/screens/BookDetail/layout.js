@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
+import proptypes from '../../../redux/books/proptypes';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
 import Loader from '../../components/Loader';
@@ -62,15 +62,6 @@ class BookDetail extends Component {
   }
 }
 
-BookDetail.propTypes = {
-  book: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image_url: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired
-  })
-};
+BookDetail.propTypes = proptypes;
 
 export default Loader(BookDetail);
