@@ -16,14 +16,7 @@ class LoginFormContainer extends Component {
   };
 
   render() {
-    return (
-      <LoginForm
-        hasErrors={this.props.hasErrors}
-        handleUserNameInput={this.props.handleUserNameInput}
-        handlePasswordInput={this.props.handlePasswordInput}
-        handleSubmit={this.handleSubmit}
-      />
-    );
+    return <LoginForm {...this.props} handleSubmit={this.handleSubmit} />;
   }
 }
 

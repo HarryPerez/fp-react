@@ -42,7 +42,9 @@ BookDetailContainer.propTypes = {
     year: PropTypes.string.isRequired
   }),
   match: PropTypes.shape({
-    params: PropTypes.object.isRequired
+    params: PropTypes.shape({
+      bookId: PropTypes.string.isRequired
+    })
   })
 };
 

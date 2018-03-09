@@ -7,14 +7,7 @@ import * as booksActions from '../../../redux/books/actions';
 
 import Home from './layout';
 
-const HomeContainer = props => (
-  <Home
-    isLoading={props.isLoading}
-    books={props.books}
-    handleFilter={props.handleFilter}
-    handleFilterParam={props.handleFilterParam}
-  />
-);
+const HomeContainer = props => <Home {...props} />;
 
 const getFilteredBooks = createSelector(
   [state => state.books.filter, state => state.books.filterParam, state => state.books.books],
