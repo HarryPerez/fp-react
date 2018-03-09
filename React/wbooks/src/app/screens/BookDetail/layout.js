@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import proptypes from '../../../redux/books/proptypes';
+import { bookPropType } from '../../../redux/books/proptypes';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
 import Loader from '../../components/Loader';
@@ -62,6 +62,6 @@ class BookDetail extends Component {
   }
 }
 
-BookDetail.propTypes = proptypes;
+BookDetail.propTypes = bookPropType;
 
 export default Loader(BookDetail);

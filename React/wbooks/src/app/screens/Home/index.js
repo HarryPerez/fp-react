@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import * as booksActions from '../../../redux/books/actions';
+import { bookArrayPropType } from '../../../redux/books/proptypes';
 
 import Home from './layout';
 
@@ -43,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 HomeContainer.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object),
+  books: bookArrayPropType,
   handleFilter: PropTypes.func.isRequired,
   handleFilterParam: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import defaultBookIcon from '../../../../assets/default_book.svg';
-import proptypes from '../../../../../redux/books/proptypes';
+import { bookPropType } from '../../../../../redux/books/proptypes';
 
 import styles from './styles.scss';
 
@@ -24,6 +24,6 @@ const Book = props => (
   </div>
 );
 
-Book.propTypes = proptypes;
+Book.propTypes = bookPropType;
 
 export default Book;

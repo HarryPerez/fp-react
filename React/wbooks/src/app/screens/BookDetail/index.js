@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import * as booksActions from '../../../redux/books/actions';
+import { bookDetailPropType } from '../../../redux/books/proptypes';
 
 import BookDetail from './layout';
 
@@ -33,14 +34,7 @@ const mapDispatchToProps = dispatch => ({
 BookDetailContainer.propTypes = {
   getBookDetail: PropTypes.func.isRequired,
   isDetailLoading: PropTypes.bool.isRequired,
-  detailedBook: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image_url: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired
-  }),
+  detailedBook: bookDetailPropType,
   match: PropTypes.shape({
     params: PropTypes.shape({
       bookId: PropTypes.string.isRequired
