@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import errorIcon from '../../assets/error.png';
 
 import styles from './styles.scss';
 
-class AccessError extends Component {
-  render() {
-    return (
-      <div className={styles.errorContainer}>
-        <img src={errorIcon} className={styles.errorIcon} alt='errorIcon' />
-        <div className={styles.messageContainer}>
-          <h1 className={styles.errorText}>{this.props.errors}</h1>
-        </div>
-      </div>
-    );
-  }
-}
+const AccessError = props => (
+  <div className={styles.errorContainer}>
+    <img src={errorIcon} className={styles.errorIcon} alt="errorIcon" />
+    <div className={styles.messageContainer}>
+      <h1 className={styles.errorText}>{props.errors}</h1>
+    </div>
+  </div>
+);
+
+AccessError.propTypes = {
+  errors: PropTypes.string.isRequired
+};
 
 export default AccessError;

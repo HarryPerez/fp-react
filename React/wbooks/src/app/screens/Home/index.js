@@ -1,71 +1,65 @@
 import React, { Component } from 'react';
-import 'react-widgets/dist/css/react-widgets.css'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import * as bookService from '../../../services/bookService';
+import * as booksActions from '../../../redux/books/actions';
+import { bookArrayPropType } from '../../../redux/books/proptypes';
 
-import Combobox from './components/Combobox/index.js'
-import Book from './components/Book/index.js'
-import SearchInput from './components/SearchInput/index.js'
-import styles from './styles.scss';
+import Home from './layout';
 
-class Home extends Component {
-  state = { filter: '', filterParam: '', books: '', filteredBooks: '' };
-
-  handleFilter = filter => {
-    this.setState({ filter: filter });
-    this.filterBooks();
-  }
-
-  handleFilterParam = filterParam => {
-    this.setState({ filterParam: filterParam });
-    this.filterBooks();
-  }
-
-  filterBooks = () => {
-      let filteredBooks;
-      const filter = this.state.filter.toLowerCase();
-
-      filteredBooks = this.state.books.filter((book) => {
-        const bookTitle = book.title.toLowerCase();
-        const bookAuthor = book.author.toLowerCase();
-        if(filter !== ''){
-          if(this.state.filterParam === ''){
-            return bookTitle.includes(filter) || bookAuthor.toLowerCase().includes(filter);
-          }else if(this.state.filterParam === 'Nombre'){
-            return bookTitle.toLowerCase().includes(filter);
-          }else if(this.state.filterParam === 'Autor'){
-            return bookAuthor.toLowerCase().includes(filter);
-          }
-        }else {
-          return book;
-        }
-      });
-      this.setState({ filteredBooks: filteredBooks });
-  }
-
+class HomeContainer extends Component {
   componentWillMount = () => {
-    bookService.getAllBooks().then((response) => {this.setState({ 'books':response.data, 'filteredBooks': response.data })});
-  }
+    if (!this.props.books) this.props.loadBooks();
+  };
 
   render() {
-    return (
-      <div className={styles.homeContainer}>
-        <div className={styles.dashboardContainer}>
-          <div className={styles.filterContainer}>
-            <div className={styles.filterItem}>
-              <Combobox onSelection={this.handleFilterParam}/>
-            </div>
-            <div className={styles.filterItem}>
-              <SearchInput onInputChange={this.handleFilter}/>
-            </div>
-          </div>
-          <div className={styles.booksContainer}>
-            { this.state.books && this.state.filteredBooks.map(book => <Book key={book.id} book={book}/>) }
-          </div>
-        </div>
-      </div>
-    );
+    return <Home {...this.props} />;
   }
 }
 
-export default Home;
+const getFilteredBooks = createSelector(
+  [state => state.books.filter, state => state.books.filterParam, state => state.books.books],
+  (filter, filterParam, books) => {
+    if (!books) return books;
+    filter = filter.toLowerCase();
+    return books.filter(book => {
+      const bookTitle = book.title.toLowerCase();
+      const bookAuthor = book.author.toLowerCase();
+      if (filter !== '') {
+        if (filterParam === '') {
+          return bookTitle.includes(filter) || bookAuthor.toLowerCase().includes(filter);
+        } else if (filterParam === 'Nombre') {
+          return bookTitle.toLowerCase().includes(filter);
+        } else if (filterParam === 'Autor') {
+          return bookAuthor.toLowerCase().includes(filter);
+        }
+        return book;
+      }
+      return book;
+    });
+  }
+);
+
+const mapStateToProps = state => ({
+  books: getFilteredBooks(state),
+  isLoading: state.books.isLoading,
+  user: state.session.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleFilter: filter => dispatch(booksActions.saveFilter(filter)),
+  handleFilterParam: filterParam => dispatch(booksActions.saveFilterParam(filterParam)),
+  loadBooks: () => dispatch(booksActions.fetchBooks())
+});
+
+HomeContainer.propTypes = {
+  books: bookArrayPropType,
+  user: PropTypes.string.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+  handleFilterParam: PropTypes.func.isRequired,
+  loadBooks: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

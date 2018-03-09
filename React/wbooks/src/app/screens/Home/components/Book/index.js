@@ -1,16 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import defaultBookIcon from '../../../../assets/default_book.svg';
+import { bookPropType } from '../../../../../redux/books/proptypes';
 
-import styles from './styles.scss'
+import styles from './styles.scss';
 
 const Book = props => (
   <div className={styles.bookContainer}>
     <div className={styles.bookImage}>
-      <Link to={'/books/' + props.book.id}>
-        <img src={props.book.image_url || defaultBookIcon} className={props.book.image_url ? styles.bookSvg : styles.defaultSvg} alt='bookImage' />
+      <Link to={`/books/${props.book.id}`} href={`/books/${props.book.id}`}>
+        <img
+          src={props.book.image_url || defaultBookIcon}
+          className={props.book.image_url ? styles.bookSvg : styles.defaultSvg}
+          alt="bookImage"
+        />
       </Link>
     </div>
     <div className={styles.bookInfo}>
@@ -20,8 +24,6 @@ const Book = props => (
   </div>
 );
 
-Book.propTypes = {
-  book: PropTypes.object.isRequired
-};
+Book.propTypes = bookPropType;
 
 export default Book;

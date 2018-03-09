@@ -1,69 +1,62 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import AccessError from '../../../../components/AccessError/index.js';
-import userIcon from '../../../../assets/user_icon.png';
-import passwordIcon from '../../../../assets/password.png';
 import * as regexs from '../../../../../utils/regexs';
-import * as authService from '../../../../../services/authService';
+import * as sessionActions from '../../../../../redux/session/actions';
 
-import styles from './styles.scss';
+import LoginForm from './layout';
 
-class LoginForm extends Component {
-  state = { name: '', password: '' , hasErrors: '', isLogged: false };
-
-  handleNameInput = event => {
-    this.setState({ name : event.target.value });
-  }
-
-  handlePasswordInput = event => {
-    this.setState({ password : event.target.value });
-  }
-
-  validateUser = () => {
-    authService.retrieveUserData(this.state.name, this.state.password).then(() => {this.setState({ isLogged : true })})
-    .catch(() => this.setState({ hasErrors : 'El email y password ingresados no estan registrados en nuestra base de datos.' }));
-  }
-
-  handleSubmit = event => {
-    if(this.state.name === '' || this.state.password === ''){
-      this.setState({ hasErrors : 'Ambos campos son requeridos' });
-    }else if(!regexs.isValidEmail(this.state.name)){
-      this.setState({ hasErrors : 'El email ingresado no es correcto' });
-    }else if(!regexs.isValidPassword(this.state.password)){
-      this.setState({ hasErrors : 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.' });
-    }else {
-      this.validateUser();
-    }
-  }
+class LoginFormContainer extends Component {
+  handleSubmit = () => {
+    this.props.handleSubmit(this.props.userName, this.props.password);
+  };
 
   render() {
-    if(this.state.isLogged){
-      return <Redirect to='/dashboard'/>
-    }
-    return (
-      <div className={styles.inputContainer}>
-        <div className={styles.dataContainer}>
-          <img src={userIcon} className={styles.icon} alt='userIcon' />
-          <input className={`${styles.input} ${styles.inputText}`} placeholder='Username' onChange={this.handleNameInput}/>
-        </div>
-        <div className={styles.dataContainer}>
-          <img src={passwordIcon} className={styles.icon} alt='passwordIcon' />
-          <input type='password' className={`${styles.input} ${styles.inputText}`} placeholder='Password' onChange={this.handlePasswordInput}/>
-        </div>
-        <div className={styles.loginButton} onClick={this.handleSubmit}>
-          <h1 className={styles.loginText}>Login</h1>
-        </div>
-        <div className={styles.signupContainer}>
-          <Link className={styles.signupText} to='/signup'>
-            Not a member?
-          </Link>
-        </div>
-        {this.state.hasErrors && <AccessError errors={this.state.hasErrors}/>}
-      </div>
-    );
+    return <LoginForm {...this.props} isLoading={this.props.loginLoading} handleSubmit={this.handleSubmit} />;
   }
 }
 
-export default LoginForm;
+const validateInput = createSelector(
+  [state => state.session.userName, state => state.session.password, state => state.session.loginFailed],
+  (userName, password, loginFailed) => {
+    if (userName === '' || password === '') {
+      return 'Ambos campos son requeridos.';
+    } else if (!regexs.isValidEmail(userName)) {
+      return 'El email ingresado no es correcto.';
+    } else if (!regexs.isValidPassword(password)) {
+      return 'La contraseña ingresada debe tener entre 8 y 52 caracteres, y una letra y numero.';
+    } else if (loginFailed) {
+      return 'Los datos ingresados no figuran en nuestra base de datos.';
+    }
+    return '';
+  }
+);
+
+const mapStateToProps = state => ({
+  isLogged: state.session.isLogged,
+  loginFailed: state.session.loginFailed,
+  hasErrors: validateInput(state),
+  userName: state.session.userName,
+  password: state.session.password,
+  loginLoading: state.session.loginLoading
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
+  handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
+  handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password))
+});
+
+LoginFormContainer.propTypes = {
+  handleUserNameInput: PropTypes.func.isRequired,
+  handlePasswordInput: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  hasErrors: PropTypes.string,
+  userName: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  loginLoading: PropTypes.bool.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);

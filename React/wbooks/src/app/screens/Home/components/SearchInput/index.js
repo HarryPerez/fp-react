@@ -6,28 +6,32 @@ import searchIcon from '../../assets/search.svg';
 import styles from './styles.scss';
 
 class SearchInput extends Component {
-  state = {value: ''};
+  state = { value: '' };
   defaultValue = 'Buscar...';
+
+  handleFocus = () => this.setState({ value: '' });
 
   handleChange = event => {
     this.setState({ value: event.target.value });
     this.props.onInputChange(event.target.value);
-  }
+  };
 
-  handleFocus = () => {
-    this.setState({ value: '' });
-  }
-
-  handleClick = () => {
-    this.props.onInputChange(this.state.value);
-  }
+  handleClick = () => this.props.onInputChange(this.state.value);
 
   render() {
     return (
       <div className={styles.searchContainer}>
-        <input className={`${styles.searchInput} ${styles.inputText}`} value={this.state.value} onChange={this.handleChange} onFocus={this.handleFocus} placeholder={this.defaultValue}></input>
+        <input
+          className={`${styles.searchInput} ${styles.inputText}`}
+          value={this.state.value}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          placeholder={this.defaultValue}
+        />
         <div className={styles.iconContainer}>
-          <img src={searchIcon} className={styles.searchIcon} onClick={this.handleClick} alt='searchIcon' />
+          <button onClick={this.handleClick} className={styles.buttonIcon}>
+            <img src={searchIcon} className={styles.searchIcon} alt="searchIcon" />
+          </button>
         </div>
       </div>
     );
@@ -35,7 +39,7 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
-  onInputChange: PropTypes.func.isRequired
+  onInputChange: PropTypes.func
 };
 
 export default SearchInput;

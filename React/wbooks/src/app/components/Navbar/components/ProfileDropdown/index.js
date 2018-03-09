@@ -1,48 +1,28 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import profilePicture from '../../../../assets/profile_picture.png';
-import * as localStorageService from '../../../../../services/localstorageService';
-import Dropdown from '../Dropdown/index.js';
+import * as booksActions from '../../../../../redux/books/actions';
+import * as sessionActions from '../../../../../redux/session/actions';
 
-import styles from './styles.scss';
+import ProfileDropdown from './layout';
 
-class ProfileDropdown extends Component {
-  state = { isActive: false };
+const ProfileDropdownContainer = props => (
+  <ProfileDropdown isLogged={props.isLogged} onSessionClick={props.closeSession} />
+);
 
-  handlePictureClick = event => {
-    this.setState({ isActive: !this.state.isActive });
+const mapStateToProps = state => ({ isLogged: state.session.isLogged });
+
+const mapDispatchToProps = dispatch => ({
+  closeSession: () => {
+    dispatch(booksActions.cleanBooks());
+    dispatch(sessionActions.closeSession());
   }
+});
 
-  handleSessionClick = event => {
-    localStorageService.removeUserTokenAuthentication();
-  }
+ProfileDropdownContainer.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  closeSession: PropTypes.func.isRequired
+};
 
-  render() {
-    if(!this.state.isActive){
-      return (
-        <div className={styles.dropdownContainer}>
-          <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-        </div>
-      );
-    }else {
-      return (
-        <div className={styles.dropdownContainer}>
-          <img src={profilePicture} className={styles.profileIcon} alt='profileIcon' onClick={this.handlePictureClick}/>
-          <div className={styles.profileDropdown}>
-            <Dropdown>
-              <div className={styles.profileButton}>
-                <p className={styles.buttonText}>Perfil</p>
-              </div>
-              <Link to='/' className={`${styles.profileButton} ${styles.profileLink}`} onClick={this.handleSessionClick}>
-                <p className={styles.buttonText}>Cerrar sesión</p>
-              </Link>
-            </Dropdown>
-          </div>
-        </div>
-      );
-    }
-  }
-}
-
-export default ProfileDropdown;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdownContainer);

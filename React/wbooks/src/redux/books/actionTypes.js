@@ -1,0 +1,7 @@
+export const BOOKS_FETCH = 'books.BOOKS_FETCH';
+export const BOOKS_FETCH_SUCCESS = 'books.BOOKS_FETCH_SUCCESS';
+export const BOOKS_FETCH_FAILURE = 'books.BOOKS_FETCH_FAILURE';
+export const BOOKS_DETAIL = 'books.BOOKS_DETAIL';
+export const BOOKS_CLEANED = 'books.BOOKS_CLEANED';
+export const BOOKS_FILTER_CHANGED = 'books.BOOKS_FILTER_CHANGED';
+export const BOOKS_FILTER_PARAM_CHANGED = 'books.BOOKS_FILTER_PARAM_CHANGED';

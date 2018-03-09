@@ -12,6 +12,12 @@
   width: 238px;
 }
 
+.buttonIcon {
+  background: transparent;
+  height: 38px;
+  width: 38px;
+}
+
 .inputText {
   color: $hard-grey;
   font-style: italic;
@@ -29,7 +35,7 @@
 
 .searchIcon {
   height: 24px;
-  padding: 8px 6px 6px 8px;
+  padding: 0px;
   width: 24px;
 
   &:hover {
