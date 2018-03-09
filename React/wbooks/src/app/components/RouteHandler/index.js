@@ -9,8 +9,7 @@ import Navbar from '../Navbar';
 class RouteHandler extends Component {
   isPublicRequest = props => props.location.pathname === '/' || props.location.pathname === '/signup';
 
-  render() {
-    const { component: Element, ...rest } = this.props;
+  handleRender(Element) {
     const render = props =>
       this.props.isLogged ? (
         this.isPublicRequest(props) ? (
@@ -26,8 +25,12 @@ class RouteHandler extends Component {
       ) : (
         <Element {...props} />
       );
+    return render;
+  }
 
-    return <Route {...rest} render={render} />;
+  render() {
+    const { component: Element, ...rest } = this.props;
+    return <Route {...rest} render={this.handleRender(Element)} />;
   }
 }
 
