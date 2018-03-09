@@ -10,7 +10,7 @@ import Home from './layout';
 
 class HomeContainer extends Component {
   componentWillMount = () => {
-    if (!this.props.books) this.props.loadBooks(this.props.user);
+    if (!this.props.books) this.props.loadBooks();
   };
 
   render() {
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleFilter: filter => dispatch(booksActions.saveFilter(filter)),
   handleFilterParam: filterParam => dispatch(booksActions.saveFilterParam(filterParam)),
-  loadBooks: user => dispatch(booksActions.fetchBooks(user))
+  loadBooks: () => dispatch(booksActions.fetchBooks())
 });
 
 HomeContainer.propTypes = {
