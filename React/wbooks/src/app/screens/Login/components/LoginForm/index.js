@@ -14,7 +14,7 @@ class LoginFormContainer extends Component {
   };
 
   render() {
-    return <LoginForm {...this.props} handleSubmit={this.handleSubmit} />;
+    return <LoginForm {...this.props} isLoading={this.props.loginLoading} handleSubmit={this.handleSubmit} />;
   }
 }
 
@@ -39,7 +39,8 @@ const mapStateToProps = state => ({
   loginFailed: state.session.loginFailed,
   hasErrors: validateInput(state),
   userName: state.session.userName,
-  password: state.session.password
+  password: state.session.password,
+  loginLoading: state.session.loginLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -54,7 +55,8 @@ LoginFormContainer.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   hasErrors: PropTypes.string,
   userName: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
+  password: PropTypes.string.isRequired,
+  loginLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);

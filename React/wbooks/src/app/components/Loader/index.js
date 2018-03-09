@@ -10,7 +10,7 @@ const Loader = Component => {
     if (!isLoading) return <Component {...props} />;
     return (
       <div className={styles.iconContainer}>
-        <img src={loadingGif} alt="loadingGif" />
+        <img src={loadingGif} alt="loadingGif" className={styles.loadingIcon} />
       </div>
     );
   };

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AccessError from '../../../../components/AccessError';
 import userIcon from '../../../../assets/user_icon.png';
 import passwordIcon from '../../../../assets/password.png';
+import Loader from '../../../../components/Loader/';
 
 import styles from './styles.scss';
 
@@ -46,4 +47,4 @@ LoginForm.propTypes = {
   hasErrors: PropTypes.string
 };
 
-export default LoginForm;
+export default Loader(LoginForm);
