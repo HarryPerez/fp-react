@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Loader from '../../components/Loader';
+import { bookArrayPropType } from '../../../redux/books/proptypes';
 
 import Combobox from './components/Combobox';
 import Book from './components/Book';
@@ -29,7 +30,7 @@ const Home = props => (
 Home.propTypes = {
   handleFilterParam: PropTypes.func,
   handleFilter: PropTypes.func,
-  books: PropTypes.arrayOf(PropTypes.object),
+  books: bookArrayPropType,
   filter: PropTypes.string
 };
 

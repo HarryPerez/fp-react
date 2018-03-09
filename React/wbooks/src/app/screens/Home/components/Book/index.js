@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import defaultBookIcon from '../../../../assets/default_book.svg';
+import { bookPropType } from '../../../../../redux/books/proptypes';
 
 import styles from './styles.scss';
 
@@ -24,13 +24,6 @@ const Book = props => (
   </div>
 );
 
-Book.propTypes = {
-  book: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image_url: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
-  })
-};
+Book.propTypes = bookPropType;
 
 export default Book;

@@ -9,29 +9,28 @@ import Navbar from '../Navbar';
 class RouteHandler extends Component {
   isPublicRequest = props => props.location.pathname === '/' || props.location.pathname === '/signup';
 
+  handleRender(Element) {
+    const render = props =>
+      this.props.isLogged ? (
+        this.isPublicRequest(props) ? (
+          <Redirect to="/dashboard" />
+        ) : (
+          <div>
+            <Navbar />
+            <Element {...props} />
+          </div>
+        )
+      ) : !this.isPublicRequest(props) ? (
+        <Redirect to="/" />
+      ) : (
+        <Element {...props} />
+      );
+    return render;
+  }
+
   render() {
     const { component: Element, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          this.props.isLogged ? (
-            this.isPublicRequest(props) ? (
-              <Redirect to="/dashboard" />
-            ) : (
-              <div>
-                <Navbar />
-                <Element {...props} />
-              </div>
-            )
-          ) : !this.isPublicRequest(props) ? (
-            <Redirect to="/" />
-          ) : (
-            <Element {...props} />
-          )
-        }
-      />
-    );
+    return <Route {...rest} render={this.handleRender(Element)} />;
   }
 }
 

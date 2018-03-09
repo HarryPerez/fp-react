@@ -1,54 +1,32 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import * as booksActions from '../../../redux/books/actions';
+import { bookDetailPropType } from '../../../redux/books/proptypes';
+import Loader from '../../components/Loader';
 
 import BookDetail from './layout';
 
-class BookDetailContainer extends Component {
-  componentWillMount = () => {
-    this.props.getBookDetail(this.props.match.params.bookId);
-    this.props.getBookRents(this.props.match.params.bookId);
-  };
-
-  render() {
-    return <BookDetail isLoading={this.props.isDetailLoading} book={this.props.detailedBook} />;
-  }
-}
+const BookDetailContainer = props => <BookDetail book={props.detailedBook} />;
 
 const getBook = createSelector(
-  [state => state.books.books, state => state.books.detailedBookId],
-  (books, detailedBookId) => books.find(book => book.id === Number(detailedBookId))
+  [state => state.books.books, (state, props) => props.match.params.bookId],
+  (books, bookId) => {
+    if (books) {
+      return books.find(book => book.id === Number(bookId));
+    }
+    return null;
+  }
 );
 
-const mapStateToProps = state => ({
-  detailedBook: getBook(state),
-  isDetailLoading: state.books.isDetailLoading,
-  books: state.books.books
-});
-
-const mapDispatchToProps = dispatch => ({
-  getBookDetail: bookId => dispatch(booksActions.saveBookDetailId(bookId)),
-  getBookRents: bookId => dispatch(booksActions.fetchBookRents(bookId))
+const mapStateToProps = (state, props) => ({
+  books: state.books.books,
+  detailedBook: getBook(state, props),
+  isLoading: state.books.isLoading
 });
 
 BookDetailContainer.propTypes = {
-  getBookDetail: PropTypes.func.isRequired,
-  getBookRents: PropTypes.func.isRequired,
-  isDetailLoading: PropTypes.bool.isRequired,
-  detailedBook: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image_url: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired
-  }),
-  match: PropTypes.shape({
-    params: PropTypes.object.isRequired
-  })
+  detailedBook: bookDetailPropType
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookDetailContainer);
+export default connect(mapStateToProps)(Loader(BookDetailContainer));

@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import * as booksActions from '../../../redux/books/actions';
+import { bookArrayPropType } from '../../../redux/books/proptypes';
 
 import Home from './layout';
 
-const HomeContainer = props => (
-  <Home
-    isLoading={props.isLoading}
-    books={props.books}
-    handleFilter={props.handleFilter}
-    handleFilterParam={props.handleFilterParam}
-  />
-);
+class HomeContainer extends Component {
+  componentWillMount = () => {
+    if (!this.props.books) this.props.loadBooks();
+  };
+
+  render() {
+    return <Home {...this.props} />;
+  }
+}
 
 const getFilteredBooks = createSelector(
   [state => state.books.filter, state => state.books.filterParam, state => state.books.books],
@@ -41,18 +43,22 @@ const getFilteredBooks = createSelector(
 
 const mapStateToProps = state => ({
   books: getFilteredBooks(state),
-  isLoading: state.books.isLoading
+  isLoading: state.books.isLoading,
+  user: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
   handleFilter: filter => dispatch(booksActions.saveFilter(filter)),
-  handleFilterParam: filterParam => dispatch(booksActions.saveFilterParam(filterParam))
+  handleFilterParam: filterParam => dispatch(booksActions.saveFilterParam(filterParam)),
+  loadBooks: () => dispatch(booksActions.fetchBooks())
 });
 
 HomeContainer.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object),
+  books: bookArrayPropType,
+  user: PropTypes.string.isRequired,
   handleFilter: PropTypes.func.isRequired,
   handleFilterParam: PropTypes.func.isRequired,
+  loadBooks: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired
 };
 
