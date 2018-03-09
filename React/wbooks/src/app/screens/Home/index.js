@@ -10,7 +10,7 @@ import Home from './layout';
 
 class HomeContainer extends Component {
   componentWillMount = () => {
-    this.props.loadBooks(this.props.user);
+    if (!this.props.books) this.props.loadBooks(this.props.user);
   };
 
   render() {

@@ -4,11 +4,9 @@ import * as types from './actionTypes';
 
 const initialState = Immutable({
   books: '',
-  isLoading: true,
+  isLoading: false,
   filter: '',
-  filterParam: '',
-  isDetailLoading: true,
-  detailedBookId: ''
+  filterParam: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -26,15 +24,6 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         isLoading: false
       });
-    case types.BOOKS_DETAIL:
-      return state.merge({
-        detailedBookId: action.payload,
-        isDetailLoading: true
-      });
-    case types.BOOKS_DETAIL_SUCCESS:
-      return state.merge({
-        isDetailLoading: false
-      });
     case types.BOOKS_FILTER_PARAM_CHANGED:
       return state.merge({
         filterParam: action.payload
@@ -49,8 +38,7 @@ export default function reduce(state = initialState, action = {}) {
         isLoading: true,
         filter: '',
         filterParam: '',
-        isDetailLoading: true,
-        detailedBookId: ''
+        isDetailLoading: true
       });
     default:
       return state;

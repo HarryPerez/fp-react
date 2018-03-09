@@ -13,11 +13,6 @@ export const fetchBooks = () => async dispatch => {
   return false;
 };
 
-export const saveBookDetailId = bookId => dispatch => {
-  dispatch({ type: types.BOOKS_DETAIL, payload: bookId });
-  dispatch({ type: types.BOOKS_DETAIL_SUCCESS });
-};
-
 export const saveFilter = filter => dispatch =>
   dispatch({ type: types.BOOKS_FILTER_CHANGED, payload: filter });
 
