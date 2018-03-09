@@ -8,7 +8,10 @@ import * as booksActions from '../../../redux/books/actions';
 import BookDetail from './layout';
 
 class BookDetailContainer extends Component {
-  componentWillMount = () => this.props.getBookDetail(this.props.match.params.bookId);
+  componentWillMount = () => {
+    this.props.getBookDetail(this.props.match.params.bookId);
+    this.props.getBookRents(this.props.match.params.bookId);
+  };
 
   render() {
     return <BookDetail isLoading={this.props.isDetailLoading} book={this.props.detailedBook} />;
@@ -27,11 +30,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getBookDetail: bookId => dispatch(booksActions.saveBookDetailId(bookId))
+  getBookDetail: bookId => dispatch(booksActions.saveBookDetailId(bookId)),
+  getBookRents: bookId => dispatch(booksActions.fetchBookRents(bookId))
 });
 
 BookDetailContainer.propTypes = {
   getBookDetail: PropTypes.func.isRequired,
+  getBookRents: PropTypes.func.isRequired,
   isDetailLoading: PropTypes.bool.isRequired,
   detailedBook: PropTypes.shape({
     id: PropTypes.number.isRequired,

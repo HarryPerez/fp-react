@@ -13,6 +13,17 @@ export const fetchBooks = () => async dispatch => {
   return false;
 };
 
+export const fetchBookRents = () => async dispatch => {
+  dispatch({ type: types.BOOKS_RENT_FETCH });
+  const response = await bookService.getAllBooks();
+  if (response.statusText === 'OK') {
+    dispatch({ type: types.BOOKS_RENT_FETCH_SUCCESS, payload: response.data });
+    return response;
+  }
+  dispatch({ type: types.BOOKS_RENT_FETCH_FAILURE });
+  return false;
+};
+
 export const saveBookDetailId = bookId => dispatch => {
   dispatch({ type: types.BOOKS_DETAIL, payload: bookId });
   dispatch({ type: types.BOOKS_DETAIL_SUCCESS });
