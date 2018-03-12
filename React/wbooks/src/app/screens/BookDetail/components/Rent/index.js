@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import moment from 'moment';
 
-import Loader from '../../../../components/Loader';
 import * as rentsActions from '../../../../../redux/rents/actions';
 
 import Rent from './layout';
@@ -21,7 +20,14 @@ class RentContainer extends Component {
   };
 
   render() {
-    return <Rent status={this.props.status} handleRent={this.handleRent} handleWish={this.handleWish} />;
+    return (
+      <Rent
+        status={this.props.status}
+        isLoading={this.props.isLoading}
+        handleRent={this.handleRent}
+        handleWish={this.handleWish}
+      />
+    );
   }
 }
 
@@ -108,7 +114,8 @@ RentContainer.propTypes = {
     canWish: PropTypes.bool.isRequired,
     rentedByUser: PropTypes.bool.isRequired,
     rentedByOther: PropTypes.bool.isRequired
-  })
+  }),
+  isLoading: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loader(RentContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(RentContainer);

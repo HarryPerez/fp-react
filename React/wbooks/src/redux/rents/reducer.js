@@ -37,6 +37,14 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         wishes: action.payload
       });
+    case types.RENTS_WISHES_SAVING:
+      return state.merge({
+        isLoading: true
+      });
+    case types.RENTS_WISHES_SAVED:
+      return state.merge({
+        isLoading: false
+      });
     default:
       return state;
   }

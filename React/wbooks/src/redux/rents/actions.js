@@ -15,6 +15,7 @@ export const fetchRents = bookId => async dispatch => {
 export const saveRents = localRents => dispatch => dispatch({ type: types.RENTS_SAVED, payload: localRents });
 
 export const saveWish = (bookId, user) => async dispatch => {
+  dispatch({ type: types.RENTS_WISHES_SAVING });
   await authService.saveWish(bookId, user);
   dispatch({ type: types.RENTS_WISHES_SAVED });
 };

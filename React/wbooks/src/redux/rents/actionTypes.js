@@ -5,3 +5,4 @@ export const RENTS_CLEANED = 'rents.RENTS_CLEANED';
 export const RENTS_SAVED = 'rents.RENTS_SAVED';
 export const RENTS_WISHES_FETCHED = 'rents.RENTS_WISHES_FETCHED';
 export const RENTS_WISHES_SAVED = 'rents.RENTS_WISHES_SAVED';
+export const RENTS_WISHES_SAVING = 'rents.RENTS_WISHES_SAVING';

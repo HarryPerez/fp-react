@@ -65,7 +65,7 @@ class Rent extends Component {
           title={this.getActionTitle()}
           styles={this.getStyle()}
           onClick={this.getClickHandler()}
-          disabled={this.getDisabled()}
+          disabled={this.props.isLoading ? this.props.isLoading : this.getDisabled()}
         />
       </div>
     );
@@ -80,7 +80,8 @@ Rent.propTypes = {
     rentedByOther: PropTypes.bool.isRequired
   }),
   handleWish: PropTypes.func.isRequired,
-  handleRent: PropTypes.func.isRequired
+  handleRent: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default Rent;
