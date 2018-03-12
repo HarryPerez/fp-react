@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import moment from 'moment';
 
 import * as rentsActions from '../../../../../redux/rents/actions';
+import Loader from '../../../../components/Loader/';
 
 import Rent from './layout';
 
@@ -118,4 +119,4 @@ RentContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Loader(RentContainer));
