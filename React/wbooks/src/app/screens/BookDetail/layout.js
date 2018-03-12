@@ -47,7 +47,7 @@ class BookDetail extends Component {
               genre={this.props.book.genre}
               year={this.props.book.year}
             />
-            <Rent />
+            <Rent bookId={this.props.book.id} />
           </div>
         </div>
         <Suggestion />

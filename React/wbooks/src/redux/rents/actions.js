@@ -10,3 +10,7 @@ export const fetchRents = bookId => async dispatch => {
   }
   dispatch({ type: types.RENTS_FETCH_FAILURE });
 };
+
+export const saveRents = localRents => dispatch => dispatch({ type: types.RENTS_SAVED, payload: localRents });
+
+export const saveWish = (bookId, user) => console.log(`${bookId} ${user}`);
