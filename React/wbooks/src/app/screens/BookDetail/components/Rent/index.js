@@ -15,7 +15,10 @@ class RentContainer extends Component {
     this.props.handleRent(rents);
   };
 
-  handleWish = () => this.props.handleWish(this.props.bookId, this.props.userId);
+  handleWish = async () => {
+    await this.props.handleWish(this.props.bookId, this.props.userId);
+    this.props.loadWishes(this.props.userId);
+  };
 
   render() {
     return <Rent status={this.props.status} handleRent={this.handleRent} handleWish={this.handleWish} />;
@@ -35,7 +38,8 @@ const getStatus = createSelector(
       canRent: false,
       canWish: false,
       rentedByUser: false,
-      rentedByOther: false
+      rentedByOther: false,
+      alreadyWished: false
     };
     if (localRents.length > 0) {
       if (localRents.find(id => id === bookId)) {
@@ -46,7 +50,8 @@ const getStatus = createSelector(
     if (wishes.length > 0) {
       if (wishes.find(wish => wish.book.id === bookId)) {
         status.canRent = false;
-        status.canWish = true;
+        status.rentedByOther = true;
+        status.alreadyWished = true;
         return status;
       }
     }
@@ -55,6 +60,14 @@ const getStatus = createSelector(
       const lastRentTo = lastRent.to;
       const lastRentUserName = lastRent.user.email;
       const today = moment().format('YYYY-MM-DD');
+
+      /* Only for testing */
+      if (lastRent.id % 2 === 0) {
+        status.rentedByOther = true;
+        status.canWish = true;
+        return status;
+      }
+      /* Only for testing */
 
       if (today > lastRentTo) {
         status.canRent = true;
@@ -79,11 +92,13 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   handleRent: localRents => dispatch(rentsActions.saveRents(localRents)),
-  handleWish: (bookId, user) => dispatch(rentsActions.saveWish(bookId, user))
+  handleWish: (bookId, user) => dispatch(rentsActions.saveWish(bookId, user)),
+  loadWishes: user => dispatch(rentsActions.loadWishes(user))
 });
 
 RentContainer.propTypes = {
   handleRent: PropTypes.func.isRequired,
+  loadWishes: PropTypes.func.isRequired,
   bookId: PropTypes.number.isRequired,
   localRents: PropTypes.arrayOf(PropTypes.number),
   userId: PropTypes.string.isRequired,

@@ -2,6 +2,7 @@
 
 .buttonRentStyle {
   background: $light-blue;
+  margin-top: 44px;
   height: 38px;
   width: 192px;
 }
@@ -19,12 +20,10 @@
 }
 
 .returnTitle {
-  bottom: 172px;
   color: $red;
   font-weight:  bold;
   font-style: italic;
   font-size:14px;
   letter-spacing:0px;
   line-height:19px;
-  position: absolute;
 }
