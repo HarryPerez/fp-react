@@ -12,7 +12,7 @@ const Button = props => (
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   styles: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   disabled: PropTypes.bool.isRequired
 };
 export default Button;

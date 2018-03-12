@@ -20,3 +20,13 @@ export const registerUser = (name, password, confirmPassword, firstName, lastNam
       locale: 'en'
     }
   });
+
+export const fetchWishes = user => api.get(`/users/${user.renew_id}/wishes/`);
+
+export const saveWish = (bookId, user) =>
+  api.post(`/users/${user}/wishes/`, {
+    wish: {
+      book_id: bookId,
+      user_id: user
+    }
+  });

@@ -5,63 +5,49 @@ import { createSelector } from 'reselect';
 import moment from 'moment';
 
 import Loader from '../../../../components/Loader';
-import Button from '../../../../components/Button';
 import * as rentsActions from '../../../../../redux/rents/actions';
 
-import styles from './styles.scss';
+import Rent from './layout';
 
-class Rent extends Component {
-  rentTitle = 'Alquilar';
-  wishTitle = 'Wishlist';
-  backTitle = 'Devolver';
-
-  handleClick = () => {
+class RentContainer extends Component {
+  handleRent = () => {
     const rents = this.props.localRents.concat(this.props.bookId);
-    if (this.props.actionTitle === this.rentTitle) this.props.handleRent(rents);
-    else if (this.props.actionTitle === this.wishTitle)
-      this.props.handleWish(this.props.bookId, this.props.user);
+    this.props.handleRent(rents);
   };
 
+  handleWish = () => this.props.handleWish(this.props.bookId, this.props.userId);
+
   render() {
-    const canRentOrWish = this.props.actionTitle !== this.backTitle;
-    return (
-      <div>
-        {!canRentOrWish && (
-          <h1 className={styles.returnTitle}>
-            Devolver antes del{' '}
-            {moment()
-              .add(1, 'days')
-              .format('YYYY-MM-DD')}
-          </h1>
-        )}
-        <Button
-          title={canRentOrWish ? this.props.actionTitle : this.rentTitle}
-          styles={
-            this.props.actionTitle === this.rentTitle
-              ? styles.buttonRentStyle
-              : this.props.actionTitle === this.wishTitle
-                ? styles.buttonWishStyle
-                : styles.buttonDisabledStyle
-          }
-          onClick={this.handleClick}
-          disabled={!canRentOrWish}
-        />
-      </div>
-    );
+    return <Rent status={this.props.status} handleRent={this.handleRent} handleWish={this.handleWish} />;
   }
 }
 
-const getActionTitle = createSelector(
+const getStatus = createSelector(
   [
     state => state.rents.rents,
     state => state.rents.localRents,
     state => state.session.userName,
-    (state, props) => props.bookId
+    (state, props) => props.bookId,
+    state => state.rents.wishes
   ],
-  (rents, localRents, userName, bookId) => {
+  (rents, localRents, userName, bookId, wishes) => {
+    const status = {
+      canRent: false,
+      canWish: false,
+      rentedByUser: false,
+      rentedByOther: false
+    };
     if (localRents.length > 0) {
       if (localRents.find(id => id === bookId)) {
-        return 'Devolver';
+        status.rentedByUser = true;
+        return status;
+      }
+    }
+    if (wishes.length > 0) {
+      if (wishes.find(wish => wish.book.id === bookId)) {
+        status.canRent = false;
+        status.canWish = true;
+        return status;
       }
     }
     if (rents) {
@@ -70,17 +56,25 @@ const getActionTitle = createSelector(
       const lastRentUserName = lastRent.user.email;
       const today = moment().format('YYYY-MM-DD');
 
-      return today > lastRentTo ? 'Alquilar' : userName !== lastRentUserName ? 'Wishlist' : 'Devolver';
+      if (today > lastRentTo) {
+        status.canRent = true;
+      } else if (userName !== lastRentUserName) {
+        status.rentedByOther = true;
+        status.canWish = true;
+      } else {
+        status.rentedByUser = true;
+      }
+      return status;
     }
-    return '';
+    return status;
   }
 );
 
 const mapStateToProps = (state, props) => ({
   isLoading: state.rents.isLoading,
-  actionTitle: getActionTitle(state, props),
+  status: getStatus(state, props),
   localRents: state.rents.localRents,
-  user: state.session.user
+  userId: state.session.userId
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,13 +82,18 @@ const mapDispatchToProps = dispatch => ({
   handleWish: (bookId, user) => dispatch(rentsActions.saveWish(bookId, user))
 });
 
-Rent.propTypes = {
-  actionTitle: PropTypes.string.isRequired,
+RentContainer.propTypes = {
   handleRent: PropTypes.func.isRequired,
   bookId: PropTypes.number.isRequired,
   localRents: PropTypes.arrayOf(PropTypes.number),
-  user: PropTypes.string.isRequired,
-  handleWish: PropTypes.func.isRequired
+  userId: PropTypes.string.isRequired,
+  handleWish: PropTypes.func.isRequired,
+  status: PropTypes.shape({
+    canRent: PropTypes.bool.isRequired,
+    canWish: PropTypes.bool.isRequired,
+    rentedByUser: PropTypes.bool.isRequired,
+    rentedByOther: PropTypes.bool.isRequired
+  })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loader(Rent));
+export default connect(mapStateToProps, mapDispatchToProps)(Loader(RentContainer));

@@ -4,6 +4,7 @@ import * as types from './actionTypes';
 
 const initialState = Immutable({
   user: '',
+  userId: '',
   userName: '',
   password: '',
   isLogged: false,
@@ -15,7 +16,8 @@ export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.USER_LOGIN_SUCCESS:
       return state.merge({
-        user: action.payload,
+        user: action.payload.token,
+        userId: action.payload.id,
         loginFailed: false,
         isLogged: true,
         loginLoading: false
@@ -46,6 +48,7 @@ export default function reduce(state = initialState, action = {}) {
     case types.SESSION_CLOSED:
       return state.merge({
         user: '',
+        userId: '',
         userName: '',
         password: '',
         isLogged: false,

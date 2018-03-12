@@ -5,6 +5,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 
 import * as booksActions from '../redux/books/actions';
 import * as sessionActions from '../redux/session/actions';
+import * as rentsActions from '../redux/rents/actions';
 import * as localstorageService from '../services/localstorageService';
 
 import Home from './screens/Home';
@@ -17,10 +18,11 @@ import './styles.scss';
 
 class App extends Component {
   componentWillMount = () => {
-    const user = localstorageService.retrieveUserTokenFromLocalStorage();
+    const user = localstorageService.retrieveUserIdFromLocalStorage();
     if (user) {
       this.props.loadSession();
       this.props.loadBooks();
+      this.props.loadWishes(user);
     }
   };
 
@@ -45,12 +47,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadBooks: () => dispatch(booksActions.fetchBooks()),
-  loadSession: () => dispatch(sessionActions.loadSession())
+  loadSession: () => dispatch(sessionActions.loadSession()),
+  loadWishes: user => dispatch(rentsActions.loadWishes(user))
 });
 
 App.propTypes = {
   loadBooks: PropTypes.func.isRequired,
-  loadSession: PropTypes.func.isRequired
+  loadSession: PropTypes.func.isRequired,
+  loadWishes: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
