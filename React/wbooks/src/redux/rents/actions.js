@@ -19,6 +19,8 @@ export const saveWish = (bookId, user) => async dispatch => {
   dispatch({ type: types.RENTS_WISHES_SAVING });
   await authService.saveWish(bookId, user);
   dispatch({ type: types.RENTS_WISHES_SAVED });
+  const wishes = await authService.fetchWishes(store.getState().session.user);
+  dispatch({ type: types.RENTS_WISHES_FETCHED, payload: wishes.data });
 };
 
 export const loadWishes = () => async dispatch => {

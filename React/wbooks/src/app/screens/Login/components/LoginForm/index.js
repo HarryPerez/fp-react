@@ -10,10 +10,7 @@ import * as rentsActions from '../../../../../redux/rents/actions';
 import LoginForm from './layout';
 
 class LoginFormContainer extends Component {
-  handleSubmit = async () => {
-    const user = await this.props.handleSubmit(this.props.userName, this.props.password);
-    this.props.loadWishes(user);
-  };
+  handleSubmit = () => this.props.handleSubmit(this.props.userName, this.props.password);
 
   render() {
     return <LoginForm {...this.props} isLoading={this.props.loginLoading} handleSubmit={this.handleSubmit} />;
