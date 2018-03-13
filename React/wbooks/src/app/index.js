@@ -12,6 +12,7 @@ import Home from './screens/Home';
 import BookDetail from './screens/BookDetail';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
+import Profile from './screens/Profile';
 import RouteHandler from './components/RouteHandler';
 
 import './styles.scss';
@@ -33,6 +34,7 @@ class App extends Component {
           <RouteHandler path="/signup" component={Signup} />
           <RouteHandler path="/dashboard" component={Home} />
           <RouteHandler path="/books/:bookId" component={BookDetail} />
+          <RouteHandler path="/profile" component={Profile} />
           <RouteHandler path="/" component={Login} />
         </Switch>
       </BrowserRouter>
