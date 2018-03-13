@@ -34,7 +34,8 @@ const getBook = createSelector(
 const mapStateToProps = (state, props) => ({
   books: state.books.books,
   detailedBook: getBook(state, props),
-  isLoading: state.books.isLoading
+  isLoading: state.books.isLoading,
+  commentsLoading: state.books.commentsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
