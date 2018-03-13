@@ -24,13 +24,10 @@ export const cleanBooks = () => dispatch => dispatch({ type: types.BOOKS_CLEANED
 export const fetchComments = bookId => async dispatch => {
   dispatch({ type: types.BOOKS_COMMENTS_FETCH });
   const response = await bookService.getBookComments(bookId);
-  console.log(response);
-  /*
   if (response.statusText === 'OK') {
     dispatch({ type: types.BOOKS_COMMENTS_FETCH_SUCCESS, payload: response.data });
     return response;
   }
-  dispatch({ type: types.BOOKS_COMMENTS_FETCH_SUCCESS_FAILURE });
-  */
+  dispatch({ type: types.BOOKS_COMMENTS_FETCH_FAILURE });
   return false;
 };

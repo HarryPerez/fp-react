@@ -7,7 +7,8 @@ const initialState = Immutable({
   isLoading: false,
   filter: '',
   filterParam: '',
-  comments: ''
+  comments: '',
+  commentsLoading: false
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -16,14 +17,27 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         isLoading: true
       });
+    case types.BOOKS_COMMENTS_FETCH:
+      return state.merge({
+        commentsLoading: true
+      });
     case types.BOOKS_FETCH_SUCCESS:
       return state.merge({
         books: action.payload,
         isLoading: false
       });
+    case types.BOOKS_COMMENTS_FETCH_SUCCESS:
+      return state.merge({
+        comments: action.payload,
+        commentsLoading: false
+      });
     case types.BOOKS_FETCH_FAILURE:
       return state.merge({
         isLoading: false
+      });
+    case types.BOOKS_COMMENTS_FETCH_FAILURE:
+      return state.merge({
+        commentsLoading: false
       });
     case types.BOOKS_FILTER_PARAM_CHANGED:
       return state.merge({
