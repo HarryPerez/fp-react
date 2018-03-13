@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -7,13 +7,9 @@ import Loader from '../../../../components/Loader';
 
 import Comment from './layout';
 
-class CommentContainer extends Component {
-  componentWillMount = () => console.log('HOLA');
-
-  render() {
-    return <div>{this.props.comments.map(comment => <Comment key={comment.id} comment={comment} />)}</div>;
-  }
-}
+const CommentContainer = props => (
+  <div>{props.comments.map(comment => <Comment key={comment.id} comment={comment} />)}</div>
+);
 
 const getLastComments = createSelector([state => state.books.comments], comments => {
   if (comments) {

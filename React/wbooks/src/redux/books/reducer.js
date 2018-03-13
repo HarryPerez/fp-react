@@ -8,7 +8,10 @@ const initialState = Immutable({
   filter: '',
   filterParam: '',
   comments: '',
-  commentsLoading: false
+  commentsLoading: false,
+  commentsRequestLoading: false,
+  newComment: '',
+  bookId: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -19,6 +22,7 @@ export default function reduce(state = initialState, action = {}) {
       });
     case types.BOOKS_COMMENTS_FETCH:
       return state.merge({
+        bookId: action.payload,
         commentsLoading: true
       });
     case types.BOOKS_FETCH_SUCCESS:
@@ -55,6 +59,22 @@ export default function reduce(state = initialState, action = {}) {
         filterParam: '',
         isDetailLoading: true,
         comments: ''
+      });
+    case types.BOOKS_COMMENTS_SAVE:
+      return state.merge({
+        commentsRequestLoading: true
+      });
+    case types.BOOKS_COMMENTS_SAVED_SUCCESS:
+      return state.merge({
+        commentsRequestLoading: false
+      });
+    case types.BOOKS_COMMENTS_SAVED_FAILURE:
+      return state.merge({
+        commentsRequestLoading: false
+      });
+    case types.BOOKS_COMMENTS_CHANGED:
+      return state.merge({
+        newComment: action.payload
       });
     default:
       return state;
