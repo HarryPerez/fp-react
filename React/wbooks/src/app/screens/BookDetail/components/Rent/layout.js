@@ -63,7 +63,7 @@ class Rent extends Component {
         )}
         <Button
           title={this.getActionTitle()}
-          styles={this.getStyle()}
+          style={this.getStyle()}
           onClick={this.getClickHandler()}
           disabled={this.props.isLoading ? this.props.isLoading : this.getDisabled()}
         />
