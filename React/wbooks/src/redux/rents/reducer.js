@@ -33,15 +33,28 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         localRents: action.payload
       });
-    case types.RENTS_WISHES_FETCHED:
+    case types.RENTS_WISHES_FETCH:
       return state.merge({
-        wishes: action.payload
+        loading: true
       });
-    case types.RENTS_WISHES_SAVING:
+    case types.RENTS_WISHES_FETCH_FAILURE:
+      return state.merge({
+        loading: false
+      });
+    case types.RENTS_WISHES_FETCH_SUCCESS:
+      return state.merge({
+        wishes: action.payload,
+        loading: false
+      });
+    case types.RENTS_WISHES_SAVE:
       return state.merge({
         isLoading: true
       });
-    case types.RENTS_WISHES_SAVED:
+    case types.RENTS_WISHES_SAVE_SUCCESS:
+      return state.merge({
+        isLoading: false
+      });
+    case types.RENTS_WISHES_SAVE_FAILURE:
       return state.merge({
         isLoading: false
       });

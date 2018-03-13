@@ -15,7 +15,7 @@ class RentContainer extends Component {
     this.props.handleRent(rents);
   };
 
-  handleWish = () => this.props.handleWishes(this.props.bookId, this.props.userId);
+  handleWish = () => this.props.handleWishes(this.props.bookId);
 
   render() {
     return (
@@ -95,14 +95,13 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   handleRent: localRents => dispatch(rentsActions.saveRents(localRents)),
-  handleWishes: (bookId, user) => dispatch(rentsActions.saveWish(bookId, user))
+  handleWishes: bookId => dispatch(rentsActions.saveWish(bookId))
 });
 
 RentContainer.propTypes = {
   handleRent: PropTypes.func.isRequired,
   bookId: PropTypes.number.isRequired,
   localRents: PropTypes.arrayOf(PropTypes.number),
-  userId: PropTypes.string.isRequired,
   handleWishes: PropTypes.func.isRequired,
   status: PropTypes.shape({
     canRent: PropTypes.bool.isRequired,

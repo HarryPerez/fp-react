@@ -1,12 +1,16 @@
 import * as authService from '../../services/authService';
 import * as localStorageService from '../../services/localstorageService';
+import store from '../store';
 
 import * as types from './actionTypes';
 
-export const saveSession = (name, password) => async dispatch => {
+export const saveSession = () => async dispatch => {
   dispatch({ type: types.USER_LOGIN });
   try {
-    const user = await authService.retrieveUserData(name, password);
+    const user = await authService.retrieveUserData(
+      store.getState().session.userName,
+      store.getState().session.password
+    );
     if (user) {
       localStorageService.saveUserTokenAuthentication(user);
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: user.access_token, id: user.renew_id } });
