@@ -65,13 +65,12 @@ const getStatus = createSelector(
       const lastRentUserName = lastRent.user.email;
       const today = moment().format('YYYY-MM-DD');
 
-      /* Only for testing */
+      // TODO: Only for testing. There is not api for this feature
       if (lastRent.id % 2 === 0) {
         status.rentedByOther = true;
         status.canWish = true;
         return status;
       }
-      /* Only for testing */
 
       if (today > lastRentTo) {
         status.canRent = true;
