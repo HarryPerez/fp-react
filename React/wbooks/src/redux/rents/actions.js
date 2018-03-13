@@ -1,5 +1,6 @@
 import * as bookService from '../../services/bookService';
 import * as authService from '../../services/authService';
+import store from '../store';
 
 import * as types from './actionTypes';
 
@@ -20,7 +21,7 @@ export const saveWish = (bookId, user) => async dispatch => {
   dispatch({ type: types.RENTS_WISHES_SAVED });
 };
 
-export const loadWishes = user => async dispatch => {
-  const wishes = await authService.fetchWishes(user);
+export const loadWishes = () => async dispatch => {
+  const wishes = await authService.fetchWishes(store.getState().session.user);
   dispatch({ type: types.RENTS_WISHES_FETCHED, payload: wishes.data });
 };
