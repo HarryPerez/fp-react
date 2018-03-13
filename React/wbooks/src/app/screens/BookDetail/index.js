@@ -6,11 +6,15 @@ import { createSelector } from 'reselect';
 import { bookDetailPropType } from '../../../redux/books/proptypes';
 import Loader from '../../components/Loader';
 import * as rentsActions from '../../../redux/rents/actions';
+import * as booksActions from '../../../redux/books/actions';
 
 import BookDetail from './layout';
 
 class BookDetailContainer extends Component {
-  componentWillMount = () => this.props.loadBookRents(this.props.match.params.bookId);
+  componentWillMount = () => {
+    this.props.loadBookRents(this.props.match.params.bookId);
+    this.props.loadBookComments(this.props.match.params.bookId);
+  };
 
   render() {
     return <BookDetail book={this.props.detailedBook} />;
@@ -34,12 +38,14 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadBookRents: bookId => dispatch(rentsActions.fetchRents(bookId))
+  loadBookRents: bookId => dispatch(rentsActions.fetchRents(bookId)),
+  loadBookComments: bookId => dispatch(booksActions.fetchComments(bookId))
 });
 
 BookDetailContainer.propTypes = {
   detailedBook: bookDetailPropType,
   loadBookRents: PropTypes.func.isRequired,
+  loadBookComments: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       bookId: PropTypes.string.isRequired

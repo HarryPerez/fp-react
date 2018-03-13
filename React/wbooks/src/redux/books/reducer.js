@@ -6,7 +6,8 @@ const initialState = Immutable({
   books: '',
   isLoading: false,
   filter: '',
-  filterParam: ''
+  filterParam: '',
+  comments: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -38,7 +39,8 @@ export default function reduce(state = initialState, action = {}) {
         isLoading: true,
         filter: '',
         filterParam: '',
-        isDetailLoading: true
+        isDetailLoading: true,
+        comments: ''
       });
     default:
       return state;
