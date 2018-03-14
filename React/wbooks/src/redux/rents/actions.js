@@ -1,6 +1,5 @@
 import * as bookService from '../../services/bookService';
 import * as authService from '../../services/authService';
-import store from '../store';
 
 import * as types from './actionTypes';
 
@@ -15,13 +14,14 @@ export const fetchRents = bookId => async dispatch => {
 
 export const saveRents = localRents => dispatch => dispatch({ type: types.RENTS_SAVED, payload: localRents });
 
-export const saveWish = bookId => async dispatch => {
+export const saveWish = bookId => async (dispatch, getState) => {
+  const { user, userId } = getState().session;
   dispatch({ type: types.RENTS_WISHES_SAVE });
-  const saveResponse = await authService.saveWish(bookId, store.getState().session.userId);
+  const saveResponse = await authService.saveWish(bookId, userId);
   if (saveResponse.statusText === 'OK') {
     dispatch({ type: types.RENTS_WISHES_SAVE_SUCCESS });
 
-    const fetchResponse = await authService.fetchWishes(store.getState().session.user);
+    const fetchResponse = await authService.fetchWishes(user);
     if (fetchResponse.statusText === 'OK') {
       dispatch({ type: types.RENTS_WISHES_FETCH_SUCCESS, payload: fetchResponse.data });
     }
@@ -29,9 +29,10 @@ export const saveWish = bookId => async dispatch => {
   dispatch({ type: types.RENTS_WISHES_SAVE_FAILURE });
 };
 
-export const loadWishes = () => async dispatch => {
+export const loadWishes = () => async (dispatch, getState) => {
+  const { user } = getState().session;
   dispatch({ type: types.RENTS_WISHES_FETCH });
-  const response = await authService.fetchWishes(store.getState().session.user);
+  const response = await authService.fetchWishes(user);
   if (response.statusText === 'OK') {
     dispatch({ type: types.RENTS_WISHES_FETCH_SUCCESS, payload: response.data });
   }
