@@ -9,12 +9,24 @@
 }
 
 .readContainer{
-  padding: 0px 50px;
+  height: 316px;
+  padding-top: 35px;
 }
 
-.readedTitle {
+.sectionTitle {
   color: $special-green;
   font-weight: bold;
   font-size: 20px;
+  margin: 0px 0px 24px 0px;
   line-height: 19px;
+}
+
+.booksContainer {
+  display: flex;
+  padding-left: 37px;
+}
+
+.wishContainer{
+  border-bottom: 1px solid $light-blue;
+  padding-top: 61px;
 }

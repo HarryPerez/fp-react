@@ -23,9 +23,6 @@ const ProfileSummary = () => (
         </div>
       </div>
     </div>
-    <div className={styles.readContainer} />
-    <div className={styles.wishContainer} />
-    <div className={styles.commentContainer} />
   </div>
 );
 
