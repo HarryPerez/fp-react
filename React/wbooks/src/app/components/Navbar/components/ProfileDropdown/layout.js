@@ -30,7 +30,11 @@ class ProfileDropdown extends Component {
         <div className={styles.profileDropdown}>
           <Dropdown>
             <div className={styles.profileButton}>
-              <Link to="/profile" href="/profile" className={styles.profileLink}>
+              <Link
+                to={`/profile/${this.props.userId}`}
+                href={`/profile/${this.props.userId}`}
+                className={styles.profileLink}
+              >
                 <p className={styles.buttonText}>Perfil</p>
               </Link>
             </div>
@@ -50,7 +54,8 @@ class ProfileDropdown extends Component {
 }
 
 ProfileDropdown.propTypes = {
-  onSessionClick: PropTypes.func.isRequired
+  onSessionClick: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired
 };
 
 export default ProfileDropdown;

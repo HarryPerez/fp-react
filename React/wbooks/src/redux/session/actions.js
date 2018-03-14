@@ -9,8 +9,16 @@ export const saveSession = (name, password) => async dispatch => {
     const user = await authService.retrieveUserData(name, password);
     if (user) {
       localStorageService.saveUserTokenAuthentication(user);
-      dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: user.access_token, id: user.renew_id } });
-      return user;
+      const loggedUserResponse = await authService.fetchLoggedUser();
+      if (loggedUserResponse.statusText === 'OK') {
+        dispatch({
+          type: types.USER_LOGIN_SUCCESS,
+          payload: { token: user.access_token, id: user.renew_id, loggedUser: loggedUserResponse.data }
+        });
+        return user;
+      }
+      dispatch({ type: types.USER_LOGIN_FAILURE });
+      return false;
     }
   } catch (error) {
     dispatch({ type: types.USER_LOGIN_FAILURE });
@@ -30,15 +38,21 @@ export const closeSession = () => dispatch => {
   dispatch({ type: types.SESSION_CLOSED });
 };
 
-export const loadSession = () => dispatch => {
+export const loadSession = () => async dispatch => {
   const userToken = localStorageService.retrieveUserTokenFromLocalStorage();
   const userId = localStorageService.retrieveUserIdFromLocalStorage();
-  dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: userToken, id: userId } });
+  const response = await authService.fetchLoggedUser();
+  if (response.statusText === 'OK') {
+    dispatch({
+      type: types.USER_LOGIN_SUCCESS,
+      payload: { token: userToken, id: userId, loggedUser: response.data }
+    });
+  }
 };
 
-export const fetchUser = () => async dispatch => {
+export const fetchUser = userId => async dispatch => {
   dispatch({ type: types.USER_DATA_FETCH });
-  const response = await authService.fetchUser();
+  const response = await authService.fetchUser(userId);
   if (response.statusText === 'OK') {
     dispatch({
       type: types.USER_DATA_FETCH_SUCCESS,

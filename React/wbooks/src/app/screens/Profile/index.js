@@ -10,7 +10,7 @@ import Profile from './layout';
 
 class ProfileContainer extends Component {
   componentWillMount = async () => {
-    const response = await this.props.loadUser();
+    const response = await this.props.loadUser(this.props.match.params.userId);
     if (response) {
       this.props.loadRents();
       this.props.loadComments();
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadComments: () => dispatch(sessionActions.fetchComments()),
   loadRents: () => dispatch(sessionActions.fetchRents()),
-  loadUser: () => dispatch(sessionActions.fetchUser())
+  loadUser: userId => dispatch(sessionActions.fetchUser(userId))
 });
 
 ProfileContainer.propTypes = {
@@ -100,6 +100,11 @@ ProfileContainer.propTypes = {
     first_name: PropTypes.string.isRequired,
     last_name: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      userId: PropTypes.number.isRequired
+    })
   })
 };
 

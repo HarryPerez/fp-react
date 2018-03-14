@@ -16,7 +16,8 @@ const initialState = Immutable({
   rentsLoading: false,
   commentsLoading: false,
   rents: [],
-  comments: []
+  comments: [],
+  loggedUser: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -25,6 +26,7 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         user: action.payload.token,
         userId: action.payload.id,
+        loggedUser: action.payload.loggedUser,
         loginFailed: false,
         isLogged: true,
         loginLoading: false

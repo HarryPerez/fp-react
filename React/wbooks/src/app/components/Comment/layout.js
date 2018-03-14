@@ -18,9 +18,16 @@ const Comment = props => (
     </div>
     <div className={styles.commentDetail}>
       <div className={styles.tittleContainer}>
-        <h1 className={styles.commentTitle}>{`${props.comment.user.first_name}  ${
-          props.comment.user.last_name
-        }`}</h1>
+        <Link
+          className={styles.bookLink}
+          to={`/profile/${props.comment.user.id}`}
+          href={`/profile/${props.comment.user.id}`}
+        >
+          <h1 className={styles.commentTitle}>{`${props.comment.user.first_name}  ${
+            props.comment.user.last_name
+          }`}</h1>
+        </Link>
+
         {props.showTitle && (
           <Link
             className={styles.bookLink}
@@ -40,6 +47,7 @@ const Comment = props => (
 Comment.propTypes = {
   comment: PropTypes.shape({
     user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       first_name: PropTypes.string.isRequired,
       last_name: PropTypes.string.isRequired,
       image_url: PropTypes.string

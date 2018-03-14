@@ -31,7 +31,9 @@ export const saveWish = (bookId, user) =>
     }
   });
 
-export const fetchUser = () => api.get(`/users/me`);
+export const fetchLoggedUser = () => api.get(`/users/me`);
+
+export const fetchUser = userId => api.get(`/users/${userId}`);
 
 export const fetchRents = userId => api.get(`/users/${userId}/rents`);
 

@@ -34,7 +34,7 @@ class App extends Component {
           <RouteHandler path="/signup" component={Signup} />
           <RouteHandler path="/dashboard" component={Home} />
           <RouteHandler path="/books/:bookId" component={BookDetail} />
-          <RouteHandler path="/profile" component={Profile} />
+          <RouteHandler path="/profile/:userId" component={Profile} />
           <RouteHandler path="/" component={Login} />
         </Switch>
       </BrowserRouter>
