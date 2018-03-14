@@ -14,13 +14,27 @@ export const fetchRents = bookId => async dispatch => {
 
 export const saveRents = localRents => dispatch => dispatch({ type: types.RENTS_SAVED, payload: localRents });
 
-export const saveWish = (bookId, user) => async dispatch => {
-  dispatch({ type: types.RENTS_WISHES_SAVING });
-  await authService.saveWish(bookId, user);
-  dispatch({ type: types.RENTS_WISHES_SAVED });
+export const saveWish = bookId => async (dispatch, getState) => {
+  const { user, userId } = getState().session;
+  dispatch({ type: types.RENTS_WISHES_SAVE });
+  const saveResponse = await authService.saveWish(bookId, userId);
+  if (saveResponse.statusText === 'OK') {
+    dispatch({ type: types.RENTS_WISHES_SAVE_SUCCESS });
+
+    const fetchResponse = await authService.fetchWishes(user);
+    if (fetchResponse.statusText === 'OK') {
+      dispatch({ type: types.RENTS_WISHES_FETCH_SUCCESS, payload: fetchResponse.data });
+    }
+  }
+  dispatch({ type: types.RENTS_WISHES_SAVE_FAILURE });
 };
 
-export const loadWishes = user => async dispatch => {
-  const wishes = await authService.fetchWishes(user);
-  dispatch({ type: types.RENTS_WISHES_FETCHED, payload: wishes.data });
+export const loadWishes = () => async (dispatch, getState) => {
+  const { user } = getState().session;
+  dispatch({ type: types.RENTS_WISHES_FETCH });
+  const response = await authService.fetchWishes(user);
+  if (response.statusText === 'OK') {
+    dispatch({ type: types.RENTS_WISHES_FETCH_SUCCESS, payload: response.data });
+  }
+  dispatch({ type: types.RENTS_WISHES_FETCH_FAILURE });
 };

@@ -22,7 +22,7 @@ class App extends Component {
     if (user) {
       this.props.loadSession();
       this.props.loadBooks();
-      this.props.loadWishes(user);
+      this.props.loadWishes();
     }
   };
 
@@ -48,7 +48,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadBooks: () => dispatch(booksActions.fetchBooks()),
   loadSession: () => dispatch(sessionActions.loadSession()),
-  loadWishes: user => dispatch(rentsActions.loadWishes(user))
+  loadWishes: () => dispatch(rentsActions.loadWishes())
 });
 
 App.propTypes = {

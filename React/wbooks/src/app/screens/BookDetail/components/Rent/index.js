@@ -15,10 +15,7 @@ class RentContainer extends Component {
     this.props.handleRent(rents);
   };
 
-  handleWish = async () => {
-    await this.props.handleWish(this.props.bookId, this.props.userId);
-    this.props.loadWishes(this.props.userId);
-  };
+  handleWish = () => this.props.handleWishes(this.props.bookId);
 
   render() {
     return (
@@ -68,13 +65,12 @@ const getStatus = createSelector(
       const lastRentUserName = lastRent.user.email;
       const today = moment().format('YYYY-MM-DD');
 
-      /* Only for testing */
+      // TODO: Only for testing. There is not api for this feature
       if (lastRent.id % 2 === 0) {
         status.rentedByOther = true;
         status.canWish = true;
         return status;
       }
-      /* Only for testing */
 
       if (today > lastRentTo) {
         status.canRent = true;
@@ -99,17 +95,14 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   handleRent: localRents => dispatch(rentsActions.saveRents(localRents)),
-  handleWish: (bookId, user) => dispatch(rentsActions.saveWish(bookId, user)),
-  loadWishes: user => dispatch(rentsActions.loadWishes(user))
+  handleWishes: bookId => dispatch(rentsActions.saveWish(bookId))
 });
 
 RentContainer.propTypes = {
   handleRent: PropTypes.func.isRequired,
-  loadWishes: PropTypes.func.isRequired,
   bookId: PropTypes.number.isRequired,
   localRents: PropTypes.arrayOf(PropTypes.number),
-  userId: PropTypes.string.isRequired,
-  handleWish: PropTypes.func.isRequired,
+  handleWishes: PropTypes.func.isRequired,
   status: PropTypes.shape({
     canRent: PropTypes.bool.isRequired,
     canWish: PropTypes.bool.isRequired,

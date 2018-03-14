@@ -5,15 +5,11 @@ import { createSelector } from 'reselect';
 
 import * as regexs from '../../../../../utils/regexs';
 import * as sessionActions from '../../../../../redux/session/actions';
-import * as rentsActions from '../../../../../redux/rents/actions';
 
 import LoginForm from './layout';
 
 class LoginFormContainer extends Component {
-  handleSubmit = async () => {
-    const user = await this.props.handleSubmit(this.props.userName, this.props.password);
-    this.props.loadWishes(user);
-  };
+  handleSubmit = () => this.props.handleSubmit();
 
   render() {
     return <LoginForm {...this.props} isLoading={this.props.loginLoading} handleSubmit={this.handleSubmit} />;
@@ -48,15 +44,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
   handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
-  handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password)),
-  loadWishes: user => dispatch(rentsActions.loadWishes(user))
+  handleSubmit: () => dispatch(sessionActions.saveSession())
 });
 
 LoginFormContainer.propTypes = {
   handleUserNameInput: PropTypes.func.isRequired,
   handlePasswordInput: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  loadWishes: PropTypes.func.isRequired,
   hasErrors: PropTypes.string,
   userName: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
