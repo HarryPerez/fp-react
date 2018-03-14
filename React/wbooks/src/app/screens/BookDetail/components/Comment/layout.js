@@ -16,9 +16,12 @@ const Comment = props => (
       />
     </div>
     <div className={styles.commentDetail}>
-      <h1 className={styles.commentTitle}>{`${props.comment.user.first_name}  ${
-        props.comment.user.last_name
-      }`}</h1>
+      <div className={styles.tittleContainer}>
+        <h1 className={styles.commentTitle}>{`${props.comment.user.first_name}  ${
+          props.comment.user.last_name
+        }`}</h1>
+        {props.showTitle && <h1 className={styles.commentTitle}>{props.comment.book.title}</h1>}
+      </div>
       <h2 className={styles.commentDate}>{moment(props.comment.created_at).format('YYYY/MM/DD')}</h2>
       <span className={styles.commentDescription}>{props.comment.content}</span>
     </div>
@@ -32,9 +35,13 @@ Comment.propTypes = {
       last_name: PropTypes.string.isRequired,
       image_url: PropTypes.string
     }),
+    book: PropTypes.shape({
+      title: PropTypes.string.isRequired
+    }),
     created_at: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
-  })
+  }),
+  showTitle: PropTypes.bool.isRequired
 };
 
 export default Comment;

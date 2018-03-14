@@ -8,7 +8,7 @@ import Loader from '../../../../components/Loader';
 import Comment from './layout';
 
 const CommentContainer = props => (
-  <div>{props.comments.map(comment => <Comment key={comment.id} comment={comment} />)}</div>
+  <div>{props.comments.map(comment => <Comment key={comment.id} comment={comment} showTitle={false} />)}</div>
 );
 
 const getLastComments = createSelector([state => state.books.comments], comments => {
