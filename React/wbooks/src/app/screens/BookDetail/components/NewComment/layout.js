@@ -18,7 +18,7 @@ const NewComment = props => (
       {props.hasErrors && <AccessError errors={props.hasErrors} />}
       <Button
         title="Enviar"
-        styles={`${styles.sendcommentButton} ${styles.sendcommentTitle}`}
+        style={`${styles.sendcommentButton} ${styles.sendcommentTitle}`}
         disabled={props.hasErrors || props.isLoading}
         onClick={props.handleSubmit}
       />

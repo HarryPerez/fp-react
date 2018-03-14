@@ -38,13 +38,30 @@ export const fetchComments = bookId => async dispatch => {
 export const saveComment = comment => dispatch =>
   dispatch({ type: types.BOOKS_COMMENTS_CHANGED, payload: comment });
 
-export const sendComment = (bookId, user, comment) => async dispatch => {
+export const sendComment = () => async (dispatch, getState) => {
+  const { user } = getState().session;
+  const { bookId, newComment } = getState().books;
+
   dispatch({ type: types.BOOKS_COMMENTS_SAVE });
-  const response = await bookService.saveComment(bookId, user, comment);
-  if (response.statusText === 'OK') {
+  const saveResponse = await bookService.saveComment(bookId, user, newComment);
+
+  if (saveResponse.statusText === 'Created') {
     dispatch({ type: types.BOOKS_COMMENTS_SAVED_SUCCESS });
-    return response;
+
+    dispatch({ type: types.BOOKS_COMMENTS_FETCH, payload: bookId });
+    const fetchResponse = await bookService.getBookComments(bookId);
+
+    if (fetchResponse.statusText === 'OK') {
+      const orderedComments = fetchResponse.data.sort(
+        (comment, nextComment) => Number(nextComment.id) - Number(comment.id)
+      );
+      dispatch({ type: types.BOOKS_COMMENTS_FETCH_SUCCESS, payload: orderedComments });
+      return fetchResponse;
+    }
+    dispatch({ type: types.BOOKS_COMMENTS_FETCH_FAILURE });
+    return false;
   }
+
   dispatch({ type: types.BOOKS_COMMENTS_SAVED_FAILURE });
   return false;
 };

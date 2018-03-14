@@ -64,11 +64,8 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         commentsRequestLoading: true
       });
-    case types.BOOKS_COMMENTS_SAVED_SUCCESS:
-      return state.merge({
-        commentsRequestLoading: false
-      });
     case types.BOOKS_COMMENTS_SAVED_FAILURE:
+    case types.BOOKS_COMMENTS_SAVED_SUCCESS:
       return state.merge({
         commentsRequestLoading: false
       });
