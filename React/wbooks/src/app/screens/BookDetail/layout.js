@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { bookPropType } from '../../../redux/books/proptypes';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
+import CommentContainer from '../../components/Comment';
 
 import BookSummary from './components/BookSummary';
 import Suggestion from './components/Suggestion';
 import NewComment from './components/NewComment';
-import CommentContainer from './components/Comment';
 import Rent from './components/Rent';
 import styles from './styles.scss';
 

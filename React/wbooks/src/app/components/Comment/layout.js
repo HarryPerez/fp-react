@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import profilePicture from '../../../../assets/profile_picture.png';
+import profilePicture from '../../assets/profile_picture.png';
 
 import styles from './styles.scss';
 

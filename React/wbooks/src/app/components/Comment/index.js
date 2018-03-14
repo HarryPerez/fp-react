@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import Loader from '../../../../components/Loader';
+import Loader from '../../components/Loader';
 
 import Comment from './layout';
 
