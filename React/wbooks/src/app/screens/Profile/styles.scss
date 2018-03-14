@@ -8,25 +8,6 @@
   padding: 0px 50px
 }
 
-.readContainer{
-  height: 316px;
-  padding-top: 35px;
-}
-
-.sectionTitle {
-  color: $special-green;
-  font-weight: bold;
-  font-size: 20px;
-  margin: 0px 0px 24px 0px;
-  line-height: 19px;
-}
-
-.booksContainer {
-  display: flex;
-  padding-left: 37px;
-}
-
-.wishContainer{
+.containerSeparator {
   border-bottom: 1px solid $light-blue;
-  padding-top: 61px;
 }
