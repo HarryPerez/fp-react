@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import profilePicture from '../../assets/profile_picture.png';
 
@@ -20,7 +21,15 @@ const Comment = props => (
         <h1 className={styles.commentTitle}>{`${props.comment.user.first_name}  ${
           props.comment.user.last_name
         }`}</h1>
-        {props.showTitle && <h1 className={styles.commentTitle}>{props.comment.book.title}</h1>}
+        {props.showTitle && (
+          <Link
+            className={styles.bookLink}
+            to={`/books/${props.comment.book.id}`}
+            href={`/books/${props.comment.book.id}`}
+          >
+            <h1 className={styles.commentTitle}>{props.comment.book.title}</h1>
+          </Link>
+        )}
       </div>
       <h2 className={styles.commentDate}>{moment(props.comment.created_at).format('YYYY/MM/DD')}</h2>
       <span className={styles.commentDescription}>{props.comment.content}</span>
@@ -36,6 +45,7 @@ Comment.propTypes = {
       image_url: PropTypes.string
     }),
     book: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     }),
     created_at: PropTypes.string.isRequired,

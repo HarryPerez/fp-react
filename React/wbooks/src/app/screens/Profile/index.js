@@ -1,18 +1,106 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import ProfileSummary from './components/ProfileSummary';
-import BookSummary from './components/BookSummary';
-import styles from './styles.scss';
+import { bookDetailPropType } from '../../../redux/books/proptypes';
+import * as sessionActions from '../../../redux/session/actions';
 
-const Profile = () => (
-  <div className={styles.profileContainer}>
-    <ProfileSummary />
-    <BookSummary title="Leídos" />
-    <div className={styles.containerSeparator}>
-      <BookSummary title="Wishlist" />
-    </div>
-    <div className={styles.commentContainer} />
-  </div>
-);
+import Profile from './layout';
 
-export default Profile;
+class ProfileContainer extends Component {
+  componentWillMount = async () => {
+    const response = await this.props.loadUser();
+    if (response) {
+      this.props.loadRents();
+      this.props.loadComments();
+    }
+  };
+
+  render() {
+    return (
+      <Profile
+        isLoading={this.props.isLoading}
+        rentedBooks={this.props.rentedBooks}
+        wishedBooks={this.props.wishedBooks}
+        comments={this.props.comments}
+        rentsLength={this.props.rentsLength}
+        commentsLength={this.props.commentsLength}
+        user={this.props.user}
+      />
+    );
+  }
+}
+
+const getRentedBooks = createSelector([state => state.session.rents], rents => {
+  if (rents && rents.length > 0) {
+    if (rents.length > 3) {
+      return rents.slice(0, 4).map(rent => rent.book);
+    }
+    return rents.map(rent => rent.book);
+  }
+  return null;
+});
+
+const getWishedBooks = createSelector([state => state.rents.wishes], wishes => {
+  if (wishes && wishes.length > 0) {
+    if (wishes.length > 3) {
+      return wishes.slice(0, 4).map(rent => rent.book);
+    }
+    return wishes.map(rent => rent.book);
+  }
+  return null;
+});
+
+const getComments = createSelector([state => state.session.comments], comments => {
+  if (comments && comments.length > 0) {
+    if (comments.length > 3) {
+      return comments.slice(0, 4);
+    }
+    return comments;
+  }
+  return [];
+});
+
+const mapStateToProps = state => ({
+  rentedBooks: getRentedBooks(state),
+  wishedBooks: getWishedBooks(state),
+  comments: getComments(state),
+  rentsLength: state.session.rentsLength,
+  commentsLength: state.session.commentsLength,
+  isLoading: state.session.dataLoading || state.session.rentsLoading || state.rents.wishesLoading,
+  user: state.session.userObject
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadComments: () => dispatch(sessionActions.fetchComments()),
+  loadRents: () => dispatch(sessionActions.fetchRents()),
+  loadUser: () => dispatch(sessionActions.fetchUser())
+});
+
+ProfileContainer.propTypes = {
+  loadComments: PropTypes.func.isRequired,
+  loadRents: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  rentedBooks: PropTypes.arrayOf(bookDetailPropType),
+  wishedBooks: PropTypes.arrayOf(bookDetailPropType),
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  ),
+  rentsLength: PropTypes.number.isRequired,
+  commentsLength: PropTypes.number.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired
+  })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

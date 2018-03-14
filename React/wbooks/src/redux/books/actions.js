@@ -21,7 +21,7 @@ export const saveFilterParam = filterParam => dispatch =>
 
 export const cleanBooks = () => dispatch => dispatch({ type: types.BOOKS_CLEANED });
 
-export const fetchComments = bookId => async dispatch => {
+export const fetchBookComments = bookId => async dispatch => {
   dispatch({ type: types.BOOKS_COMMENTS_FETCH, payload: bookId });
   const response = await bookService.getBookComments(bookId);
   if (response.statusText === 'OK') {

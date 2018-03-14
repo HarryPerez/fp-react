@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { bookPropType } from '../../../redux/books/proptypes';
 import defaultBookIcon from '../../assets/default_book.svg';
 import errorIcon from '../../assets/sad_icon.png';
-import CommentContainer from '../../components/Comment';
+import Comment from '../../components/Comment';
+import Loader from '../../components/Loader';
 
 import BookSummary from './components/BookSummary';
 import Suggestion from './components/Suggestion';
@@ -53,12 +55,20 @@ class BookDetail extends Component {
         <Suggestion />
         <h1 className={styles.commentsTitle}>Comentarios</h1>
         <NewComment />
-        <CommentContainer />
+        <Comment comments={this.props.comments} showTitle={false} />
       </div>
     );
   }
 }
 
-BookDetail.propTypes = bookPropType;
-
-export default BookDetail;
+BookDetail.propTypes = {
+  book: bookPropType,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  )
+};
+export default Loader(BookDetail);

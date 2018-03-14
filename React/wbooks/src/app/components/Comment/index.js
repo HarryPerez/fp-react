@@ -1,30 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-
-import Loader from '../../components/Loader';
 
 import Comment from './layout';
 
 const CommentContainer = props => (
-  <div>{props.comments.map(comment => <Comment key={comment.id} comment={comment} showTitle={false} />)}</div>
+  <div>
+    {props.comments.map(comment => (
+      <Comment key={comment.id} comment={comment} showTitle={props.showTitle} />
+    ))}
+  </div>
 );
-
-const getLastComments = createSelector([state => state.books.comments], comments => {
-  if (comments) {
-    if (comments.length > 3) {
-      return comments.slice(0, 4);
-    }
-    return comments;
-  }
-  return null;
-});
-
-const mapStateToProps = state => ({
-  comments: getLastComments(state),
-  isLoading: state.books.commentsLoading
-});
 
 CommentContainer.propTypes = {
   comments: PropTypes.arrayOf(
@@ -33,7 +18,8 @@ CommentContainer.propTypes = {
       content: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired
     })
-  )
+  ),
+  showTitle: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps)(Loader(CommentContainer));
+export default CommentContainer;

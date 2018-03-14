@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleCommentInput: event => dispatch(booksActions.saveComment(event.target.value)),
   handleSubmit: (bookId, userId, comment) => dispatch(booksActions.sendComment(bookId, userId, comment)),
-  loadComments: bookId => dispatch(booksActions.fetchComments(bookId))
+  loadComments: bookId => dispatch(booksActions.fetchBookComments(bookId))
 });
 
 NewCommentContainer.propTypes = {

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { bookDetailPropType } from '../../../redux/books/proptypes';
-import Loader from '../../components/Loader';
 import * as rentsActions from '../../../redux/rents/actions';
 import * as booksActions from '../../../redux/books/actions';
 
@@ -17,7 +16,13 @@ class BookDetailContainer extends Component {
   };
 
   render() {
-    return <BookDetail book={this.props.detailedBook} />;
+    return (
+      <BookDetail
+        book={this.props.detailedBook}
+        isLoading={this.props.isLoading}
+        comments={this.props.comments}
+      />
+    );
   }
 }
 
@@ -27,20 +32,30 @@ const getBook = createSelector(
     if (books) {
       return books.find(book => book.id === Number(bookId));
     }
-    return null;
+    return [];
   }
 );
+
+const getComments = createSelector([state => state.books.comments], comments => {
+  if (comments && comments.length > 0) {
+    if (comments.length > 3) {
+      return comments.slice(0, 4);
+    }
+    return comments;
+  }
+  return [];
+});
 
 const mapStateToProps = (state, props) => ({
   books: state.books.books,
   detailedBook: getBook(state, props),
   isLoading: state.books.isLoading,
-  commentsLoading: state.books.commentsLoading
+  comments: getComments(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   loadBookRents: bookId => dispatch(rentsActions.fetchRents(bookId)),
-  loadBookComments: bookId => dispatch(booksActions.fetchComments(bookId))
+  loadBookComments: bookId => dispatch(booksActions.fetchBookComments(bookId))
 });
 
 BookDetailContainer.propTypes = {
@@ -51,7 +66,15 @@ BookDetailContainer.propTypes = {
     params: PropTypes.shape({
       bookId: PropTypes.string.isRequired
     })
-  })
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  ),
+  isLoading: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loader(BookDetailContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetailContainer);

@@ -30,3 +30,9 @@ export const saveWish = (bookId, user) =>
       user_id: user
     }
   });
+
+export const fetchUser = () => api.get(`/users/me`);
+
+export const fetchRents = userId => api.get(`/users/${userId}/rents`);
+
+export const fetchComments = userId => api.get(`/users/${userId}/comments`);

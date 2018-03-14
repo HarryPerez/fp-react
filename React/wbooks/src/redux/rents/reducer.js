@@ -5,8 +5,9 @@ import * as types from './actionTypes';
 const initialState = Immutable({
   rents: '',
   isLoading: false,
-  localRents: [],
-  wishes: []
+  wishesLoading: false,
+  localRents: '',
+  wishes: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -33,9 +34,18 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         localRents: action.payload
       });
-    case types.RENTS_WISHES_FETCHED:
+    case types.RENTS_WISHES_FETCH:
       return state.merge({
-        wishes: action.payload
+        wishesLoading: true
+      });
+    case types.RENTS_WISHES_FETCH_SUCCESS:
+      return state.merge({
+        wishes: action.payload,
+        wishesLoading: false
+      });
+    case types.RENTS_WISHES_FETCH_FAILURE:
+      return state.merge({
+        wishesLoading: false
       });
     case types.RENTS_WISHES_SAVING:
       return state.merge({

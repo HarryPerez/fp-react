@@ -30,7 +30,9 @@ class ProfileDropdown extends Component {
         <div className={styles.profileDropdown}>
           <Dropdown>
             <div className={styles.profileButton}>
-              <p className={styles.buttonText}>Perfil</p>
+              <Link to="/profile" href="/profile" className={styles.profileLink}>
+                <p className={styles.buttonText}>Perfil</p>
+              </Link>
             </div>
             <Link
               to="/"

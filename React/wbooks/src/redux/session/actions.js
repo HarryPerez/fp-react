@@ -35,3 +35,51 @@ export const loadSession = () => dispatch => {
   const userId = localStorageService.retrieveUserIdFromLocalStorage();
   dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: userToken, id: userId } });
 };
+
+export const fetchUser = () => async dispatch => {
+  dispatch({ type: types.USER_DATA_FETCH });
+  const response = await authService.fetchUser();
+  if (response.statusText === 'OK') {
+    dispatch({
+      type: types.USER_DATA_FETCH_SUCCESS,
+      payload: { user: response.data, userId: response.data.id }
+    });
+    return response;
+  }
+  dispatch({ type: types.USER_DATA_FETCH_FAILURE });
+  return false;
+};
+
+export const fetchRents = () => async (dispatch, getState) => {
+  const { userSimpleId } = getState().session;
+  dispatch({ type: types.USER_RENTS_FETCH });
+  const response = await authService.fetchRents(userSimpleId);
+  if (response.statusText === 'OK') {
+    const orderedRents = response.data.sort((rent, nextRent) => Number(nextRent.id) - Number(rent.id));
+    dispatch({
+      type: types.USER_RENTS_FETCH_SUCCESS,
+      payload: { rents: orderedRents, rentsLength: orderedRents.length }
+    });
+    return response;
+  }
+  dispatch({ type: types.USER_RENTS_FETCH_FAILURE });
+  return false;
+};
+
+export const fetchComments = () => async (dispatch, getState) => {
+  const { userSimpleId } = getState().session;
+  dispatch({ type: types.USER_COMMENTS_FETCH });
+  const response = await authService.fetchComments(userSimpleId);
+  if (response.statusText === 'OK') {
+    const orderedComments = response.data.sort(
+      (comment, nextComment) => Number(nextComment.id) - Number(comment.id)
+    );
+    dispatch({
+      type: types.USER_COMMENTS_FETCH_SUCCESS,
+      payload: { comments: orderedComments, commentsLength: orderedComments.length }
+    });
+    return response;
+  }
+  dispatch({ type: types.USER_COMMENTS_FETCH_FAILURE });
+  return false;
+};
