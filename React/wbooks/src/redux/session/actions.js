@@ -3,13 +3,14 @@ import * as localStorageService from '../../services/localstorageService';
 
 import * as types from './actionTypes';
 
-export const saveSession = (name, password) => async dispatch => {
+export const saveSession = () => async (dispatch, getState) => {
+  const { userName, password } = getState().session;
   dispatch({ type: types.USER_LOGIN });
   try {
-    const user = await authService.retrieveUserData(name, password);
+    const user = await authService.retrieveUserData(userName, password);
     if (user) {
       localStorageService.saveUserTokenAuthentication(user);
-      dispatch({ type: types.USER_LOGIN_SUCCESS, payload: user.access_token });
+      dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: user.access_token, id: user.renew_id } });
       return user;
     }
   } catch (error) {
@@ -31,6 +32,7 @@ export const closeSession = () => dispatch => {
 };
 
 export const loadSession = () => dispatch => {
-  const user = localStorageService.retrieveUserTokenFromLocalStorage();
-  dispatch({ type: types.USER_LOGIN_SUCCESS, payload: user });
+  const userToken = localStorageService.retrieveUserTokenFromLocalStorage();
+  const userId = localStorageService.retrieveUserIdFromLocalStorage();
+  dispatch({ type: types.USER_LOGIN_SUCCESS, payload: { token: userToken, id: userId } });
 };

@@ -9,9 +9,7 @@ import * as sessionActions from '../../../../../redux/session/actions';
 import LoginForm from './layout';
 
 class LoginFormContainer extends Component {
-  handleSubmit = () => {
-    this.props.handleSubmit(this.props.userName, this.props.password);
-  };
+  handleSubmit = () => this.props.handleSubmit();
 
   render() {
     return <LoginForm {...this.props} isLoading={this.props.loginLoading} handleSubmit={this.handleSubmit} />;
@@ -46,7 +44,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleUserNameInput: event => dispatch(sessionActions.saveUserName(event.target.value)),
   handlePasswordInput: event => dispatch(sessionActions.savePassword(event.target.value)),
-  handleSubmit: (userName, password) => dispatch(sessionActions.saveSession(userName, password))
+  handleSubmit: () => dispatch(sessionActions.saveSession())
 });
 
 LoginFormContainer.propTypes = {

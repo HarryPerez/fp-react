@@ -1,0 +1,16 @@
+@import '../../../constants/colors.scss';
+
+.button {
+  background: $light-blue;
+  height: 38px;
+  width: 192px;
+}
+
+.title {
+  color: $white;
+  font-weight: Bold;
+  font-size: 20px;
+  height: 24px;
+  margin: auto;
+  width: 70px;
+}

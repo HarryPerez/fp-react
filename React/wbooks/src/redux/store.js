@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import books from './books/reducer';
 import session from './session/reducer';
+import rents from './rents/reducer';
 
 const reducers = {
   books,
-  session
+  session,
+  rents
 };
 
 /* eslint-disable no-underscore-dangle */

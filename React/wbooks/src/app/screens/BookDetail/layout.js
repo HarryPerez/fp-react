@@ -9,6 +9,7 @@ import BookSummary from './components/BookSummary';
 import Suggestion from './components/Suggestion';
 import NewComment from './components/NewComment';
 import Comment from './components/Comment';
+import Rent from './components/Rent';
 import styles from './styles.scss';
 
 class BookDetail extends Component {
@@ -46,9 +47,7 @@ class BookDetail extends Component {
               genre={this.props.book.genre}
               year={this.props.book.year}
             />
-            <div className={styles.detailRent}>
-              <h1 className={styles.rentTitle}>Alquilar</h1>
-            </div>
+            <Rent bookId={this.props.book.id} />
           </div>
         </div>
         <Suggestion />
