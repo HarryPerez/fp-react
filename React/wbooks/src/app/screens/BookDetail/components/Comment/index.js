@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -9,7 +9,7 @@ class CommentContainer extends Component {
   handleRender = comments => comments.map(comment => <Comment key={comment.id} comment={comment} />);
 
   render() {
-    return <div>{this.handleRender(this.props.comments)}</div>;
+    return <Fragment>{this.handleRender(this.props.comments)}</Fragment>;
   }
 }
 

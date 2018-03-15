@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -15,10 +15,10 @@ class RouteHandler extends Component {
         this.isPublicRequest(props) ? (
           <Redirect to="/dashboard" />
         ) : (
-          <div>
+          <Fragment>
             <Navbar />
             <Element {...props} />
-          </div>
+          </Fragment>
         )
       ) : !this.isPublicRequest(props) ? (
         <Redirect to="/" />
