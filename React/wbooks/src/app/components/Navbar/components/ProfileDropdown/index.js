@@ -8,10 +8,13 @@ import * as sessionActions from '../../../../../redux/session/actions';
 import ProfileDropdown from './layout';
 
 const ProfileDropdownContainer = props => (
-  <ProfileDropdown isLogged={props.isLogged} onSessionClick={props.closeSession} />
+  <ProfileDropdown userId={props.userId} isLogged={props.isLogged} onSessionClick={props.closeSession} />
 );
 
-const mapStateToProps = state => ({ isLogged: state.session.isLogged });
+const mapStateToProps = state => ({
+  isLogged: state.session.isLogged,
+  userId: state.session.loggedUser.id
+});
 
 const mapDispatchToProps = dispatch => ({
   closeSession: () => {
@@ -22,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
 
 ProfileDropdownContainer.propTypes = {
   isLogged: PropTypes.bool.isRequired,
-  closeSession: PropTypes.func.isRequired
+  closeSession: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdownContainer);

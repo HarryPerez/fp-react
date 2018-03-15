@@ -1,4 +1,4 @@
-@import '../../../../../constants/colors.scss';
+@import '../../../constants/colors.scss';
 
 .commentContainer {
   display: flex;
@@ -14,6 +14,15 @@
   line-height: 19px;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.commentDetail {
+  width: 633px;
+}
+
+.tittleContainer{
+  display: flex;
+  justify-content: space-between;
 }
 
 .commentDate {
@@ -32,6 +41,7 @@
   font-size: 14px;
   height: 57px;
   line-height: 19px;
+  word-wrap: break-word;
   width: 679px;
 }
 
@@ -42,4 +52,8 @@
 .profilePicture {
   height: 40px;
   width: 40px;
+}
+
+.bookLink {
+  text-decoration: none;
 }

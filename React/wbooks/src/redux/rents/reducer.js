@@ -5,8 +5,9 @@ import * as types from './actionTypes';
 const initialState = Immutable({
   rents: '',
   isLoading: false,
-  localRents: [],
-  wishes: []
+  wishesLoading: false,
+  localRents: '',
+  wishes: ''
 });
 
 export default function reduce(state = initialState, action = {}) {

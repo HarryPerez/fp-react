@@ -8,8 +8,10 @@ export const fetchRents = bookId => async dispatch => {
   const response = await bookService.getBookRents(bookId);
   if (response.statusText === 'OK') {
     dispatch({ type: types.RENTS_FETCH_SUCCESS, payload: response.data });
+    return response;
   }
   dispatch({ type: types.RENTS_FETCH_FAILURE });
+  return false;
 };
 
 export const saveRents = localRents => dispatch => dispatch({ type: types.RENTS_SAVED, payload: localRents });

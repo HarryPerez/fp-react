@@ -1,0 +1,27 @@
+@import '../../../constants/colors.scss';
+
+.profileContainer {
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0px 50px
+}
+
+.containerSeparator {
+  border-bottom: 1px solid $light-blue;
+  padding-bottom: 37px;
+  margin-bottom: 36px;
+}
+
+.sectionTitle {
+  color: $special-green;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0px 0px 36px 0px;
+  line-height: 19px;
+}
+
+.commentsContainer {
+  margin-left: 58px;
+}

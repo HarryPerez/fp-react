@@ -7,7 +7,7 @@ const initialState = Immutable({
   isLoading: false,
   filter: '',
   filterParam: '',
-  comments: '',
+  comments: [],
   commentsLoading: false,
   commentsRequestLoading: false,
   newComment: '',
