@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import Loader from '../../../../components/Loader';
-
 import Comment from './layout';
 
-const CommentContainer = props => (
-  <div>{props.comments.map(comment => <Comment key={comment.id} comment={comment} />)}</div>
+class CommentContainer extends Component {
+  handleRender = comments => comments.map(comment => <Comment key={comment.id} comment={comment} />);
+
+  render() {
+    return <div>{this.handleRender(this.props.comments)}</div>;
+  }
+}
+
+const getLastComments = createSelector(
+  [state => state.books.comments],
+  comments => (comments ? (comments.length > 3 ? comments.slice(0, 4) : comments) : [])
 );
 
-const getLastComments = createSelector([state => state.books.comments], comments => {
-  if (comments) {
-    if (comments.length > 3) {
-      return comments.slice(0, 4);
-    }
-    return comments;
-  }
-  return null;
-});
-
 const mapStateToProps = state => ({
-  comments: getLastComments(state),
-  isLoading: state.books.commentsLoading
+  comments: getLastComments(state)
 });
 
 CommentContainer.propTypes = {
@@ -36,4 +32,4 @@ CommentContainer.propTypes = {
   )
 };
 
-export default connect(mapStateToProps)(Loader(CommentContainer));
+export default connect(mapStateToProps)(CommentContainer);

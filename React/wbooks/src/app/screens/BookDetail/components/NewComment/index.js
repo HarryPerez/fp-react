@@ -22,12 +22,10 @@ class NewCommentContainer extends Component {
   }
 }
 
-const validateInput = createSelector([state => state.books.newComment], newComment => {
-  if (newComment === '') {
-    return 'El comentario no puede estar vacío.';
-  }
-  return '';
-});
+const validateInput = createSelector(
+  [state => state.books.newComment],
+  newComment => (newComment === '' ? 'El comentario no puede estar vacío.' : '')
+);
 
 const mapStateToProps = state => ({
   hasErrors: validateInput(state),
