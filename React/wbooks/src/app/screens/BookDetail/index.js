@@ -28,23 +28,13 @@ class BookDetailContainer extends Component {
 
 const getBook = createSelector(
   [state => state.books.books, (state, props) => props.match.params.bookId],
-  (books, bookId) => {
-    if (books) {
-      return books.find(book => book.id === Number(bookId));
-    }
-    return [];
-  }
+  (books, bookId) => (books ? books.find(book => book.id === Number(bookId)) : [])
 );
 
-const getComments = createSelector([state => state.books.comments], comments => {
-  if (comments && comments.length > 0) {
-    if (comments.length > 3) {
-      return comments.slice(0, 4);
-    }
-    return comments;
-  }
-  return [];
-});
+const getComments = createSelector(
+  [state => state.books.comments],
+  comments => (comments && comments.length > 0 ? (comments.length > 3 ? comments.slice(0, 4) : comments) : [])
+);
 
 const mapStateToProps = (state, props) => ({
   books: state.books.books,
