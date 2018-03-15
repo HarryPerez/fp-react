@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
 const BookSummary = props => (
-  <div>
+  <Fragment>
     <h1 className={styles.summaryTitle}>{props.title}</h1>
     <h2 className={styles.summaryAuthor}>{props.author}</h2>
     <h2 className={styles.summaryEdition}>{props.year}</h2>
@@ -14,7 +14,7 @@ const BookSummary = props => (
       dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
       ex ea commodo consequat.
     </p>
-  </div>
+  </Fragment>
 );
 
 BookSummary.propTypes = {

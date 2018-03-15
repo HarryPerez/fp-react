@@ -13,6 +13,7 @@ const initialState = Immutable({
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.RENTS_FETCH:
+    case types.RENTS_WISHES_SAVE:
       return state.merge({
         isLoading: true
       });
@@ -21,6 +22,7 @@ export default function reduce(state = initialState, action = {}) {
         rents: action.payload,
         isLoading: false
       });
+    case types.RENTS_WISHES_FETCH_FAILURE:
     case types.RENTS_FETCH_FAILURE:
       return state.merge({
         isLoading: false
@@ -36,22 +38,15 @@ export default function reduce(state = initialState, action = {}) {
       });
     case types.RENTS_WISHES_FETCH:
       return state.merge({
-        wishesLoading: true
+        loading: true
       });
     case types.RENTS_WISHES_FETCH_SUCCESS:
       return state.merge({
         wishes: action.payload,
-        wishesLoading: false
+        loading: false
       });
-    case types.RENTS_WISHES_FETCH_FAILURE:
-      return state.merge({
-        wishesLoading: false
-      });
-    case types.RENTS_WISHES_SAVING:
-      return state.merge({
-        isLoading: true
-      });
-    case types.RENTS_WISHES_SAVED:
+    case types.RENTS_WISHES_SAVE_FAILURE:
+    case types.RENTS_WISHES_SAVE_SUCCESS:
       return state.merge({
         isLoading: false
       });

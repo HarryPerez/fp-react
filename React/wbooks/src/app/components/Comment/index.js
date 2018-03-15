@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Comment from './layout';
 
-const CommentContainer = props => (
-  <div>
-    {props.comments.map(comment => (
-      <Comment key={comment.id} comment={comment} showTitle={props.showTitle} />
-    ))}
-  </div>
-);
+class CommentContainer extends Component {
+  handleRender = comments =>
+    comments.map(comment => <Comment key={comment.id} comment={comment} showTitle={this.props.showTitle} />);
+
+  render() {
+    return <Fragment>{this.handleRender(this.props.comments)}</Fragment>;
+  }
+}
 
 CommentContainer.propTypes = {
   comments: PropTypes.arrayOf(

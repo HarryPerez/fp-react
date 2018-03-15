@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import profilePicture from '../../../../assets/profile_picture.png';
 import AccessError from '../../../../components/AccessError/';
 import Button from '../../../../components/Button';
+import * as sizes from '../../../../../constants/sizes';
 
 import styles from './styles.scss';
 
@@ -14,11 +15,15 @@ const NewComment = props => (
     </div>
     <div className={styles.addcommentContainer}>
       <h1 className={styles.addcommentTitle}>Agregar comentario</h1>
-      <textarea maxLength="255" className={styles.addcommentArea} onChange={props.handleCommentInput} />
+      <textarea
+        maxLength={sizes.maxCommentsLength}
+        className={styles.addcommentArea}
+        onChange={props.handleCommentInput}
+      />
       {props.hasErrors && <AccessError errors={props.hasErrors} />}
       <Button
         title="Enviar"
-        styles={`${styles.sendcommentButton} ${styles.sendcommentTitle}`}
+        style={`${styles.sendcommentButton} ${styles.sendcommentTitle}`}
         disabled={props.hasErrors || props.isLoading}
         onClick={props.handleSubmit}
       />
