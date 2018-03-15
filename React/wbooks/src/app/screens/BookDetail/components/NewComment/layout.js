@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import profilePicture from '../../../../assets/profile_picture.png';
 import AccessError from '../../../../components/AccessError/';
 import Button from '../../../../components/Button';
-import * as sizes from '../../../../../utils/sizes';
+import * as sizes from '../../../../../constants/sizes';
 
 import styles from './styles.scss';
 
