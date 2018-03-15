@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -49,7 +49,7 @@ class Rent extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {this.props.status.rentedByUser && (
           <h1 className={styles.returnTitle}>
             Devolver antes del{' '}
@@ -67,7 +67,7 @@ class Rent extends Component {
           onClick={this.getClickHandler()}
           disabled={this.props.isLoading ? this.props.isLoading : this.getDisabled()}
         />
-      </div>
+      </Fragment>
     );
   }
 }

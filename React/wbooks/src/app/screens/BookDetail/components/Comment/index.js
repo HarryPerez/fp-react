@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import profilePicture from '../../../../assets/profile_picture.png';
+import Comment from './layout';
 
-import styles from './styles.scss';
+class CommentContainer extends Component {
+  handleRender = comments => comments.map(comment => <Comment key={comment.id} comment={comment} />);
 
-const Comment = () => (
-  <div className={styles.commentContainer}>
-    <div className={styles.pictureContainer}>
-      <img src={profilePicture} className={styles.profilePicture} alt="profilePicture" />
-    </div>
-    <div className={styles.commentDetail}>
-      <h1 className={styles.commentTitle}>Perez Franco</h1>
-      <h2 className={styles.commentDate}> xx/xx/xx </h2>
-      <span className={styles.commentDescription}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat.
-      </span>
-    </div>
-  </div>
+  render() {
+    return <Fragment>{this.handleRender(this.props.comments)}</Fragment>;
+  }
+}
+
+const getLastComments = createSelector(
+  [state => state.books.comments],
+  comments => (comments ? (comments.length > 3 ? comments.slice(0, 4) : comments) : [])
 );
 
-export default Comment;
+const mapStateToProps = state => ({
+  comments: getLastComments(state)
+});
+
+CommentContainer.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  )
+};
+
+export default connect(mapStateToProps)(CommentContainer);

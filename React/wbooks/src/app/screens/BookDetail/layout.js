@@ -8,7 +8,7 @@ import errorIcon from '../../assets/sad_icon.png';
 import BookSummary from './components/BookSummary';
 import Suggestion from './components/Suggestion';
 import NewComment from './components/NewComment';
-import Comment from './components/Comment';
+import CommentContainer from './components/Comment';
 import Rent from './components/Rent';
 import styles from './styles.scss';
 
@@ -53,8 +53,7 @@ class BookDetail extends Component {
         <Suggestion />
         <h1 className={styles.commentsTitle}>Comentarios</h1>
         <NewComment />
-        <Comment />
-        <Comment />
+        <CommentContainer />
       </div>
     );
   }

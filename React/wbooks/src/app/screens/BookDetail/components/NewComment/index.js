@@ -1,22 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import profilePicture from '../../../../assets/profile_picture.png';
+import * as booksActions from '../../../../../redux/books/actions';
 
-import styles from './styles.scss';
+import NewComment from './layout';
 
-const NewComment = () => (
-  <div className={styles.newcommentContainer}>
-    <div className={styles.pictureContainer}>
-      <img src={profilePicture} className={styles.profilePicture} alt="profilePicture" />
-    </div>
-    <div className={styles.addcommentContainer}>
-      <h1 className={styles.addcommentTitle}>Agregar comentario</h1>
-      <textarea className={styles.addcommentArea} />
-      <div className={styles.sendcommentButton}>
-        <h1 className={styles.sendcommentTitle}>Enviar</h1>
-      </div>
-    </div>
-  </div>
+class NewCommentContainer extends Component {
+  handleSubmit = () => this.props.handleSubmit();
+
+  render() {
+    return (
+      <NewComment
+        hasErrors={this.props.hasErrors}
+        handleSubmit={this.handleSubmit}
+        handleCommentInput={this.props.handleCommentInput}
+        isLoading={this.props.isLoading}
+      />
+    );
+  }
+}
+
+const validateInput = createSelector(
+  [state => state.books.newComment],
+  newComment => (newComment === '' ? 'El comentario no puede estar vacío.' : '')
 );
 
-export default NewComment;
+const mapStateToProps = state => ({
+  hasErrors: validateInput(state),
+  bookId: state.books.bookId,
+  userId: state.session.userId,
+  isLoading: state.books.commentsRequestLoading
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleCommentInput: event => dispatch(booksActions.saveComment(event.target.value)),
+  handleSubmit: () => dispatch(booksActions.sendComment())
+});
+
+NewCommentContainer.propTypes = {
+  hasErrors: PropTypes.string,
+  handleCommentInput: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewCommentContainer);
