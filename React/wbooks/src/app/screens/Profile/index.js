@@ -32,35 +32,26 @@ class ProfileContainer extends Component {
   }
 }
 
-const getRentedBooks = createSelector([state => state.session.rents], rents => {
-  if (rents && rents.length > 0) {
-    if (rents.length > 3) {
-      return rents.slice(0, 4).map(rent => rent.book);
-    }
-    return rents.map(rent => rent.book);
-  }
-  return null;
-});
+const getRentedBooks = createSelector(
+  [state => state.session.rents],
+  rents =>
+    rents && rents.length > 0
+      ? rents.length > 3 ? rents.slice(0, 4).map(rent => rent.book) : rents.map(rent => rent.book)
+      : null
+);
 
-const getWishedBooks = createSelector([state => state.rents.wishes], wishes => {
-  if (wishes && wishes.length > 0) {
-    if (wishes.length > 3) {
-      return wishes.slice(0, 4).map(rent => rent.book);
-    }
-    return wishes.map(rent => rent.book);
-  }
-  return null;
-});
+const getWishedBooks = createSelector(
+  [state => state.rents.wishes],
+  wishes =>
+    wishes && wishes.length > 0
+      ? wishes.length > 3 ? wishes.slice(0, 4).map(wish => wish.book) : wishes.map(wish => wish.book)
+      : null
+);
 
-const getComments = createSelector([state => state.session.comments], comments => {
-  if (comments && comments.length > 0) {
-    if (comments.length > 3) {
-      return comments.slice(0, 4);
-    }
-    return comments;
-  }
-  return [];
-});
+const getComments = createSelector(
+  [state => state.session.comments],
+  comments => (comments && comments.length > 0 ? (comments.length > 3 ? comments.slice(0, 4) : comments) : [])
+);
 
 const mapStateToProps = state => ({
   rentedBooks: getRentedBooks(state),
